@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <title><%= h(yield(:title) || "Untitled") %></title>
+        <%= stylesheet_link_tag 'scaffold' %>
+        <%= yield(:head) %>
+    </head>
+    <body>
+        <div id="wrapper">
+    		<div id="container" class="centered">
+    		    <div id="header">
+            		<div id="descriptor">
+                        Annual International Dictyostelium Conference<br/>
+                        August 14-18, 2011<br/>
+                        Baltimore, Maryland USA
+                    </div>
+                    <div id="descriptor-title">
+                        Dicty 2011
+                    </div>
+                    <div id="menu">
+                        <table>
+                            <tr>
+                                <td>About Dicty 2011</td>
+                                <td><a href="/">Home</a></td>
+                                <td><a href="/agenda">Agenda</a></td>
+                                <td>Registration</td>
+                                <td>Transport</td>
+                                <td>Abstract</td>
+                            </tr>
+                        </table>
+                    </div>
+            	</div>
+            	<div id="content">
+        		    <%= yield %>
+        		</div>
+             	<div id="footer">
+            	    <a href="http://dictybase.org">dictyBase.org</a>, 2010
+            	</div>
+        	</div>	
+        </div>
+    </body>
+</html>
