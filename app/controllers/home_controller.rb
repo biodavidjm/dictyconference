@@ -6,10 +6,10 @@ class HomeController < ApplicationController
        render :action => "agenda", :layout=> true  
   end
   def about
-       render :action => "about", :layout=> true  
+       render :action => "coming", :layout=> true  
   end
   def registration
-       render :action => "coming", :layout=> true  
+       render :action => "registration", :layout=> true  
   end
   def transport
        render :action => "coming", :layout=> true  
