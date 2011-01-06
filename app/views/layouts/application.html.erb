@@ -23,16 +23,23 @@
                     <div id="menu">
                         <table>
                             <tr>
-                                <td>About Dicty 2011</td>
+                                <td>
+                                    <%= link_to 'About Dicty 2011', :controller => 'home',  :action => 'about' %>
                                 <td>
                                     <%= link_to 'Home', :controller => 'home',  :action => 'index' %>
                                 </td>
                                 <td>
                                     <%= link_to 'Agenda', :controller => 'home',  :action => 'agenda' %>
                                 </td>
-                                <td>Registration</td>
-                                <td>Transport</td>
-                                <td>Abstract</td>
+                                <td>
+                                    <%= link_to 'Registration', :controller => 'home',  :action => 'registration' %>
+                                </td>
+                                <td>
+                                    <%= link_to 'Transport', :controller => 'home',  :action => 'transport' %>
+                                </td>
+                                <td>
+                                    <%= link_to 'Abstract', :controller => 'home',  :action => 'abstract' %>
+                                </td>
                             </tr>
                         </table>
                     </div>

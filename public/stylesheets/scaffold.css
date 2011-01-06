@@ -21,7 +21,7 @@ body {
     left: 20px;
     position: relative;
     top: 20px;
-    width: 300px;
+    width: 280px;
 }
 #descriptor-title {
     font-size: 36px;
@@ -52,7 +52,7 @@ body {
     margin: 0 auto;
 }
 .narrow {
-    width: 45%;
+    width: 47%;
 }
 #footer {
     background:none repeat scroll 0 0 #fff;
@@ -64,5 +64,6 @@ body {
     text-decoration: none;
 }
 pre {
-    font-family: sans-serif;
+    margin: 0;
+    font: 13px/1.231 arial,helvetica,clean,sans-serif;
 }
