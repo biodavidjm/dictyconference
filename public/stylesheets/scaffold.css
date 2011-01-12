@@ -37,7 +37,8 @@ body {
     position: relative;
 }
 #menu td {
-    padding-right: 15px;
+    padding-left: 15px;
+    width: 10%;
 }
 #container { 
     padding: 0;
@@ -66,4 +67,26 @@ body {
 pre {
     margin: 0;
     font: 13px/1.231 arial,helvetica,clean,sans-serif;
+}
+.sponsors div{
+    float: left;
+    text-align: left;
+    margin-left: 20px;
+}
+.sponsors ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.sponsors img{
+    width: 400px;
+}
+.sponsors h4{
+    margin: 0;
+}
+a:link {
+    color: #F26522;
+}
+a:visited {
+    color: #000;
 }

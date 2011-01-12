@@ -40,7 +40,6 @@ ActionController::Routing::Routes.draw do |map|
   # consider removing or commenting them out if you're using named routes and resources.
   map.root :controller => 'home'
   map.agenda '/agenda', :controller => 'home', :action => 'agenda'
-  map.about '/about', :controller => 'home', :action => 'about'
   map.registration '/registration', :controller => 'home', :action => 'registration'
   map.transport '/transport', :controller => 'home', :action => 'transport'
   map.abstract '/abstract', :controller => 'home', :action => 'abstract'
