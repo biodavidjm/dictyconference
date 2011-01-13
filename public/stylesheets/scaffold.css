@@ -2,6 +2,7 @@ body {
     margin: 0;
     font: 13px/1.231 arial,helvetica,clean,sans-serif;
     background:none repeat scroll 0 0 #333333;
+    min-height: 700px;
 }
 #wrapper {
 }
@@ -41,6 +42,7 @@ body {
     width: 10%;
 }
 #container { 
+    overflow: auto;
     padding: 0;
     width: 850px;
     background:none repeat scroll 0 0 #fff;
