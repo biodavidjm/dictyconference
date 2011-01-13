@@ -9,7 +9,7 @@ class HomeController < ApplicationController
        render :action => "registration", :layout=> true  
   end
   def transport
-       render :action => "coming", :layout=> true  
+       render :action => "transport", :layout=> true  
   end
   def abstract
        render :action => "coming", :layout=> true  
