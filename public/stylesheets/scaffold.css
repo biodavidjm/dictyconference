@@ -103,3 +103,13 @@ li {
 h4 {
     color: #F26522;
 }
+th{
+    text-align: left;
+}
+th h4{
+    margin: 10px 0;
+}
+td, tr {
+    margin: 0;
+    padding: 0 10px 0 0;
+}
