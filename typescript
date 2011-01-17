@@ -1,17 +1,0 @@
-Script started on Wed Dec  1 12:36:30 2010
-cut: bad delimiter
-cut: bad delimiter
-bash-3.2$ pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop[C[C[C[C[C[C[C[C[C[C[Kpg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop
-bash-3.2$ q
-bash: q: command not found
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ uit[K[K[Kquit
-bash: quit: command not found
-bash-3.2$ exit
-exit
-
-Script done on Wed Dec  1 12:36:52 2010
