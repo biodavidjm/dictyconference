@@ -1,0 +1,24 @@
+<% content_for :title, "Login or sign up" %>
+
+<p id="notice"><%= notice %></p>
+
+<%= form_for @user_session do |f| %>
+    <h2>Enter your email address and the password you see listed below</h2>
+
+    <p>Your email address is both the way we will contact you and your username for your account in the
+	registration system. If you have multiple emails, please keep track of which one you use!.</p>
+	<table>
+	  <tr>
+	    <td><%= f.label :email %></td>
+	    <td><%= f.text_field :email %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :password %></td>
+	    <td><%= f.password_field :password %>
+			<%= image_tag("pw"+rand(2).to_s+".gif", :style=>"vertical-align:middle;") %>
+	    </td>
+	  </tr>
+	</table>
+    </p> 
+    <p><%= f.submit "Submit" %></p>
+<% end %>
