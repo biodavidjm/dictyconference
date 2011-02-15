@@ -1,0 +1,108 @@
+--PostgreSQL commands
+-- add this line to pg_hba.conf so you can connect to it on the local machine without a password, if you so desire
+
+local  all    dicty10   trust
+
+-- now login to postgres using psql. You need to be logged in as the user that controls the Postgres database. postgres is the default user
+
+psql postgres
+
+-- create the user (role)
+-- for a little bit of security, create a role. user is an alias for role that also specifies that the role is permitted to login
+
+-- unfortunately as of Rails 2.2, the user must be a superuser to run tests
+CREATE USER dicty11 with createdb;
+ALTER USER dicty11 with superuser;
+
+
+-- now switch to the new user
+
+\connect - dicty11
+
+
+-- now create the database
+
+create database dicty11_development;
+create database dicty11_test;
+
+-- only add this in production. Do not create the development or test databases in production
+create database dicty11_production;
+
+
+# create rails app
+rails -d postgresql dicty11
+cd dicty11
+bbedit config/database.yml
+
+# make sure you have a section that looks like:
+
+development:
+  adapter: postgresql
+  database: dicty11_development
+  username: dicty11
+
+test:
+  adapter: postgresql
+  database: dicty11_test
+  username: dicty11
+
+
+# Modify Gemfile by adding following 
+    gem 'pg'
+    gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git' 
+    gem 'fastercsv'
+
+
+# use bundler to install all gems. 
+    bundle install
+
+# all required gems are now listed in boot.rb which uses Gemfile
+
+
+# create the scaffold. Creates the MVC world for you
+# This time we keep track of abstracts only and do not need that much user data
+	script/generate scaffold user first_name:string last_name:string email:string
+	script/generate scaffold abstract user_id:integer title:string presenter:string abstract:text agreement:boolean note_to_organizers:text abstract_type:string authors:string address:text
+
+# create a controller. Don't want extra cruft as this is purely for controller
+
+	script/generate controller admin
+
+# now add the migration for indexes and foreign keys
+
+script/generate migration create_indexes
+script/generate migration add_authlogic_details
+
+# Edit the migration files as needed 
+# test that the models can be generated and moved
+    rake db:migrate
+
+# reverse the migration
+   rake db:migrate VERSION=0
+# repeat
+    rake db:migrate
+
+# do it in production:
+rake environment RAILS_ENV=production db:migrate
+
+# do it in test:
+rake environment RAILS_ENV=test db:migrate
+
+#RUN TESTS
+
+ruby test/unit/abstract_test.rb
+
+
+# something to do weekly is:
+
+vacuumdb -fz dicty10_development
+
+
+#start web server
+    script/server
+
+# clear logs
+rake log:clear
+
+# passenger restart
+touch tmp/restart.txt
