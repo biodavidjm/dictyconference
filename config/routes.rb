@@ -1,5 +1,13 @@
 Dicty11::Application.routes.draw do
+  resources :user_sessions
+
+  resources :users
+
   root :to => "home#index"
+
+  match '/login' => 'user_sessions#new', :as => :login
+  match '/logout' => 'user_sessions#destroy', :as => :logout
+  match '/admin' => 'user_sessions#admin', :as => :admin
   
   match '/agenda' => 'home#agenda', :as => :agenda
   match '/registration' => 'home#registration', :as => :registration
