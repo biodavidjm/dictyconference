@@ -51,6 +51,12 @@ test:
     gem 'pg'
     gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git' 
     gem 'fastercsv'
+    gem 'recaptcha', :require => 'recaptcha/rails'
+    
+# recaptcha account for dictybase.org: 
+Public Key: 	6Lf6ksESAAAAABHVIc6ZEFpbISe87LB0nh4dyVjy 
+Private Key: 	6Lf6ksESAAAAAE6_1-rUEFoTa5eDCGyh2N7H6OpE 
+    
 
 
 # use bundler to install all gems. 
@@ -62,7 +68,7 @@ test:
 # This time we keep track of abstracts only and do not need that much user data but would need additional 
 # address for correspondence for abstracts
 
-	script/rails generate scaffold user first_name:string last_name:string email:string
+	script/rails generate scaffold user first_name:string last_name:string email:string is_admin:boolean
 	script/rails generate scaffold abstract user_id:integer title:string presenter:string abstract:text agreement:boolean note_to_organizers:text abstract_type:string authors:string address:text
 
 # authlogic generator is broken for rail3 at this moment, create everything manually
@@ -82,6 +88,9 @@ test:
 # now add the authlogic details
 
     script/rails generate migration add_authlogic_details
+    
+## add foreign keys 
+    script/rails generate migration create_foreign_keys
 
 # Edit the migration files as needed 
 # test that the models can be generated and moved

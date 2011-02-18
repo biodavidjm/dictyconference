@@ -1,0 +1,63 @@
+<%= form_for(@abstract) do |f| %>
+
+   <% if @abstract.errors.any? %>
+      <div id="error_explanation">
+         <h2><%= pluralize(@abstract.errors.count, "error") %> prohibited this abstract from being saved:</h2>
+         <ul>
+            <% @abstract.errors.full_messages.each do |msg| %>
+               <li><%= msg %></li>
+            <% end %>
+         </ul>
+       </div>
+    <% end %>
+
+   <%= f.hidden_field :user_id %>
+   <p>
+     <%= f.label :abstract_type %>
+     <%= f.radio_button :abstract_type,  "Poster" %>
+     <%= f.label :abstract_type, "Poster" %>&nbsp;&nbsp;
+     <%= f.radio_button :abstract_type,  "Talk" %>
+     <%= f.label :abstract_type, "Talk" %>&nbsp;&nbsp;
+   </p>
+
+   <p>
+     <%= f.label :title %><br />
+     <%= f.text_field :title, :class => "long_field" %>
+   </p>
+   <p>
+     <%= f.label :authors, "List of Authors" %><br />
+     <%= f.text_field :authors, :class => "long_field" %>
+   </p>
+   <p>
+     <%= f.label :abstract, "Abstract"%><br />
+     <%= f.text_area :abstract, {:rows => 10, :wrap=>"virtual", :class => "long_field" } %>
+   </p>
+   <p>
+     <%= f.label :address, "Address for correspondence" %><br />
+     <%= f.text_area :address, {:rows => 2, :wrap=>"virtual", :class => "long_field" } %>    
+   </p>
+
+   <p>
+     <table>
+         <tr>
+             <td>
+                 <%= f.label :presenter %><br />
+                 <%= f.text_field :presenter %>
+             </td>
+             <td>
+                 <%= f.check_box :agreement %>
+                 <%= f.label :agreement, "I agree to make my abstract available on the Conference website and at dictyBase" %>
+             </td>
+         </tr>
+     </table>
+   </p>
+   <p>
+     <%= f.label :note_to_organizers %><br />
+     <%= f.text_area :note_to_organizers, {:rows => 4, :wrap=>"virtual", :class => "long_field" } %>
+   </p>
+   
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+<% end %>

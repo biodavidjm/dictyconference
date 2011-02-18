@@ -1,7 +1,11 @@
 Dicty11::Application.routes.draw do
+  resources :abstracts
+
   resources :user_sessions
 
-  resources :users
+  resources :users do
+    resources :abstracts
+  end
 
   root :to => "home#index"
 
@@ -12,7 +16,6 @@ Dicty11::Application.routes.draw do
   match '/agenda' => 'home#agenda', :as => :agenda
   match '/registration' => 'home#registration', :as => :registration
   match '/transport' => 'home#transport', :as => :transport
-  match '/abstract' => 'home#abstract', :as => :abstract
   match '/sponsors' => 'home#sponsors', :as => :sponsors
   match '/coming' => 'home#coming', :as => :coming
   

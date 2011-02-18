@@ -15,30 +15,14 @@ class UsersController < ApplicationController
           fields_user = [
             :id,
             :email,
-            :title,
             :first_name,
             :last_name,
-            :gender,
-            :affiliation,
-            :address,
-            :country, 
-            :business_phone,
-            :mobile_phone,
-            :fax,
           ]
-          fields_registration = [
-            :is_registered
-          ]
-          all_fields = fields_user.map{|field| field.to_s}.concat( fields_registration.map{|field| field.to_s})
+          all_fields = fields_user.map{|field| field.to_s}
           csv << all_fields
           for user in @users
-            registration = Registration.find(:first, :conditions =>['(conference_id = :conference_id and user_id = :user_id)',
-              {:conference_id => current_conference.id, :user_id => user.id} ])
             all_data = fields_user.map{|field| value = user.send(field)}
-            
-            is_registered = registration ? 'Y' : 'N';
-            all_data.push( is_registered )
-            csv << all_data
+           csv << all_data
           end
         end
         send_data( buffer, :type => 'text/csv; charset=iso-8859-1; header=present', :filename => 'users.csv')
@@ -64,7 +48,7 @@ class UsersController < ApplicationController
     email = params[:user_session][:email] if ! params[:user_session].nil?
     email ||= params[:email] 
     password = params[:user_session][:password] if ! params[:user_session].nil?
-    @user = User.new( :email=>email )
+    @user = User.new(:password=>password, :email=>email )
 
     respond_to do |format|
       format.html # new.html.erb
@@ -85,7 +69,7 @@ class UsersController < ApplicationController
       if @user.save 
           logger.info "Successfully created profile."
           flash[:notice] = "Successfully created profile."
-          format.html { redirect_to(new_user_registration_path(@user.id)) }
+          format.html { redirect_to(new_user_abstract_path(@user.id)) }
           format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
           flash[:notice] = @user.errors

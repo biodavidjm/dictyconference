@@ -15,7 +15,8 @@ class UserSessionsController < ApplicationController
     flash[:notice] =''
     @user_session = UserSession.new(params[:user_session]);
     has_valid_email = valid_email?(params[:user_session][:email])
-    has_valid_password = valid_password?(params[:user_session][:password])
+    
+    has_valid_password = verify_recaptcha
     
     @user = get_user(params[:user_session])
     valid_user = ! @user.nil?
@@ -30,7 +31,7 @@ class UserSessionsController < ApplicationController
           flash[:notice] = "Logged in as admin"
           redirect_to admin_url
         else
-          redirect_to root_url
+          redirect_to abstracts_path
         end
       elsif ! valid_user and ! has_valid_email
          @user_session.destroy

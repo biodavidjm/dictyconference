@@ -21,7 +21,7 @@ module ApplicationHelper
   end
   
   def abstart_submission_open?
-    abstart_submission_deadline  >= Date.today ? true: false
+    Time.parse(Dicty11::Application.config.abstract_submission_deadline) >= Date.today ? true: false
   end
 
 end

@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  title: MyString
+  presenter: MyString
+  abstract: MyText
+  agreement: false
+  note_to_organizers: MyText
+  abstract_type: MyString
+  authors: MyString
+  address: MyText
+
+two:
+  user_id: 1
+  title: MyString
+  presenter: MyString
+  abstract: MyText
+  agreement: false
+  note_to_organizers: MyText
+  abstract_type: MyString
+  authors: MyString
+  address: MyText

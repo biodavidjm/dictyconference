@@ -1,6 +1,9 @@
 <h1>Editing user</h1>
+<% if !can_edit?(@user) %>
+    <p>Sorry, you can edit only yourself</p>
+<% else %>
+    <%= render 'form' %>
+    <%= link_to 'Show', @user %> |
+<% end %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>

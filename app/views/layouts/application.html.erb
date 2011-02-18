@@ -36,7 +36,7 @@
                                     <%= link_to 'Transport', :controller => 'home',  :action => 'transport' %>
                                 </td>
                                 <td>
-                                    <%= link_to 'Abstract', :controller => 'home',  :action => 'abstract' %>
+                                    <%= link_to 'Abstract', abstracts_path %>
                                 </td>
                                 <td>
                                     <%= link_to 'Sponsors', :controller => 'home',  :action => 'sponsors' %>
@@ -46,7 +46,7 @@
                     </div>
             	</div>
             	<div id="content">
-        		    <%= yield %>
+        		    <%= content_for?(:content) ? yield(:content) : yield %>
         		</div>
              	<div id="footer">
              	    <br/><br/>

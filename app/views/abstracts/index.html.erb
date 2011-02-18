@@ -1,0 +1,40 @@
+<% content_for :title, "Dicty11: List of abstracts" %>
+
+<% if abstart_submission_open? %>
+   <p class="button">
+       <%= link_to image_tag("submit-abstract.png", :border=>0), new_abstract_path %>
+   </p>
+<% end %>
+
+<h3>Submitted abstracts</h3>
+
+<% if @abstracts.empty? %>
+  — No abstracts submitted yet —
+<% else %>
+  <table class="abstract">
+    <tr>
+      <th>Title</th>
+      <th>Type</th>
+      <th>Submitted</th>
+      <th></th>
+    </tr>
+    <% @abstracts.each do |abstract| %>
+      <tr>
+        <td>
+          <p class="title">
+          <%= link_to abstract.title, abstract_path(abstract.id) %>
+          </p>
+          <p class="presenter"><%=h abstract.presenter %></p>
+        </td>
+        <td class="type"><%=h abstract.abstract_type %></td>
+        <td>
+          <span><%= format_date(abstract.created_at) %></span>
+        </td>
+        <td>
+            <%= link_to 'Show', abstract %>
+            <%= link_to 'Edit', edit_abstract_path(abstract.id) if can_edit?(abstract) %>
+            <%= link_to 'Destroy', abstract, :confirm => 'Are you sure?', :method => :delete if is_admin? %></td>
+        </td>
+    <% end %>
+  </table>
+<% end %>
