@@ -9,7 +9,7 @@ module ApplicationHelper
     record ||= @abstract || @user
     raise ArgumentError, "No record specified" unless record
     return true if is_admin?
-    return true if logged_in? && (current_user.id == record.user_id)
+    return true if logged_in? && (current_user.id == record.user_id) && abstart_submission_open?
   end
   
   def is_admin?
