@@ -46,4 +46,6 @@ Dicty11::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  config.abstract_submission_deadline = '2011-Jun-15'
 end
