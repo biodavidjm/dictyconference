@@ -18,11 +18,19 @@ class AbstractsController < ApplicationController
         
         buffer = CSV.generate do |csv|
           fields = [
+            :user_id,
+            :title,
+            :authors,
+            :address,
+            :presenter,
+            :abstract_type,
+            :abstract,
+            :agreement,
+            :note_to_organizers,            
+            :created_at, 
+            :updated_at
           ]
           csv << fields.map{|field| field.to_s}
-          for abstract in @abstracts
-            csv << fields.map{|field| value = abstract.send(field)}
-          end
         end
         send_data( buffer, :type => 'text/csv; charset=iso-8859-1; header=present', :filename => 'abstracts.csv')
       }
