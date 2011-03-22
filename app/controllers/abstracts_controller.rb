@@ -1,5 +1,5 @@
 class AbstractsController < ApplicationController
-  skip_before_filter :login_required, :only => :index
+  skip_before_filter :login_required, :only => [ :index, :show ]
   
   # GET /abstracts
   # GET /abstracts.xml
