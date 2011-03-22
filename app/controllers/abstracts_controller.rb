@@ -16,8 +16,7 @@ class AbstractsController < ApplicationController
       format.xml  { render :xml => @abstracts }
       format.csv {
         
-        buffer = CSV.generate do |csv|
-          logger.debug('1')
+        buffer = FasterCSV.generate do |csv|
           fields = [
             :user_id,
             :title,
@@ -31,11 +30,8 @@ class AbstractsController < ApplicationController
             :created_at, 
             :updated_at
           ]
-          logger.debug('2')
           csv << fields.map{|field| field.to_s}
-          logger.debug('3')
           for abstract in @abstracts
-            logger.debug('4')
             csv << fields.map{|field| value = abstract.send(field)}
           end
         end
