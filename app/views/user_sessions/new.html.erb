@@ -1,0 +1,25 @@
+<% content_for :title, "Login or sign up" %>
+
+<p id="notice"><%= notice %></p>
+
+<%= form_for @user_session do |f| %>
+    <h2>Enter your email address and the password you see listed below</h2>
+
+    <p>Your email address is both the way we will contact you and your username for your account in the
+	registration system. If you have multiple emails, please keep track of which one you use!</p>
+	<table>
+        <tr>
+	        <td><%= f.label :email %></td>
+	        <td>
+	        <table class="recaptchatable-like">
+	            <tr><td><%= f.text_field :email %></td></tr>
+	        </table>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><%= recaptcha_tags :display => {:theme => 'clean'} %></td>
+	    </tr>
+	</table>
+    </p> 
+    <p><%= f.submit "Submit" %></p>
+<% end %>

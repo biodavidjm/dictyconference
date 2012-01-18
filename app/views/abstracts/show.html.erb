@@ -1,0 +1,42 @@
+<% if logged_in? %>
+   <p id="notice"><%= notice %></p>
+
+   <p>
+     <b>Title:</b>
+     <%= @abstract.title %>
+   </p>
+
+   <p>
+     <b>Authors:</b>
+     <%= @abstract.authors %>
+   </p>
+
+   <p>
+     <b>Presenter:</b>
+     <%= @abstract.presenter %>
+   </p>
+
+   <p>
+     <b>Address for correspondence:</b>
+     <%= @abstract.address %>
+   </p>
+
+
+   <p>
+     <b>Abstract:</b>
+     <%= @abstract.abstract %>
+   </p>
+
+   <p>
+     <b>Abstract type:</b>
+     <%= @abstract.abstract_type %>
+   </p>
+
+
+   <% if can_edit?(@abstract) %>
+      <%= link_to 'Edit', edit_abstract_path(@abstract) %> |
+   <% end %>
+   <%= link_to 'Back', abstracts_path %>
+<% else %>
+   You have to be logged in to see submitted abstracts
+<% end %>

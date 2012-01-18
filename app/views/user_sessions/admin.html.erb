@@ -1,0 +1,7 @@
+<% if is_admin? %>
+  <h1>Admin controls</h1>
+  
+  <%= link_to 'Manage abstracts', "abstracts" %><br/><br/>
+  <%= link_to 'Export abstracts as csv', "abstracts.csv" %><br/><br/>
+
+<% end %>

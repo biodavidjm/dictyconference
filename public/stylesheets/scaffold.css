@@ -4,7 +4,45 @@ body {
     background:none repeat scroll 0 0 #333333;
     min-height: 700px;
 }
-#wrapper {
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+#notice {
+  color: green;
+}
+.field_with_errors {
+/*
+  padding: 2px;
+  background-color: red;
+  display: table;
+*/
+  display: inline;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
 }
 #header {
 	margin: 0 0 15px 0;
@@ -29,11 +67,12 @@ body {
     left: 480px;
     position: relative;
     top: -40px;
+    width:200px;
 }
 #menu table{
     margin: 20px 0 0 5px;
     top: 200px;
-    width:100%;
+    width:98%;
     font-size:24px;
     position: relative;
 }
@@ -112,4 +151,52 @@ th h4{
 td, tr {
     margin: 0;
     padding: 0 10px 0 0;
+}
+.abstract th{
+    border-bottom : 1px solid;
+}
+.abstract a, .abstract a:hover  {
+    text-decoration:none;
+    outline-style:none;
+    outline-width:medium;
+    color: #993333; 
+    background-color:#fff;
+}
+.abstract td {
+    padding : 4px;
+}
+.abstract .title a, .abstract .title p  {
+    color:#F26522;
+    font-size:1.2em;
+}
+.abstract .title, .abstract .presenter {
+    margin:0 0 0.2em;
+}
+table.abstract {
+    width: 100%;
+}
+.long_field {
+    width : 97%;
+}
+table.recaptchatable-like{
+    border: 0 none;
+    bottom: auto;
+    color: black;
+    left: auto;
+    margin: 0;
+    padding: 5px;
+    position: static;
+    right: auto;
+    text-align: left !important;
+    top: auto;
+    border: 1px solid #DFDFDF !important;
+    width: 100%;
+}
+table.recaptchatable-like input {
+    border: 1px solid #3C3C3C;
+    width: 302px;
+}
+#user_nav {
+  float: right;
+  font-size: 12px;
 }
