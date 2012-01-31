@@ -45,15 +45,16 @@ div.field, div.actions {
   list-style: square;
 }
 #header {
-	margin: 0 0 15px 0;
-    background-image: url(../images/background.jpg);
+	margin: 0 0 12px 0;
+    /*background-image: url(../images/background.jpg);*/
+	background-image: url(../images/nuevopuroconcambiodecolor.gif);
     background-repeat: no-repeat; 
     height: 400px;
     color: #FFFFFF;
 }
 #header a {
-    color: #FFFFFF;
-    text-decoration:none;
+    color: #000000;
+    text-decoration:underline;
 }
 #descriptor {
     font-size: 19px;
@@ -75,6 +76,7 @@ div.field, div.actions {
     width:98%;
     font-size:24px;
     position: relative;
+	
 }
 #menu td {
     padding-left: 15px;
@@ -86,6 +88,7 @@ div.field, div.actions {
     width: 850px;
     background:none repeat scroll 0 0 #fff;
 }
+
 #content{
     padding: 0 20px;
     min-height:500px;

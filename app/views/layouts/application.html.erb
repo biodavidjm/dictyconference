@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-        <title><%= h(yield(:title) || "Dicty11") %></title>
+        <title><%= h(yield(:title) || "Dicty12") %></title>
         <%= stylesheet_link_tag 'scaffold' %>
         <%= yield(:head) %>
     </head>
@@ -14,11 +14,11 @@
     		    <div id="header">
             		<div id="descriptor">
                         Annual International Dictyostelium Conference<br/>
-                        August 14-18, 2011<br/>
-                        Baltimore, Maryland USA
+                        July 29 - August 2, 2012<br/>
+                        Madrid, Spain
                     </div>
                     <div id="descriptor-title">
-                        Dicty 2011
+                        
                     </div>
                     <div id="menu">
                         <table>
@@ -49,8 +49,9 @@
         		    <%= content_for?(:content) ? yield(:content) : yield %>
         		</div>
              	<div id="footer">
-             	    <br/><br/>
-            	    <a href="http://dictybase.org">dictyBase.org</a>, 2010
+             	    <br/><br/><br/>
+					Header image credits: Carlos<br/>
+            	    <a href="http://dictybase.org">dictyBase.org</a>, 2012
             	</div>
         	</div>	
         </div>
