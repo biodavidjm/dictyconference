@@ -1,12 +1,12 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '>=3.0.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :production do
-	gem 'pg'
+  gem 'pg'
 end
 gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
 gem 'recaptcha', :require => 'recaptcha/rails'
@@ -24,7 +24,7 @@ gem 'fastercsv'
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'
-group :development
+group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 # gem 'aws-s3', :require => 'aws/s3'
