@@ -5,7 +5,9 @@ gem 'rails', '3.0.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
+group :production do
+	gem 'pg'
+end
 gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'fastercsv'
@@ -22,7 +24,9 @@ gem 'fastercsv'
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
+group :development
+  gem 'sqlite3-ruby', :require => 'sqlite3'
+end
 # gem 'aws-s3', :require => 'aws/s3'
 
 # Bundle gems for the local environment. Make sure to
