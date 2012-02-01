@@ -3,3 +3,4 @@ log/*
 database.yml
 .Gemfile.lock
 .bundle
+tmp
