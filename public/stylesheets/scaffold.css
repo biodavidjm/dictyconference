@@ -45,16 +45,19 @@ div.field, div.actions {
   list-style: square;
 }
 #header {
-	margin: 0 0 12px 0;
+	margin: 0 0 14px 0;
     /*background-image: url(../images/background.jpg);*/
 	background-image: url(../images/nuevopuroconcambiodecolor.gif);
     background-repeat: no-repeat; 
+	background-size:contain;
     height: 400px;
-    color: #FFFFFF;
+	width: relative;
+    color: white;
 }
 #header a {
-    color: #000000;
+    color: white;
     text-decoration:underline;
+	background-color:black;
 }
 #descriptor {
     font-size: 19px;
@@ -62,6 +65,7 @@ div.field, div.actions {
     position: relative;
     top: 20px;
     width: 280px;
+
 }
 #descriptor-title {
     font-size: 36px;
@@ -69,6 +73,7 @@ div.field, div.actions {
     position: relative;
     top: -40px;
     width:200px;
+
 }
 #menu table{
     margin: 20px 0 0 5px;
