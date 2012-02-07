@@ -1,4 +1,5 @@
-source 'http://rubygems.org'
+#source 'http://rubygems.org'
+source 'http://download.bioinformatics.northwestern.edu/gems/'
 
 gem 'rails', '>=3.0.3'
 
@@ -9,6 +10,7 @@ gem 'pg'
 gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'fastercsv'
+gem 'bcdatabase', '1.2.1'
 
 # Use unicorn as the web server
 # gem 'unicorn'
