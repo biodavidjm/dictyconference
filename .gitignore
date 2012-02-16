@@ -4,3 +4,4 @@ database.yml
 .Gemfile.lock
 .bundle
 tmp
+vendor/*
