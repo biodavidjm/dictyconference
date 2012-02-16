@@ -1,8 +1,18 @@
-require 'test_helper'
+require_relative '../test_helper'
+#require 'user_controller'
+
+class UsersController
+  def rescue_action(e)
+    raise e
+  end
+end
 
 class UsersControllerTest < ActionController::TestCase
   setup do
-    @user = users(:one)
+    #@user = users(:one)
+    @controller = UsersController.new
+    @request = ActionController::TestRequest.new
+    @response = ActionController::TestResponse.new
   end
 
   test "should get index" do
