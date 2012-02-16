@@ -12,6 +12,11 @@ gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'fastercsv'
 gem 'bcdatabase', '1.2.1'
 
+# RSpec for testing
+group :development, :test, :staging do
+  gem 'rspec-rails'
+end
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
