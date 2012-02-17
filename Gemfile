@@ -30,7 +30,8 @@ end
 # gem 'bj'
 # gem 'nokogiri'
 group :development do
-  gem 'sqlite3-ruby', :require => 'sqlite3'
+  #gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 end
 # gem 'aws-s3', :require => 'aws/s3'
 
