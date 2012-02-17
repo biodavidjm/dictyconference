@@ -8,8 +8,8 @@
           <%= link_to 'My abstracts', user_abstracts_path(current_user)%> | 
          <% end %>
          <%= link_to "Logout", logout_path %>
-      <% else %>
-         <%= link_to "Login or sign up", login_path %>
+      <!--<% else %>
+         <%= link_to "Login or sign up", login_path %>-->
       <% end %>
    </div>
    <%= yield %>
