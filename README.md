@@ -11,16 +11,20 @@ To begin with clone the repository from [Github/dictyconference](https://github.
 git clone git://github.com/dictyBase/dictyconference.git
 ```
 Then switch to the ```feature/trial``` branch
+
 ```bash
 cd dictyconference
 git checkout feature/trial
 ```
+
 # Setting up RVM
 We will have the set up [RVM](https://rvm.beginrescueend.com/) so that you can use your version of gems. Just fire up your terminal and follow the steps to install ```rvm```.
 Then install the version of Ruby you want to use for your application;
+
 ```bash
 rvm install 1.9.2
 ```
+
 To use this version of Ruby for you application, do
 ```bash
 rvm use 1.9.2
