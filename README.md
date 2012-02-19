@@ -26,19 +26,26 @@ rvm install 1.9.2
 ```
 
 To use this version of Ruby for you application, do
+
 ```bash
 rvm use 1.9.2
 ```
+
 Now create a gemset called 'dictyConf' for our application
+
 ```bash
 rvm gemset create dictyConf
 rvm use @dictyConf
 ```
+
 Install [```rails```](http://rubyonrails.org/)
+
 ```bash
 gem install rails
 ```
+
 Next step is to install [```bundler```](http://gembundler.com/). It is a very handy gem. It will install all the gems from your ```Gemfile``` and set it up for application.
+
 ```bash
 gem install bundler
 ```
@@ -47,12 +54,15 @@ gem install bundler
 [NUBIC](http://www.nucats.northwestern.edu/clinical-research-resources/data-collection-biomedical-informatics-and-nubic/bioinformatics-overview.html) has a library and utility called [```bcdatabase```](https://github.com/NUBIC/bcdatabase) which provides database configuration parameter management for Ruby on Rails applications. It provides a simple mechanism for separating database configuration attributes from application source code so that there's no temptation to check passwords into the version control system.
 
 Before we can use this gem we have to modify the ```Gemfile``` to add the following source and gem
+
 ```ruby
 source 'http://download.bioinformatics.northwestern.edu/gems/'
 
 gem 'bcdatabase', '1.2.1'
 ```
+
 It is pretty easy to use this gem (now that we have figured it out). When you create a rails application using ```rails new <app_name>```, a database configuration file is created in ```./config/database.yml``` which looks like (default)
+
 ```yaml
 development:
   adapter: sqlite3
@@ -72,7 +82,9 @@ production:
   pool: 5
   timeout: 5000
 ```
+
 If you want to use ```bcdatabase``` for the staging your application, your ```./config/database.yml``` file will look like this
+
 ```yaml
 <%
   require 'bcdatabase'
@@ -99,23 +111,31 @@ production:
 
 <%= bcdb.staging :pstage, 'dictyConf' %>
 ```
+
 The ```pstage``` parameter points to a configuration block ```dictyConf``` in a YAML file ```/etc/nubic/db/pstage.yml``` (on your staging server). This configuration block which will have the actual database configuration looks like
+
 ```yaml
 dictyConf:
   database: <db_name>
   username: <db_user>
   epassword: <encrypted_password>
 ```
+
 Also for the ```bcdb.staging``` (from ERB block) to work, you will have to create a ```staging.rb``` file in ```./config/environments/```
+
 ```bash
 cp development.rb staging.rb
 ```
+
 # Final steps
 Install all the dependencies using ```bundler```
+
 ```bash
 bundle install
 ```
+
 And before you deploy you will have to migrate your database under the staging environment.
+
 ```rails
 RAILS_ENV=staging rake db:migrate
 ```
