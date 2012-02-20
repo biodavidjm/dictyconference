@@ -49,13 +49,13 @@ div.field, div.actions {
 }
 
 #header {
-	margin: 0 0 14px 0;
+  margin: 0 0 14px 0;
   /*background-image: url(../images/background.jpg);*/
-	background-image: url(../images/Dicty_2012_smooth.gif);
+  background-image: url(../images/Dicty12_header.gif);
   background-repeat: no-repeat; 
-	background-size:contain;
+  background-size:contain;
   height: 360px;
-	width: relative;
+  width: relative;
   color: white;
 }
 
