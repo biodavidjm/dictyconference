@@ -1,4 +1,4 @@
-##Ruby on rails web application for dictybase conference 
+## Ruby on rails web application for dictybase conference 
 
 This wiki will help you deploy the dictyConference Ruby on Rails application.
 
