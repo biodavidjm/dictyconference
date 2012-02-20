@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## Ruby on rails web application for dictybase conference 
 
 This wiki will help you deploy the dictyConference Ruby on Rails application.
@@ -145,8 +144,3 @@ Ask your system administrator to setup your application with Apache server and y
 
 # Testing
 You can use [```rspec```](http://rspec.info/) or [```factory_girl```](https://github.com/thoughtbot/factory_girl) for ```fixtures```.
-=======
-##Ruby on rails web application for dictybase conference 
-
-[HowTo for dictyConference application](https://github.com/dictyBase/dictyconference/wiki/HowTo-for-dictyConference-application)
->>>>>>> 7b413777f2d9c21f14c937192573eb29820d1b09
