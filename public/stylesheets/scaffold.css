@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font: 13px/1.231 arial,helvetica,clean,sans-serif;
+  font: 14px/1.231 arial,helvetica,clean,sans-serif;
   background:none repeat scroll 0 0 #333333;
   min-height: 700px;
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif; }
@@ -100,18 +100,8 @@ div.field, div.actions {
   padding: 0;
   width: 850px;
   background:none 0 0 #fff;
-  margin-bottom:25px;
+  margin-bottom:5px;
 }
-
-/*#left, #right {
-  margin: 0;
-  padding: 10px;
-  width: 45%;
-  float: left;
-}
-#right {
-  float: right;
-}*/
 
 #left {
   margin: 0;
@@ -268,43 +258,6 @@ table.recaptchatable-like input {
 .user_nav {
   float: right;
   font-size: 12px;
-}
-
-.conf_title {
-  float:left;
-  width:450px;
-  background:white;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif; }
-}
-
-.host_info {
-  float:right;
-  width:450px;
-  background:white;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif; }
-}
-
-.hotel_pic {
-  float:left;
-  width:150px;
-}
-
-.hotel_addr {
-  float: right;
-}
-
-.row {
-  margin-left: 20px;
-  *zoom: 1;
-  position: center;
-  padding:25px 20px 50px 20px;
-}
-/*.row:before, .row:after {
-  display: table;
-  content: "";
-}
-.row:after {
-  clear: both;
 }
 
 .info-box {
