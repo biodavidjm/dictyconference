@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font: 14px/1.231 arial,helvetica,clean,sans-serif;
+  font: 13px/1.231 arial,helvetica,clean,sans-serif;
   background:none repeat scroll 0 0 #333333;
   min-height: 700px;
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif; }
@@ -49,14 +49,16 @@ div.field, div.actions {
 }
 
 #header {
-  margin: 0 0 14px 0;
-  /*background-image: url(../images/background.jpg);*/
-  background-image: url(../images/Dicty_2012_smooth.gif);
-  background-repeat: no-repeat; 
-  background-size:contain;
-  height: 360px;
-  width: relative;
   color: white;
+  background-repeat: no-repeat; 
+  /*background-size:contain;
+  /*margin: 0 0 0 0;*/
+  /*background-image: url(../images/background.jpg);*/
+  /*background-image: url(../images/Dicty_2012_smooth.gif);
+   height: 370px;
+  /*width: relative;
+  width: 850px;*/
+  
 }
 
 #header a {
@@ -83,10 +85,10 @@ div.field, div.actions {
 }
 
 #menu table{
-  margin: 20px 0 0 5px;
-  top: 290px;
+  margin: 5px 0 0 12px;
+  /*top: 10px;*/
   width:98%;
-  font-size:22px;
+  font-size:20px;
   position: relative;
 }
 
@@ -95,32 +97,51 @@ div.field, div.actions {
   width: 10%;
 }
 
+/*#home-content {
+  margin:0;
+  padding: 15px 15px;
+  width:650px;
+  font-size: 13px;
+  text-align: justify;
+}*/
+
+#home-content {
+  /*margin: 15px 0 5px 0;*/
+  margin: 0 15px;
+  padding: 10px 15px;
+  width: 700px;
+  float: left;
+}
+
+
 #container { 
   /*overflow: auto;*/
   padding: 0;
   width: 850px;
   background:none 0 0 #fff;
-  margin-bottom:5px;
+  /*margin-bottom:5px;*/
 }
 
 #left {
-  margin: 0;
-  padding: 0 37px;
-  width: 400px;
+  /*margin: 15px 0 5px 0;*/
+  margin: 0 15px;
+  padding: 10px 15px;
+  width: 370px;
   float: left;
 }
 #right {
-  padding: 25px 0;
-  margin: 0;
+  padding: 10px 5px 5px 5px;
+  /*margin: 30px 0 0 0;*/
+  margin: 25px 35px;
   float: right;
-  width:375px;
+  width:340px;
 }
 
 #content{
-  padding: 0 20px;
-  min-height:500px;
-  margin-left: 10px;
-  margin-right: 10px;
+  padding: 15px 25px;
+  min-height:550px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .centered {
@@ -137,6 +158,7 @@ div.field, div.actions {
     color: #afafaf;
     text-align: center;
     padding-bottom: 5px;
+    padding-top: 5px;
 }
 
 #footer a{
@@ -260,7 +282,7 @@ table.recaptchatable-like input {
   font-size: 12px;
 }
 
-.info-box {
+/*.info-box {
   width: 325px;
   height: 160px;
   padding: 20px 15px;
@@ -271,10 +293,10 @@ table.recaptchatable-like input {
   /*box-shadow: 1px 1px 5px 0px #cccccc;
   /*behavior: url("/static/scripts/PIE.htc");
   float: left;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif; 
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;*/ 
 }
 
-.info-box.last {
+/*.info-box.last {
       margin: 0 0 20px 0; }
 
 .info-box h2 {
