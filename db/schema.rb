@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307173512) do
+ActiveRecord::Schema.define(:version => 20120307190743) do
 
   create_table "abstracts", :force => true do |t|
     t.integer  "user_id"
@@ -45,6 +45,13 @@ ActiveRecord::Schema.define(:version => 20120307173512) do
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
+    t.string   "city"
+    t.string   "zipcode"
+    t.string   "country"
+    t.string   "passport"
+    t.string   "phone"
+    t.string   "institute"
+    t.string   "address"
   end
 
 end
