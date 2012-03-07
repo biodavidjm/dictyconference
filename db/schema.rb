@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120306223607) do
+ActiveRecord::Schema.define(:version => 20120307173512) do
 
   create_table "abstracts", :force => true do |t|
     t.integer  "user_id"
@@ -25,21 +25,6 @@ ActiveRecord::Schema.define(:version => 20120306223607) do
     t.text     "address"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
-  end
-
-  create_table "attendees", :force => true do |t|
-    t.string   "firstname"
-    t.string   "lastname"
-    t.string   "institute"
-    t.text     "address"
-    t.string   "city"
-    t.integer  "zip"
-    t.string   "country"
-    t.string   "email"
-    t.integer  "phone"
-    t.string   "passport"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
