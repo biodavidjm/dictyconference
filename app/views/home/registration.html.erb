@@ -66,31 +66,12 @@
 
 </div>
 
-<%#= tabs_tag do |tab| %>
-  <%#= tab.registration 'Registration', registration_path %>
-  <%#= tab.payment 'Payment', payment_path %>
-<%# end %> 
-
-
-<!--<ul>
-    <li><a href="#registration">Registration</a></li>
-    <li><a href="#payment">Payment</a></li>
-</ul>
-
-<div id="registration">This is the registration page</div>
-<div id="payment">This is the payment page</div>
-
-
-$(document).ready(function() {
-    $("#tabs").tabs();
-});
-</html>-->
-
 <!--<p>Coming soon...</p>-->
 
 <p class="button" align="center">
-   <%#= link_to image_tag("register.png", :border=>0), "http://www.google.com/" %>
+   <%= link_to image_tag("register.png", :border=>0), :controller => 'attendee', :action => 'register' %>
 </p>
+
 <!--<p class="button">
    <%= link_to image_tag("register.png", :border=>0), "http://www.radisson.com/dicty" %>
 </p>-->

@@ -1,23 +1,27 @@
 Dicty11::Application.routes.draw do
-  resources :abstracts
-
-  resources :user_sessions
-
-  resources :users do
-    resources :abstracts
-  end
-
+  
   root :to => "home#index"
+  get "attendee/register"
 
   match '/login' => 'user_sessions#new', :as => :login
   match '/logout' => 'user_sessions#destroy', :as => :logout
   match '/admin' => 'user_sessions#admin', :as => :admin
   
-  match '/agenda' => 'home#agenda', :as => :agenda
+  resources :abstracts
+
+  resources :user_sessions
+
+  resources :users do
+    resources :abstracts, :register
+  end
+
   match '/registration' => 'home#registration', :as => :registration
+  match '/register' => 'attendee#register', :as => :register
+  match '/agenda' => 'home#agenda', :as => :agenda
   match '/transport' => 'home#transport', :as => :transport
   match '/sponsors' => 'home#sponsors', :as => :sponsors
-  match '/coming' => 'home#coming', :as => :coming
+  
+  # match '/coming' => 'home#coming', :as => :coming
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
