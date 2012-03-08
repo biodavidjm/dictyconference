@@ -1,0 +1,62 @@
+<%= form_for(@user) do |f| %>
+  
+<!--   <#% if @register.errors.any? %>
+    <div id="error_explanation">
+      <h2><%#= pluralize(@register.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <#% @register.errors.full_messages.each do |msg| %>
+        <li><%#= msg %></li>
+      <#% end %>
+      </ul>
+    </div>
+  <#% end %> -->
+  
+    <table>
+        <tr>
+            <td><%= f.label :first_name %></td>
+            <td><%= f.text_field :first_name %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :last_name %></td>
+            <td><%= f.text_field :last_name %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :email %></td>
+            <td><%= f.text_field :email %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :institute %></td>
+            <td><%= f.text_field :institute %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :address %></td>
+            <td><%= f.text_field :address %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :city %></td>
+            <td><%= f.text_field :city %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :zipcode %></td>
+            <td><%= f.text_field :zipcode %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :country %></td>
+            <td><%= f.text_field :country %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :phone %></td>
+            <td><%= f.text_field :phone %></td>
+        </tr>
+        <tr>
+            <td>Passport #</td>
+            <td><%= f.text_field :passport %></td>
+        </tr>
+    </table>
+<p>
+  <div class="actions">
+    <%= f.submit "Submit"%>
+  </div>
+</p>  
+<% end %>
