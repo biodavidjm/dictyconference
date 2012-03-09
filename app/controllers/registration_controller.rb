@@ -7,16 +7,16 @@ class RegistrationController < ApplicationController
 	end
 
 	def new
-		@user = User.new
+		# @user = User.new
 		email = params[:user_session][:email] if ! params[:user_session].nil?
     	email ||= params[:email] 
     	password = params[:user_session][:password] if ! params[:user_session].nil?
     	@user = User.new(:password=>password, :email=>email )
 
-    	# respond_to do |format|
-     #  		format.html # new.html.erb
-     #  		format.xml  { render :xml => @user }
-    	# end
+    	 respond_to do |format|
+       		format.html # new.html.erb
+       		format.xml  { render :xml => @user }
+    	 end
 	end
 
 	def create
@@ -51,6 +51,8 @@ rescue Exception => e
 	end
 
 	def update
+    email = params[:user_session][:email] if ! params[:user_session].nil?
+    # @register = User.new (:email => email)
 	end
 
 end

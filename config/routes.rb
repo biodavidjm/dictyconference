@@ -1,25 +1,26 @@
 Dicty11::Application.routes.draw do
   
   root :to => "home#index"
-  # get "attendee/register"
 
   match '/login' => 'user_sessions#new', :as => :login
   match '/logout' => 'user_sessions#destroy', :as => :logout
   match '/admin' => 'user_sessions#admin', :as => :admin
-  match '/register' => 'registration#new', :as => :register
-  match '/users/:id', :to => 'users#show', :as => :user
+  match '/register' => 'registration#update', :as => :register
+  # match '/users/:id', :to => 'users#show', :as => :user
   
   resources :user_sessions
+  resources :users
   resources :registration
   resources :abstracts
+  
 
   resources :user_sessions do
     resources :abstracts
   end
 
-  resources :user do
-    resources :registration
-  end
+  # resources :users do
+  #   resources :registration
+  # end
 
   #match '/registration' => 'home#registration', :as => :registration
   match '/agenda' => 'home#agenda', :as => :agenda
