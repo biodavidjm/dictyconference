@@ -10,10 +10,13 @@ gem 'pg'
 gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'fastercsv'
-gem 'bcdatabase', '1.2.1'
+
+group :prod, :staging
+	gem 'bcdatabase', '1.2.1'
+end
 
 # RSpec for testing
-group :development, :test, :staging do
+group :test do
   gem 'rspec-rails'
 end
 
