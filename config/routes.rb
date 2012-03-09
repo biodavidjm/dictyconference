@@ -5,7 +5,7 @@ Dicty11::Application.routes.draw do
   match '/login' => 'user_sessions#new', :as => :login
   match '/logout' => 'user_sessions#destroy', :as => :logout
   match '/admin' => 'user_sessions#admin', :as => :admin
-  match '/register' => 'registration#update', :as => :register
+  match '/register' => 'registration#new', :as => :register
   # match '/users/:id', :to => 'users#show', :as => :user
   
   resources :user_sessions
@@ -14,9 +14,9 @@ Dicty11::Application.routes.draw do
   resources :abstracts
   
 
-  resources :user_sessions do
-    resources :abstracts
-  end
+  # resources :user_sessions do
+  #   resources :abstracts
+  # end
 
   # resources :users do
   #   resources :registration
