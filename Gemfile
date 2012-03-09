@@ -11,7 +11,7 @@ gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'fastercsv'
 
-group :prod, :staging
+group :prod, :staging do
 	gem 'bcdatabase', '1.2.1'
 end
 
