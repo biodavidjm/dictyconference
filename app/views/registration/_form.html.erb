@@ -2,17 +2,19 @@
 
 <%= form_for(@user) do |f| %>
   
-<!--   <#% if @register.errors.any? %>
+<% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%#= pluralize(@register.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-      <#% @register.errors.full_messages.each do |msg| %>
-        <li><%#= msg %></li>
-      <#% end %>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
       </ul>
     </div>
-  <#% end %> -->
+  <% end %>
+
+  <%#= session[:where_from] %>
   
     <table>
         <tr>
