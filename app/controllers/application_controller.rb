@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
    
   helper_method :current_user
   
-  before_filter  :login_required, :except => :login 
+  # before_filter  :login_required, :except => :login 
 
   private
 

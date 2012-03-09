@@ -30,8 +30,8 @@ class UserSessionsController < ApplicationController
         if is_admin?
           flash[:notice] = "Logged in as admin"
           redirect_to admin_url
-        elsif @register
-          redirect_to registration_form  
+        elsif session[:where_from] == 'registration'
+          redirect_to new_registration_path
         else
           redirect_to abstracts_path
         end

@@ -72,9 +72,15 @@ class UsersController < ApplicationController
           format.html { redirect_to(new_user_abstract_path(@user.id)) }
           format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
+        if session[:where_from] == 'registration'
           flash[:notice] = @user.errors
-          format.html { render :action => "new" }
+          format.html { redirect_to new_registration_path }
           format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        else
+          flash[:notice] = @user.errors
+          format.html { render :action => 'new' }
+          format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end

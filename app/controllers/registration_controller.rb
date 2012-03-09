@@ -1,37 +1,42 @@
 class RegistrationController < ApplicationController
 	#current_tab :registration
-	skip_before_filter :login_required, :only => [:new,:create]
+	before_filter :login_required, :only => [:new,:create,:update]
 
 	def index
 		@users = User.all
+    session[:where_from] = 'registration'
 	end
 
 	def new
 		# @user = User.new
 		email = params[:user_session][:email] if ! params[:user_session].nil?
-    	email ||= params[:email] 
-    	password = params[:user_session][:password] if ! params[:user_session].nil?
-    	@user = User.new(:password=>password, :email=>email )
+    email ||= params[:email] 
+    password = params[:user_session][:password] if ! params[:user_session].nil?
+    @user = User.new(:email=>email)
 
-    	 respond_to do |format|
-       		format.html # new.html.erb
-       		format.xml  { render :xml => @user }
-    	 end
+    	respond_to do |format|
+       	format.html # new.html.erb
+       	format.xml  { render :xml => @user }
+    	end
 	end
 
 	def create
-		@register = User.new(params[:user])
+		@user = User.new(params[:user])
      	respond_to do |format|
-      		if @register.save 
+      		if @user.save 
           		logger.info "Registration successful"
           		flash[:notice] = "Registration successful !"
       		else
-          		flash[:notice] = @register.errors
-          		# format.html { render :action => "new" }
-          		format.xml  { render :xml => @register.errors, :status => :unprocessable_entity }
+          		flash[:notice] = @user.errors
+          		format.html { render :action => "new" }
+          		format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       		end
       	end
   	end
+
+def edit
+    @user = User.find(params[:id])
+end
 
 =begin
 rescue Exception => e	
@@ -42,12 +47,13 @@ rescue Exception => e
 =begin
 rescue Exception => e	
 =end
-	def show
-		@register = User.find(params[:id])
-    	respond_to do |format|
-      		format.html # show.html.erb
-      		format.xml  { render :xml => @register }
-    	end
+  def show
+    @user = User.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @user }
+    end
 	end
 
 	def update
