@@ -10,11 +10,11 @@ To begin with clone the repository from [Github/dictyconference](https://github.
 ```bash
 git clone git://github.com/dictyBase/dictyconference.git
 ```
-Then switch to the ```feature/trial``` branch
+Then switch to the ```develop``` branch
 
 ```bash
 cd dictyconference
-git checkout feature/trial
+git checkout develop
 ```
 
 # Setting up RVM
