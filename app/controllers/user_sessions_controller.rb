@@ -40,7 +40,12 @@ class UserSessionsController < ApplicationController
          flash[:notice] = "Please enter a proper email and password."
          render :action => :new
       elsif has_valid_email and has_valid_password
-        redirect_to(new_user_path(:email => params[:user_session][:email]))
+        # puts session[:where_from]
+        # if session[:where_from] = 'registration'
+        #   redirect_to(new_registration_path(:email => params[:user_session][:email]))
+        # else
+          redirect_to(new_user_path(:email => params[:user_session][:email]))
+        # end
       else
         flash[:notice] = "Please enter a proper password."
          @user_session.destroy
