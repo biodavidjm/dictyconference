@@ -20,6 +20,11 @@
   <%= @user.institute %>
 </p>
 
+<p>
+  <b>City:</b>
+  <%= @user.city %>
+</p>
+
 
 <% if can_edit?(@user) %>
     <%= link_to 'Edit', edit_registration_path(@user)  %> |
