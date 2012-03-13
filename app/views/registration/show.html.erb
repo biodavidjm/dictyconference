@@ -1,3 +1,5 @@
+<% content_for :title, "Dicty12: Registration Details" %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -16,8 +18,13 @@
 </p>
 
 <p>
-  <b>Institute:</b>
+  <b>Institute Affiliation:</b>
   <%= @user.institute %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @user.address %>
 </p>
 
 <p>
@@ -25,8 +32,33 @@
   <%= @user.city %>
 </p>
 
+<p>
+  <b>Zipcode:</b>
+  <%= @user.zipcode %>
+</p>
 
-<% if can_edit?(@user) %>
-    <%= link_to 'Edit', edit_registration_path(@user)  %> |
-<% end %>
+<p>
+  <b>Country:</b>
+  <%= @user.country %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @user.phone %>
+</p>
+
+<p>
+  <b>Passport #:</b>
+  <%= @user.passport %>
+</p>
+
+<p>
+  <b>Accommodation type:</b>
+  <%= @user.accommodation_type %>
+</p>
+
+<%# if can_edit?(@user) %>
+    <%#= link_to 'Edit', edit_registration_path(@user)  %> 
+<%# end %>
+
 <%= link_to 'Back', registration_path %>
