@@ -1,4 +1,4 @@
-<%# content_for :title, "Dicty12: Registration Form" %>
+<% content_for :title, "Dicty12: Registration Form" %>
 
 <%= form_for(@user, :url => registration_path) do |f| %>
   
@@ -19,49 +19,64 @@
     <table>
         <tr>
             <td><%= f.label :first_name %></td>
-            <td><%= f.text_field :first_name %></td>
+            <td><%= f.text_field :first_name, :required => true, :mark => '*' %></td>
         </tr>
         <tr>
             <td><%= f.label :last_name %></td>
-            <td><%= f.text_field :last_name %></td>
+            <td><%= f.text_field :last_name, :required => true %></td>
         </tr>
         <tr>
             <td><%= f.label :email %></td>
-            <td><%= f.text_field :email %></td>
+            <td><%= f.text_field :email, :required => true %></td>
         </tr>
         <tr>
-            <td><%= f.label :institute %></td>
-            <td><%= f.text_field :institute %></td>
+            <td><%= f.label "Institute Affiliation" %></td>
+            <td><%= f.text_field :institute, :required => true %></td>
         </tr>
         <tr>
             <td><%= f.label :address %></td>
-            <td><%= f.text_field :address %></td>
+            <td><%= f.text_field :address, :required => true %></td>
         </tr>
         <tr>
             <td><%= f.label :city %></td>
-            <td><%= f.text_field :city %></td>
+            <td><%= f.text_field :city, :required => true %></td>
         </tr>
         <tr>
             <td><%= f.label :zipcode %></td>
-            <td><%= f.text_field :zipcode %></td>
+            <td><%= f.text_field :zipcode, :required => true %></td>
         </tr>
         <tr>
             <td><%= f.label :country %></td>
-            <td><%= f.text_field :country %></td>
+            <td><%= f.text_field :country, :required => true %></td>
         </tr>
         <tr>
             <td><%= f.label :phone %></td>
-            <td><%= f.text_field :phone %></td>
+            <td><%= f.text_field :phone, :required => true %></td>
         </tr>
         <tr>
             <td>Passport #</td>
-            <td><%= f.text_field :passport %></td>
+            <td><%= f.text_field :passport, :required => true %></td>
+        </tr>
+        <tr>
+            <td>
+                <label for="accommodation_type">Accommodation</label>
+            </td>
+            <td>
+                <% [ 'Single use', 'Double use' ].each do |accommodation_type| %>
+                    <%= radio_button_tag 'accommodation_type', accommodation_type, @accommodation_type == accommodation_type, :default => 'Single use' %>
+                    <%= accommodation_type.humanize %>
+                <% end %>
+            </td>
+        </tr>
+        <tr>
+            <td><%= label_tag 'Have an accompanying guest?' %></td>
+            <td><%= check_box_tag :has_guest, :default => false %></td>
         </tr>
     </table>
 
 <p>
   <div class="actions">
-    <%= f.submit "Submit" %>
+    <%= f.submit "Register" %>
   </div>
 </p> 
  
