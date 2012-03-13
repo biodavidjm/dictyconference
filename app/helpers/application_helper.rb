@@ -20,8 +20,12 @@ module ApplicationHelper
     ! current_user.blank?
   end
   
-  def abstart_submission_open?
+  def abstract_submission_open?
     Time.parse(Dicty11::Application.config.abstract_submission_deadline) >= Date.today ? true: false
+  end
+
+  def registration_open?
+    Time.parse(Dicty11::Application.config.registration_deadline) >= Date.today ? true: false 
   end
 
 end
