@@ -1,6 +1,6 @@
 <%# content_for :title, "Dicty12: Registration Form" %>
 
-<%= form_for(@user) do |f| %>
+<%= form_for(@user, :url => registration_path) do |f| %>
   
     <% if @user.errors.any? %>
         <div id="error_explanation">
@@ -61,7 +61,7 @@
 
 <p>
   <div class="actions">
-    <%= f.submit "Submit"%>
+    <%= f.submit "Submit" %>
   </div>
 </p> 
  
