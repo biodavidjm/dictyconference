@@ -1,6 +1,6 @@
 class RegistrationController < ApplicationController
 	#current_tab :registration
-	skip_before_filter :login_required, :only => [:new,:create]
+  before_filter :login_required, :only => [:new,:create]
 
 	def index
 		@users = User.all
@@ -31,6 +31,7 @@ rescue Exception => e
       		if @user.save 
           		logger.info "Registration successful"
           		flash[:notice] = "Registration successful !"
+              format.html { render :action => "view" }
       		else
           		flash[:notice] = @user.errors
           		format.html { render :action => "new" }
