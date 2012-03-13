@@ -1,5 +1,5 @@
 class UserSessionsController < ApplicationController
-  before_filter :login_required, :only => [:admin]
+  skip_before_filter :login_required, :only => [:admin]
   helper :all # include all helpers, all the time
   include UserSessionsHelper
   
