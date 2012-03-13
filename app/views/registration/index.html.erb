@@ -68,12 +68,10 @@
 
 <!--<p>Coming soon...</p>-->
 
-<p class="button" align="center">
-   <%#= link_to image_tag("register.png", :border=>0), :controller => 'attendee', :action => 'register' %>
-   <%= link_to image_tag("register.png", :border=>0), :register %>
-</p>
-
-<!--<p class="button">
-   <%= link_to image_tag("register.png", :border=>0), "http://www.radisson.com/dicty" %>
-</p>-->
+<%# if registration_open? %>
+   <p class="button" align="center">
+      <%#= link_to image_tag("register.png", :border=>0), :controller => 'attendee', :action => 'register' %>
+      <%= link_to image_tag("register.png", :border=>0), :register %>
+   </p>
+<%# end %>
 
