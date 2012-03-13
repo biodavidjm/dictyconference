@@ -8,4 +8,8 @@ module UsersHelper
     return Abstract.find(:all, :conditions =>['(user_id = :user_id)',
         {:user_id => user.id} ])
   end
+
+  def is_registered?(user=nil)
+
+  end
 end
