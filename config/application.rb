@@ -40,6 +40,6 @@ module Dicty11
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
-    config.registration_deadline = July 13, 2012
+    config.registration_deadline = Date.new(2012, 07, 13)
   end
 end
