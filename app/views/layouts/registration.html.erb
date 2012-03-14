@@ -1,0 +1,23 @@
+<% content_for :content do %>
+  <div id="user_nav">
+
+    <% if current_user %>
+
+      <%# if is_admin? %>
+        <!-- <%#= link_to "Admin panel", :controller => 'user_sessions', :action => 'admin' %> |  -->
+      <%# end %>
+
+      <%# if is_registered?(current_user) %>
+        <!-- <%#= link_to 'Registration details', registration_path(current_user)%> |  -->
+      <%# end %>
+
+      <%= link_to "Logout", logout_path %> |
+
+      <% else %>
+        <%= link_to "Login or sign up", login_path %>
+      <% end %>
+  </div>
+  <%= yield %>
+<% end %>
+
+<%= render :file => 'layouts/application' %>

@@ -13,6 +13,7 @@ module ApplicationHelper
   end
   
   def is_admin?
+    logger.info 'User is an admin'
     return true if logged_in? && current_user.is_admin
   end
   
@@ -20,6 +21,11 @@ module ApplicationHelper
     ! current_user.blank?
   end
   
+  def is_registered? #(user=nil)
+    logger.info 'User is registered'
+    return true if logged_in? && current_user.is_registered
+  end
+
   def abstract_submission_open?
     Time.parse(Dicty11::Application.config.abstract_submission_deadline) >= Date.today ? true: false
   end

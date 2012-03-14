@@ -1,25 +1,68 @@
 class RegistrationController < ApplicationController
 	#current_tab :registration
-  before_filter :login_required, :only => [:new,:create]
+  before_filter :login_required, :only => [:new,:create,]
 
 	def index
-		@users = User.all
-    session[:where_from] = 'registration'
+		# @users = User.all
+  #   session[:where_from] = 'registration'
+
+    # if params[:user_id]
+    #   @user = User.find(:all, :conditions => ['user_id = :user_id', {:user_id => params[:user_id] }]) 
+    #   if is_registered?(@user)
+    #     flash[:notice] = "You are registered."
+    #     format.html { render :action => "show" }
+    #   else
+        @user = User.all
+        session[:where_from] = 'registration'
+    #   end
+    # end
 	end
 
 =begin
 rescue Exception => e 
 =end
 	def new
-		email = params[:user_session][:email] if ! params[:user_session].nil?
-    email ||= params[:email] 
-    password = params[:user_session][:password] if ! params[:user_session].nil?
-    @user = User.new(:password=>password, :email=>email )
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
-    end
+    # if params[:user_id]
+      @user = User.find(:all, :conditions => ['id = :user_id', {:user_id => params[:user_id] }]) 
+      # email = params[:user_session][:email] if ! params[:user_session].nil?
+      # email ||= params[:email] 
+      # @user = User.find(:all, :conditions => ['email = :email', {:email => email }]) 
+      
+      if is_registered? #(@user)
+        flash[:notice] = "You are registered."
+        # format.html { render :action => "show" }
+        # respond_to do |format|
+        #  format.html { render :action => "show" }
+        #  format.xml  { render :xml => @user }
+        # end
+        render :action => 'show'
+      else
+        # @users = User.all
+        # session[:where_from] = 'registration'
+
+        email = params[:user_session][:email] if ! params[:user_session].nil?
+        email ||= params[:email] 
+        password = params[:user_session][:password] if ! params[:user_session].nil?
+        @user = User.new(:password=>password, :email=>email )
+
+        respond_to do |format|
+          format.html # new.html.erb
+          format.xml  { render :xml => @user }
+        end
+      end
+    # end
+
+
+		# email = params[:user_session][:email] if ! params[:user_session].nil?
+  #   email ||= params[:email] 
+  #   password = params[:user_session][:password] if ! params[:user_session].nil?
+  #   @user = User.new(:password=>password, :email=>email )
+
+  #   respond_to do |format|
+  #     format.html # new.html.erb
+  #     format.xml  { render :xml => @user }
+  #   end
 	end
 
 =begin
@@ -61,7 +104,8 @@ rescue Exception => e
 rescue Exception => e	
 =end
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(:all, params[:id])
+    @user = User.find(:all, :conditions => ['id = :user_id', {:user_id => params[:id] }]) 
 
     respond_to do |format|
       format.html # show.html.erb

@@ -1,4 +1,4 @@
-class UserSessionsController < ApplicationController
+ class UserSessionsController < ApplicationController
   skip_before_filter :login_required, :only => [:admin]
   helper :all # include all helpers, all the time
   include UserSessionsHelper
@@ -27,13 +27,15 @@ class UserSessionsController < ApplicationController
       if result
         flash[:notice] = "Successfully logged in."
         logger.info "Successfully logged in user #{params[:user_session][:email]}."
-        if is_admin?
-          flash[:notice] = "Logged in as admin"
-          redirect_to admin_url
-        elsif session[:where_from] == 'registration'
+        if session[:where_from] == 'registration'
           redirect_to new_registration_path
         else
-          redirect_to abstracts_path
+          if is_admin?
+            flash[:notice] = "Logged in as admin"
+            redirect_to admin_url
+          else
+            redirect_to abstracts_path
+          end
         end
       elsif ! valid_user and ! has_valid_email
          @user_session.destroy
@@ -41,11 +43,11 @@ class UserSessionsController < ApplicationController
          render :action => :new
       elsif has_valid_email and has_valid_password
         # puts session[:where_from]
-        # if session[:where_from] = 'registration'
-        #   redirect_to(new_registration_path(:email => params[:user_session][:email]))
-        # else
+        if session[:where_from] = 'registration'
+          redirect_to(new_registration_path(:email => params[:user_session][:email]))
+        else
           redirect_to(new_user_path(:email => params[:user_session][:email]))
-        # end
+        end
       else
         flash[:notice] = "Please enter a proper password."
          @user_session.destroy

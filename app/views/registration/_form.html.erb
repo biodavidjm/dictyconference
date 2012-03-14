@@ -30,7 +30,7 @@
             <td><%= f.text_field :email, :required => true %></td>
         </tr>
         <tr>
-            <td><%= f.label "Institute Affiliation" %></td>
+            <td><%= f.label :institute, "Institute Affiliation" %></td>
             <td><%= f.text_field :institute, :required => true %></td>
         </tr>
         <tr>
@@ -63,14 +63,15 @@
             </td>
             <td>
                 <% [ 'Single use', 'Double use' ].each do |accommodation_type| %>
-                    <%= radio_button_tag 'accommodation_type', accommodation_type, @accommodation_type == accommodation_type, :default => 'Single use' %>
+                    <%= f.radio_button 'accommodation_type', accommodation_type, :default => 'Single use' %>
+                    <!-- , :default => 'Single use' -->
                     <%= accommodation_type.humanize %>
                 <% end %>
             </td>
         </tr>
         <tr>
             <td><%= label_tag 'Have an accompanying guest?' %></td>
-            <td><%= check_box_tag :has_guest, :default => false %></td>
+            <td><%= f.check_box(:has_guest, :default => false) %></td>
         </tr>
     </table>
 
