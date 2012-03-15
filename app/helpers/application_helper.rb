@@ -22,7 +22,6 @@ module ApplicationHelper
   end
   
   def is_registered? #(user=nil)
-    logger.info 'User is registered'
     return true if logged_in? && current_user.is_registered
   end
 
