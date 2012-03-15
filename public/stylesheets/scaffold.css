@@ -1,9 +1,9 @@
 body {
   margin: 0;
-  font: 13px/1.231 arial,helvetica,clean,sans-serif;
+  font: 12px/1.231 arial,helvetica,clean,sans-serif;
   background:none repeat scroll 0 0 #333333;
   min-height: 700px;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif; }
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif; 
 }
 
 div.field, div.actions {
@@ -293,8 +293,8 @@ table.recaptchatable-like input {
   /*box-shadow: 1px 1px 5px 0px #cccccc;
   /*behavior: url("/static/scripts/PIE.htc");
   float: left;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;*/ 
-}
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
+}*/
 
 /*.info-box.last {
       margin: 0 0 20px 0; }
