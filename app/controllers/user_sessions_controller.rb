@@ -7,7 +7,6 @@
     @user_session = UserSession.new
   end
   
-  # Display admin login form
   def admin
   end
   
@@ -41,13 +40,7 @@
       else
         @user_session = UserSession.new(@user) 
     	
-        # has_valid_email = valid_email?(params[:user_session][:email])
-        # has_valid_password = verify_recaptcha
-
-        # if has_valid_email and has_valid_password
-    	  # The user has invaded,  lets decide on his next stop
 		 	  if @user_session.save 
-        	# flash[:notice] = "Successfully logged in."
         	logger.info "Successfully logged in user #{params[:user_session][:email]}."
         	# if somebody did a half hearted registration
         	if session[:where_from] == 'registration'
@@ -70,10 +63,6 @@
           flash[:notice_error] = "Unable to login with #{params[:user_session][:email]},  Please try again"
           render :action => :new
         end
-      # else
-      #    logger.info 'Invalid user name and password'
-      #    flash[:notice_error] = 'Invalid email and/or password,  Please try again'
-      #    render :action => :new
     	 end
 		end
   end
