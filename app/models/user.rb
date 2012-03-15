@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
     c.validate_password_field(false)
   end
 
-  validates_presence_of :first_name, :last_name, :institute, :address, :city, :zipcode, :country, :phone, :passport
+  validates_presence_of :first_name, :last_name, :institute, :address, :city, :zipcode, :country, :phone
   validates :email,   
             :presence => true,   
             :uniqueness => true,   
