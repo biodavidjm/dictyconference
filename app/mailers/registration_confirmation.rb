@@ -6,7 +6,7 @@ class RegistrationConfirmation < ActionMailer::Base
     mail(:to => user.email, 
       :from => "dictyBase <dictybase@northwestern.edu>"
     	:subject => "Dicty12 Registration Confirmation",
-    	:body => {:user => user}
+    	:body => {:user => user},
     	sent_on => Time.now
     	)
   end
