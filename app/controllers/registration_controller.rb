@@ -15,6 +15,9 @@ class RegistrationController < ApplicationController
     @user = User.new(params[:user])
 	 @user.is_registered = 1
     if @user.save 
+
+      RegistrationConfirmation.registration_confirmation_to_user(@user).deliver
+
       logger.info "Registration successful"
       flash[:notice] = "Registration Successful"
       render :action => "view" 
