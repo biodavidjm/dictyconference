@@ -1,6 +1,5 @@
 class RegistrationController < ApplicationController
 	#current_tab :registration
-  #before_filter :login_required, :only => [:new,:create]
 
 	def index
 		session[:where_from] = 'registration'
@@ -40,7 +39,7 @@ class RegistrationController < ApplicationController
 	end
 
   def show
-  	@user = User.find(params[:id])
+  	@user = current_user
 	end
 
 	def update

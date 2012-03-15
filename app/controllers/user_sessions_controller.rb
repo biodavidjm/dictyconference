@@ -13,10 +13,11 @@
   
   def create
     @user = get_user(params[:user_session])
+    session[:email] = params[:user_session][:email]
+    # sorry dude,  you need to register before you break in
     if @user.nil?
         if session[:where_from] == 'registration' or session[:where_from] == 'abstract'
         	flash[:notice] = "#{params[:user_session][:email]} is not registered"
-        	session[:email] = params[:user_session][:email]
           redirect_to new_registration_path
 				else
 					flash[:notice] = "Please try to register or submit an abstract first"
@@ -28,11 +29,17 @@
     	has_valid_password = verify_recaptcha
 
     	if has_valid_email and has_valid_password
+    	  # The user has invaded,  lets decide on his next stop
 		 		if @user_session.save 
         	flash[:notice] = "Successfully logged in."
         	logger.info "Successfully logged in user #{params[:user_session][:email]}."
-        	if is_registered?
-          	redirect_to registration_path(:id => @user.id)
+        	# if somebody did a half hearted registration
+        	if session[:where_from] == 'registration'
+        		if is_registered?
+          	  redirect_to registration_path(:id => @user.id)
+          	else
+          		redirect_to new_registration_path
+          	end
         	else
           	if is_admin?
             	flash[:notice] = "Logged in as admin"
