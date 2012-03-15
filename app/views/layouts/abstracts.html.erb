@@ -1,19 +1,19 @@
 <% content_for :content do %>
    <div id="user_nav">
-      <% if current_user %>
+      <%# if current_user %>
 
-         <% if is_admin? %>
-            <%= link_to "Admin panel", :controller => 'user_sessions', :action => 'admin' %> | 
-         <% end %>
+         <%# if is_admin? %>
+            <!-- <%#= link_to "Admin panel", :controller => 'user_sessions', :action => 'admin' %> |  -->
+         <%# end %>
 
-         <% if has_abstract?(current_user) %>
-            <%= link_to 'My abstracts', user_abstracts_path(current_user)%> | 
-         <% end %>
+         <%# if has_abstract?(current_user) %>
+            <!-- <%#= link_to 'My abstracts', user_abstracts_path(current_user)%> |  -->
+         <%# end %>
 
-         <%= link_to "Logout", logout_path %>
+         <%#= link_to "Logout", logout_path %>
          <%# else %>
          <%#= link_to "Login or sign up", login_path %>
-      <% end %>
+      <%# end %>
    </div>
 
    <%= yield %>
