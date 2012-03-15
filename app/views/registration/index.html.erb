@@ -68,10 +68,10 @@
 
 <!--<p>Coming soon...</p>-->
 
-<%# if registration_open? %>
+<% if ! is_registered? %>
    <p class="button" align="center">
       <%#= link_to image_tag("register.png", :border=>0), :controller => 'attendee', :action => 'register' %>
       <%= link_to image_tag("register.png", :border=>0), :login %>
    </p>
-<%# end %>
+<% end %>
 
