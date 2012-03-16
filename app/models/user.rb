@@ -7,10 +7,12 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :institute, :address, :city, :zipcode, :country, :phone
   validates :email,   
             :presence => true,   
-            :uniqueness => true,   
+            :uniqueness => true, 
             :format => { 
               :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i 
             }
+
+
 
 #  has_many :abstracts, :dependent => :delete_all
   before_save :lowercase_email
