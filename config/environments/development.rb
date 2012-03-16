@@ -24,5 +24,21 @@ Dicty11::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
   
   config.abstract_submission_deadline = '2012-Jun-15'
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.perform_deliveries = :true
+
+  ActionMailer::Base.smtp_settings = {
+    # :address        => "smtp.northwestern.edu",
+    :address => "mail.it.northwestern.edu",
+    :port => "25"
+      # :password       => "9XXXXXXXXX",
+    # :authentication => 'plain',
+    # :enable_starttls_auto => true 
+}
+
+
 end
 
