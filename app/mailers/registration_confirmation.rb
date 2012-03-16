@@ -3,26 +3,22 @@ class RegistrationConfirmation < ActionMailer::Base
   
   def registration_confirmation_to_user (user)
     @user = user
-        mail(:to => user.email, 
-          :from => "dictybase@northwestern.edu",
+        mail(
+          :to => user.email, 
+          :from => "Dicty12 Registration Bot <dicty@northwestern.edu>",
           :subject => "Dicty12 Registration Confirmation",
-          :body => {:user => user}
+          :content_type => "text/plain"
           )
-    # to  user.email
-    #     from  "dictyBase <dictybase@northwestern.edu>"
-    #     subject "Dicty12 Registration Confirmation"
-    #     sent_on Time.now
-    #     body  :user => user
   end
   
-  # def registration_confirmation_to_host (user)
-  #     @user = user
-  #     mail(:to => "", 
-  #       :from => "dictyBase <dictybase@northwestern.edu>",
-  #       :subject => "New Dicty12 Registration",
-  #       :body => {:user => user},
-  #       sent_on => Time.now
-  #       )
-  #   end
+  def registration_confirmation_to_host (user)
+      @user = user
+      mail(
+        :to => ["Yogesh Pandit <yogesh.pandit@northwestern.edu>", "Petra Fey <pfey@northwestern.edu>"], 
+        :from => "Dicty12 Registration Bot <dicty@northwestern.edu>",
+        :subject => "New Dicty12 Registration",
+        :content_type => "text/plain"
+        )
+    end
 
 end
