@@ -1,0 +1,19 @@
+Hello,
+
+We have a new registration for Annual International Dictyostelium Conference, 2012.
+Following are the details;
+
+Name: <%= @user.first_name %> <%= @user.last_name%>
+Institute affiliation: <%= @user.institute %>
+
+Address: <%= @user.address %>, <%= @user.city %>, <%= @user.country %> <%= @user.zipcode %>
+Email: <%= @user.email %>
+Phone: <%= @user.phone %>
+
+Accommodation type: <%= @user.accommodation_type %>
+Accompanying guest? <%= @user.has_guest ? 'Yes': 'No'  %>
+
+I have asked him/her to make the payment and send the confirmation to you. 
+
+Thank you.
+
