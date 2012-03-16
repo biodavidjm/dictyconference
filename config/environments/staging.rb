@@ -24,5 +24,9 @@ Dicty11::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
   
   config.abstract_submission_deadline = '2012-Mar-15'
+  
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :sendmail
+
 end
 
