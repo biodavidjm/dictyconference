@@ -1,6 +1,7 @@
 class RegistrationController < ApplicationController
 	#current_tab :registration
-
+  helper "errors"
+  
   def index
     session[:where_from] = 'registration'
   end
@@ -13,10 +14,12 @@ class RegistrationController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-	 @user.is_registered = 1
+	  @user.is_registered = 1
     if @user.save 
-
+      
+      logger.info "Sending an email to #{@user.email}"
       RegistrationConfirmation.registration_confirmation_to_user(@user).deliver
+      RegistrationConfirmation.registration_confirmation_to_host(@user).deliver
 
       logger.info "Registration successful"
       flash[:notice] = "Registration Successful"
