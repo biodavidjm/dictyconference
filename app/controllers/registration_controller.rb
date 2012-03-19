@@ -1,7 +1,6 @@
 class RegistrationController < ApplicationController
 	#current_tab :registration
-  # helper "errors"
-  
+   
   def index
     session[:where_from] = 'registration'
   end
