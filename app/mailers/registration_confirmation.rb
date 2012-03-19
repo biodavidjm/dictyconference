@@ -1,5 +1,5 @@
 class RegistrationConfirmation < ActionMailer::Base
-  default from: "Dicty12 Registration Bot <...@northwestern.edu>"
+  default :from => "Dicty12 Registration Bot <d8cf1ed@northwestern.edu>"
   
   def registration_confirmation_to_user (user)
     @user = user
@@ -13,7 +13,7 @@ class RegistrationConfirmation < ActionMailer::Base
   def registration_confirmation_to_host (user)
       @user = user
       mail(
-        :to => ["xyz@abc.com", "mno@uvw.edu"], 
+        :to => ["abc@xyz.com", "pqr@uvw.net"], 
         :subject => "New Dicty12 Registration",
         :content_type => "text/plain"
         )
