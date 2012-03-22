@@ -1,6 +1,105 @@
 <% content_for :title, "Dicty12: Registration Form" %>
+<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" %>
+<%#= javascript_include_tag :defaults %> <!-- Issue with rails.js. Hence using jQuery.min.js -->
 
 <script type="text/javascript">
+
+    $(document).ready(function() {
+
+        $('#user_has_guest').attr('checked', false)
+        $("#user_has_guest").click(function() {
+            showGuestOptions()   
+        })
+
+        $('#user_guest_trip').hide()
+        $('#user_guest_supplement_HB').hide()
+        $('#user_guest_supplement_HBD').hide()
+        $('label[for="label_guest_dinner_trip"]').hide()
+        $('label[for="label_guest_supplement_1"]').hide()
+        $('label[for="label_guest_supplement_2"]').hide()
+
+        $('#view_price').hide()
+        $('#user_roomie_first_name').hide()
+        $('#user_roomie_last_name').hide()
+        $('label[for="label_roomie_name"]').hide()
+
+        $("input[type=radio]").attr('checked', false)
+        $("input[type=radio]").click(function() {
+            showPrice()   
+        })
+
+        
+    });
+
+    function showPrice() {
+        var registration_type;
+        if (Date.now() < Date.parse("5/15/2012")) {
+            registration_type = 'Early Registration'   
+        } else if (Date.now() > Date.parse("5/15/2012") && Date.now() <  Date.parse("7/23/2012")) {
+            registration_type = 'Late Registration'
+        }
+        
+        $('#view_price').show()
+        $('#view_price').css({ 'font-weight': 'bold', 'font-size': '12px', 'color':'black', 'border': 'none', 'background-color':'white' });
+
+        if ($('#user_accommodation_type_double_use').is(':checked')) {
+            $('label[for="label_roomie_name"]').show()
+            $('#user_roomie_first_name').show()
+            $('#user_roomie_last_name').show()
+        
+            if (registration_type == 'Early Registration'){
+                $('#view_price').val(registration_type+': €675 (per person)')
+            } else if (registration_type == 'Late Registration') {
+                $('#view_price').val(registration_type+': €795 (per person)')
+            }
+        } else if ($('#user_accommodation_type_single_use').is(':checked')) {
+            $('#user_roomie_first_name').hide()
+            $('#user_roomie_last_name').hide()
+            $('label[for="label_roomie_name"]').hide()
+
+            if (registration_type == 'Early Registration'){
+                $('#view_price').val(registration_type+': €830')
+            } else if (registration_type == 'Late Registration') {
+                $('#view_price').val(registration_type+': €950')
+            }
+        }
+
+        $('#user_accommodation_type_single_use').click(function() {
+            $('#user_roomie_first_name').val('')
+            $('#user_roomie_last_name').val('')
+        })
+    }
+
+    function showGuestOptions() {
+        if ($('#user_has_guest').is(':checked')){
+            $('#user_guest_trip').show()
+            $('#user_guest_supplement_HB').show()
+            $('#user_guest_supplement_HBD').show()
+            $('label[for="label_guest_dinner_trip"]').show()
+            $('label[for="label_guest_supplement_1"]').show()
+            $('label[for="label_guest_supplement_2"]').show()
+        }else {
+            $('#user_guest_trip').attr('checked', false)
+            $('#user_guest_trip').hide()
+            $('#user_guest_supplement_HB').attr('checked', false)
+            $('#user_guest_supplement_HB').hide()
+            $('#user_guest_supplement_HBD').attr('checked', false)
+            $('#user_guest_supplement_HBD').hide()
+            $('label[for="label_guest_dinner_trip"]').hide ()
+            $('label[for="label_guest_supplement_1"]').hide ()
+            $('label[for="label_guest_supplement_2"]').hide ()
+          }
+
+        $('#user_guest_supplement_HB').click(function() {
+            $('#user_guest_supplement_HB').attr('checked', true)
+            $('#user_guest_supplement_HBD').attr('checked', false)
+        })
+
+        $('#user_guest_supplement_HBD').click(function() {
+            $('#user_guest_supplement_HB').attr('checked', false)
+            $('#user_guest_supplement_HBD').attr('checked', true)
+        })
+    }
 
 </script>
 
@@ -10,15 +109,12 @@
         <div id="error_explanation">
             <h2>We have <%= pluralize(@user.errors.count, "error") %> on the form</h2>
             <ul>
-                <%# @user.errors.full_messages.each do |attr, msg| %>
                 <% @user.errors.full_messages.each do |msg| %>
-                    <!-- <li><%#= "#{attr} #{msg}" if @user.errors[attr].first == msg %></li> -->
                     <li><%= msg %></li>
                 <% end %>
             </ul>
         </div>   
     <% end %>
-
 
   <%#= session[:where_from] %>
   
@@ -70,15 +166,54 @@
                 <label for="accommodation_type">Accommodation</label>
             </td>
             <td>
-                <% [ 'Single use', 'Double use' ].each do |accommodation_type| %>
-                    <%= f.radio_button 'accommodation_type', accommodation_type, :default => 'Single use'%>
-                    <%= accommodation_type.humanize %>
-                <% end %>
+                <%# [ 'Single use', 'Double use' ].each do |accommodation_type| %>
+                  <%= f.radio_button(:accommodation_type, 'Single use', :required => true )%>
+                  <%= label_tag 'single_use', 'Single use' %>
+                  <%= f.radio_button(:accommodation_type, 'Double use', :required => true ) %>
+                  <%= label_tag 'double_use', 'Double use' %>
+                    <%#= f.radio_button 'accommodation_type', accommodation_type, :default => 'Single use', %>
+                    <%#= accommodation_type.humanize %>
+                <%# end %>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+              <%= text_field_tag 'view_price', '', :disabled=>true, :size => "45", :color => 'black' %>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+              <%= label_tag 'label_roomie_name', 'Person to share room:' %>
+              <%= f.text_field :roomie_first_name, :placeholder => "First Name", :size => "25" %>
+              <%= f.text_field :roomie_last_name, :placeholder => "Last Name", :size => "25" %>
             </td>
         </tr>
         <tr>
             <td><%= label_tag 'Have an accompanying guest?' %></td>
-            <td><%= f.check_box(:has_guest, :default => false) %></td>
+            <td><%= f.check_box(:has_guest, :default => false, :onclick => 'showGuestOptions()') %></td>
+          </tr>
+        <tr>
+            <td></td>
+            <td>
+              <%= f.check_box :guest_supplement_HB %>
+              <%= label_tag 'label_guest_supplement_1', 'Accommodation Supplement (Hotel + Breakfast): €207' %>
+            </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <%= f.check_box :guest_supplement_HBD %>
+            <%= label_tag 'label_guest_supplement_2', 'Accommodation Supplement (Hotel + Breakfast + Dinner): €327' %>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <%= f.check_box :guest_trip %>
+            <%= label_tag 'label_guest_dinner_trip', 'Trip to Segovia (with Dinner): €63', :type => 'text' %>
+          </td>
         </tr>
     </table>
 

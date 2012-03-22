@@ -2,10 +2,46 @@ Hello <%= @user.first_name %>,
 
 Thank you for registering for the Annual International Dictyostelium Conference, 2012
 
+	<%= @user.first_name %> <%= @user.last_name%>
+	<%= @user.institute %>
+	<%= @user.address %>, <%= @user.city %>, <%= @user.country %> <%= @user.zipcode %>
+	
+	Email: <%= @user.email %>
+	Phone: <%= @user.phone %>
+
+	Accommodation type: <%= @user.accommodation_type %>
+	<% if Date.today < Date.parse("5/15/2012") %>
+		<% if @user.accommodation_type == 'Single use' %>
+			Early Registration: €830
+		<% elsif @user.accommodation_type == 'Double use' %>
+			Early Registration: €675 (per person)
+		<% end %>
+	<% elsif Date.today > Date.parse("5/15/2012") && Date.today <  Date.parse("7/23/2012") %>
+		<% if @user.accommodation_type == 'Single use' %>
+			Early Registration: €950
+		<% elsif @user.accommodation_type == 'Double use' %>
+			Early Registration: €795 (per person)
+		<% end %>
+	<% end %>
+
+	Accompanying guest? <%= @user.has_guest ? 'Yes': 'No'  %>
+	<% if @user.accommodation_type == 'Double use' %>
+	Sharing room with: <%= @user.roomie_first_name %> <%= @user.roomie_last_name %>
+	<% end %>
+	<% if @user.guest_supplement_HB %>
+	Accommodation Supplement (Hotel + Breakfast): €207
+	<% end %>
+	<% if @user.guest_supplement_HBD %>
+	Accommodation Supplement (Hotel + Breakfast + Dinner): €327
+	<% end %>
+	<% if @user.guest_trip %>
+	Trip to Segovia (with Dinner): €63
+	<% end %>
+
 To complete your registration please follow the payment instructions on <%= url_for(:host => "dicty12.dictybase.org", :controller => "registration", :action => "index") %>.
 Your registration will not be considered unless a payment confirmation is received.
 
 Thank you.
+:-)
 
-
-* Please do not reply to this email. 
+*Please do not reply to this email. 

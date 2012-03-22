@@ -10,6 +10,7 @@ gem 'pg'
 gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'fastercsv'
+# gem 'jquery-rails', '>= 1.0.12'
 
 group :prod, :staging do
 	gem 'bcdatabase', '1.2.1'

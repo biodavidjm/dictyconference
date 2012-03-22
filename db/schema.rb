@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120313202203) do
+ActiveRecord::Schema.define(:version => 20120322212251) do
 
   create_table "abstracts", :force => true do |t|
     t.integer  "user_id"
@@ -31,15 +30,15 @@ ActiveRecord::Schema.define(:version => 20120313202203) do
     t.string   "username"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "email"
-    t.boolean  "is_admin",           :default => false
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.string   "email",                                   :null => false
+    t.boolean  "is_admin",             :default => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.string   "crypted_password"
     t.string   "password_salt"
-    t.string   "persistence_token",                     :null => false
-    t.integer  "login_count",        :default => 0,     :null => false
-    t.integer  "failed_login_count", :default => 0,     :null => false
+    t.string   "persistence_token",                       :null => false
+    t.integer  "login_count",          :default => 0,     :null => false
+    t.integer  "failed_login_count",   :default => 0,     :null => false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
@@ -55,6 +54,11 @@ ActiveRecord::Schema.define(:version => 20120313202203) do
     t.boolean  "is_registered"
     t.string   "accommodation_type"
     t.boolean  "has_guest"
+    t.string   "roomie_first_name"
+    t.string   "roomie_last_name"
+    t.boolean  "guest_trip"
+    t.boolean  "guest_supplement_HB"
+    t.boolean  "guest_supplement_HBD"
   end
 
 end
