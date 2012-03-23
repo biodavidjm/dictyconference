@@ -98,19 +98,20 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.attributes = params[:user]
-    
+ 
     respond_to do |format|
       if @user.save
-        flash[:notice] = "Successfully updated profile."
-        logger.info "Successfully updated profile."
-        format.html { redirect_to root_url }
+        flash[:notice] = "Successfully updated registration."
+        logger.info "Successfully updated registration for #{@user.email}"
+        format.html { redirect_to registration_path(current_user) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
-        logger.info "Unable to update profile."
+        logger.info "Unable to update registration."
         format.html { render :action => "edit" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
+
   end
 
   # DELETE /users/1

@@ -1,4 +1,8 @@
-<% content_for :title, "Dicty12: Registration Form" %>
+<% content_for :title, "Dicty12: Update Registration" %>
+<p id="notice"><%= notice %></p>
+
+<h3>Editing registration</h3>
+
 <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" %>
 <%#= javascript_include_tag :defaults %> <!-- Issue with rails.js. Hence using jQuery.min.js -->
 
@@ -132,7 +136,7 @@
 
 </script>
 
-<%= form_for(@user, :url => registration_path) do |f| %>
+<%= form_for @user, :html => {:multipart => true, :method => 'put'} do |f| %>
   
     <% if @user.errors.any? %>
         <div id="error_explanation">
@@ -158,7 +162,7 @@
         </tr>
         <tr>
             <td><%= f.label :email %></td>
-            <td><%= f.text_field :email, :required => true %></td>
+            <td><%= f.text_field :email, :disabled=>true, :required => true %></td>
         </tr>
         <tr>
             <td><%= f.label :institute, "Institute Affiliation" %></td>
@@ -271,10 +275,13 @@
 
     </table>
 
+
 <p>
   <div class="actions">
-    <%= f.submit "Register" %>
+    <%= f.submit "Update" %> 
+    <%= submit_tag 'Cancel', :action => 'show' %>
   </div>
 </p> 
  
 <% end %>
+

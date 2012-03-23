@@ -2,6 +2,9 @@
 
 <p id="notice"><%= notice %></p>
 
+<h4>You registered on <%= DateTime.strptime(@user.created_at.to_s, '%Y-%m-%d %H:%M:%S').to_time %> </h4>
+<!-- <h4>Updated on <%#= DateTime.strptime(@user.updated_at.to_s, '%Y-%m-%d %H:%M:%S').to_time %> </h4> -->
+
 <p>
   <b>First name:</b>
   <%= @user.first_name %>
@@ -57,13 +60,47 @@
   <%= @user.accommodation_type %>
 </p>
 
+<% if @user.accommodation_type == 'Double use' %>
+  <p>
+    <b>Sharing room with:</b>
+    <%= @user.roomie_first_name %> <%= @user.roomie_last_name %>
+</p>
+<% end %>
+
 <p>
   <b>Accompanying guest:</b>
   <%= @user.has_guest ? 'Yes': 'No'  %>
 </p>
 
-<%# if can_edit?(@user) %>
-    <%#= link_to 'Edit', edit_registration_path(@user)  %> 
-<%# end %>
+<br />
 
-<%#= link_to 'Back', registration_path %>
+<% if  @user.extra_accommodation %>
+  <b>Will you require extra accommodation?</b>
+  <%= @user.extra_accommodation ? 'Yes': 'No' %> 
+   [<%= @user.check_in %> : <%= @user.check_out %>]
+<% end %>
+
+<% if @user.guest_trip or @user.guest_supplement_HB or @user.guest_supplement_HBD %>
+<p><b>Supplementary Packages: </b></p>
+<% if @user.guest_supplement_HB %>
+<p>
+  <b>Accommodation Supplement (Hotel + Breakfast) = €207: </b>
+  <%= @user.guest_supplement_HB ? 'Yes': 'No' %>
+</p>
+<% end %>
+
+<% if @user.guest_supplement_HBD %>
+<p>
+  <b>Accommodation Supplement (Hotel + Breakfast + Dinner) = €327: </b>
+  <%= @user.guest_supplement_HBD ? 'Yes': 'No' %>
+</p>
+<% end %>
+
+<% if @user.guest_trip %>
+<p>
+  <b>Trip to Segovia (with Dinner) = €63: </b>
+  <%= @user.guest_trip ? 'Yes': 'No' %>
+</p>
+<% end %>
+
+<% end %>

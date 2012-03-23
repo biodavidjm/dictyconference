@@ -7,8 +7,8 @@ class RegistrationController < ApplicationController
 
   def new
     logger.info 'User is ***not*** registered'
-      @user = User.new(:email => session[:email])
-   	  render :action => 'new'   
+    @user = User.new(:email => session[:email])
+   	render :action => 'new'   
   end
 
   def create
@@ -30,7 +30,9 @@ class RegistrationController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
+    @user = current_user
+    # render :action => 'edit'
   end
 
   def destroy
@@ -48,21 +50,6 @@ class RegistrationController < ApplicationController
 	end
 
 	def update
-    @user = User.find(params[:id])
-    @user.attributes = params[:user]
-    
-    respond_to do |format|
-      if @user.save
-        flash[:notice] = "Successfully updated profile."
-        logger.info "Successfully updated profile."
-        format.html { redirect_to registration_path }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        logger.info "Unable to update profile."
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
 	end
 
 end

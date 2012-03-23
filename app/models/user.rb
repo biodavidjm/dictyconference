@@ -13,9 +13,8 @@ class User < ActiveRecord::Base
             }
 
 
-
 #  has_many :abstracts, :dependent => :delete_all
-  before_save :lowercase_email
+  before_save :lowercase_email, :validate_date
   before_validation :set_username
   
   def name
@@ -33,5 +32,18 @@ class User < ActiveRecord::Base
       self.username = self.email.downcase if !self.email.blank?
     end
   end
+
+  private
+
+  def validate_date
+    if self.extra_accommodation
+      if !self.check_in.is_a?(Date)
+        errors.add(:check_in, 'Must be a valid date') 
+      elsif !self.check_out.is_a?(Date)
+      errors.add(:check_out, 'must be a valid date')  
+      end
+    end
+  end
+
   
 end
