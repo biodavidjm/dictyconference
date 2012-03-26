@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120323213251) do
+ActiveRecord::Schema.define(:version => 20120326180342) do
 
   create_table "abstracts", :force => true do |t|
     t.integer  "user_id"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20120323213251) do
     t.boolean  "extra_accommodation"
     t.date     "check_in"
     t.date     "check_out"
+    t.text     "comment"
   end
 
 end
