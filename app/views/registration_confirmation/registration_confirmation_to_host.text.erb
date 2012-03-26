@@ -25,6 +25,12 @@ Following are the details;
 		<% end %>
 	<% end %>
 
+	<% if @user.extra_accommodation %>
+	Extra accommodation? <%= @user.extra_accommodation ? 'Yes': 'No'  %>
+	Check-in: <%= l @user.check_in, :format => :long %>
+	Check-out: <%= l @user.check_out, :format => :long %>
+	<% end %>
+
 	Accompanying guest? <%= @user.has_guest ? 'Yes': 'No'  %>
 	<% if @user.accommodation_type == 'Double use' %>
 	Sharing room with: <%= @user.roomie_first_name %> <%= @user.roomie_last_name %>
@@ -37,6 +43,11 @@ Following are the details;
 	<% end %>
 	<% if @user.guest_trip %>
 	Trip to Segovia (with Dinner): €63
+	<% end %>
+
+	<% if !@user.comment.empty?%>
+	Comments:
+	<%= @user.comment %>
 	<% end %>
 
 We have asked him/her to make the payment and send the confirmation to you. 

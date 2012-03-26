@@ -1,6 +1,8 @@
-Hello <%= @user.first_name %>,
+Hello,
 
-Thank you for registering for the Annual International Dictyostelium Conference, 2012
+<%= @user.first_name %> <%= @user.last_name%>'s registration for Annual International Dictyostelium Conference, 2012 was updated on <%= l @user.updated_at.to_date, :format => :long %> at <%= l @user.created_at, :format => :am_pm %> from the IP address <%= @user.last_login_ip %>
+
+Following are the registration details:
 
 	Name: <%= @user.first_name %> <%= @user.last_name%>
 	Institute affiliation: <%= @user.institute %>
@@ -49,10 +51,4 @@ Thank you for registering for the Annual International Dictyostelium Conference,
 	<%= @user.comment %>
 	<% end %>
 
-To complete your registration please follow the payment instructions on <%= url_for(:host => "dicty12.dictybase.org", :controller => "registration", :action => "index") %>.
-Your registration will not be considered unless a payment confirmation is received.
-
-Thank you.
-
-
-*Please do not reply to this email. 
+	Thank you.

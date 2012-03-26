@@ -99,19 +99,25 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.attributes = params[:user]
  
-    respond_to do |format|
-      if @user.save
-        flash[:notice] = "Successfully updated registration."
-        logger.info "Successfully updated registration for #{@user.email}"
-        format.html { redirect_to registration_path(current_user) }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        logger.info "Unable to update registration."
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+    if params[:commit] != 'Cancel' 
+      respond_to do |format|
+        if @user.save
+          flash[:notice] = "Successfully updated registration"
+          logger.info "Successfully updated registration for #{@user.email}"
+          RegistrationConfirmation.update_confirmation_to_host(@user).deliver
+          RegistrationConfirmation.update_confirmation_to_user(@user).deliver
+          format.html { redirect_to registration_path(current_user) }
+          format.xml  { render :xml => @user, :status => :created, :location => @user }
+        else
+          logger.info "Unable to update registration."
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        end
       end
+    else
+      flash[:notice] = "Cancelled"
+      redirect_to registration_path(current_user)
     end
-
   end
 
   # DELETE /users/1

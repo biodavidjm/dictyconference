@@ -1,6 +1,8 @@
 Hello <%= @user.first_name %>,
 
-Thank you for registering for the Annual International Dictyostelium Conference, 2012
+Your registration for the Annual International Dictyostelium Conference, 2012 was updated on <%= l @user.updated_at.to_date, :format => :long %> at <%= l @user.created_at, :format => :am_pm %> from the IP address <%= @user.last_login_ip %>
+
+Following are your registration details:
 
 	Name: <%= @user.first_name %> <%= @user.last_name%>
 	Institute affiliation: <%= @user.institute %>
