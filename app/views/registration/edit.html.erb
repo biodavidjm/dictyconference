@@ -45,7 +45,82 @@
         $("input[type=radio]").click(function() {
             showPrice()
         })
+
+        $('#final_amount').val('')  
+        $('#final_amount').hide() 
+        $('#final_amount').css({ 'font-weight': 'bold', 'font-size': '12px', 'color':'black', 'border': 'none', 'background-color':'white' });
+        $('label[for="payment_due"]').hide()
     });
+
+    $(document).click(function() {
+        paymentDue()
+    });
+
+
+    function paymentDue () {
+        var final_amount = 0;
+        $('#final_amount').show()
+        $('label[for="payment_due"]').show()
+        
+        if ($('#user_accommodation_type_single_use').is(':checked')) {
+            if (getRegistrationType() == 'Early Registration'){
+                final_amount += 830; 
+            } else if (getRegistrationType() == 'Late Registration') {
+                final_amount += 950; 
+            }   
+        } else if ($('#user_accommodation_type_double_use').is(':checked')) {
+            if (getRegistrationType() == 'Early Registration'){
+                final_amount += 675;
+            } else if (getRegistrationType() == 'Late Registration') {
+                final_amount += 795;
+            }  
+        }
+
+        if ($('#user_has_guest').is(':checked')) {
+            if ($('#user_guest_supplement_HB').is(':checked')){
+                final_amount += 207;    
+            } else if ($('#user_guest_supplement_HBD').is(':checked')){
+                final_amount += 327;    
+            } 
+            if ($('#user_guest_trip').is(':checked')){
+                final_amount += 63;    
+            } 
+        } 
+
+        if ($('#user_extra_accommodation').is(':checked')){
+            var num_days = 0;
+            var oneDay  = 24*60*60*1000;
+            var checkin = new Date($('#user_check_in').val())
+            var checkout = new Date($('#user_check_out').val())
+            num_days = Math.abs((checkout.getTime() - checkin.getTime()) / oneDay);
+
+            if ($('#user_accommodation_type_single_use').is(':checked') && $('#user_check_in').val() != '' && $('#user_check_out').val() != '') {
+                final_amount += 90.72 * num_days;      
+            } else if ($('#user_accommodation_type_double_use').is(':checked') && $('#user_check_in').val() != '' && $('#user_check_out').val() != '') {
+                final_amount += 103.68 * num_days;     
+            }    
+        }     
+        var usd = currencyConverter(final_amount)
+        $('#final_amount').val('€' + final_amount.toFixed(2))  
+    }
+
+    function currencyConverter (amount) {
+        var from = 'EUR';
+        var to = 'USD';
+ 
+        var dataString = "a=" + amount + "&from=" + from + "&to=" + to;
+ 
+        $.ajax({
+            type: "GET",
+            url: 'http://www.google.com/finance/converter?',
+            data: dataString,
+ 
+            success: function(data){
+                var val = $.parseJSON(data);
+                return val['rhs'];
+            }
+        });
+    }
 
     function showExtraAccOptions() {
         $('#extra_view_price').css({ 'font-weight': 'bold', 'font-size': '12px', 'color':'black', 'border': 'none', 'background-color':'white' });
@@ -62,13 +137,18 @@
         }
     }
 
-    function showPrice() {
+    function getRegistrationType() {
         var registration_type;
         if (Date.now() < Date.parse("5/15/2012")) {
             registration_type = 'Early Registration'   
         } else if (Date.now() > Date.parse("5/15/2012") && Date.now() <  Date.parse("7/23/2012")) {
             registration_type = 'Late Registration'
-        }
+        }    
+        return registration_type;
+    }
+
+    function showPrice() {
+        
         
         $('#view_price').show()
         $('#view_price').css({ 'font-weight': 'bold', 'font-size': '12px', 'color':'black', 'border': 'none', 'background-color':'white' });
@@ -80,10 +160,10 @@
         
             $('#extra_view_price').val('€103.68 (per night)')
 
-            if (registration_type == 'Early Registration'){
-                $('#view_price').val(registration_type+': €675 (per person)')
-            } else if (registration_type == 'Late Registration') {
-                $('#view_price').val(registration_type+': €795 (per person)')
+            if (getRegistrationType() == 'Early Registration'){
+                $('#view_price').val('Early Registration: €675 (per person)')
+            } else if (getRegistrationType() == 'Late Registration') {
+                $('#view_price').val('Late Registration: €795 (per person)')
             }
         } else if ($('#user_accommodation_type_single_use').is(':checked')) {
             $('#user_roomie_first_name').hide()
@@ -92,10 +172,10 @@
 
             $('#extra_view_price').val('€90.72 (per night)')
 
-            if (registration_type == 'Early Registration'){
-                $('#view_price').val(registration_type+': €830')
-            } else if (registration_type == 'Late Registration') {
-                $('#view_price').val(registration_type+': €950')
+            if (getRegistrationType() == 'Early Registration'){
+                $('#view_price').val('Early Registration: €830')
+            } else if (getRegistrationType() == 'Late Registration') {
+                $('#view_price').val('Late Registration: €950')
             }
         }
 
@@ -279,6 +359,10 @@
           <td>
             <%= f.text_area :comment, :rows => 5, :cols => 26 %>
           </td>
+        </tr>
+        <tr>
+            <td><hr /></td>
+            <td><hr /></td>
         </tr>
         <tr>
           <td><%= label_tag 'payment_due', 'Total Amount Due', :type => 'text' %></td>
