@@ -2,8 +2,7 @@
 
 <p id="notice"><%= notice %></p>
 
-<h4>You registered on <%= DateTime.strptime(@user.created_at.to_s, '%Y-%m-%d %H:%M:%S').to_time %> </h4>
-<!-- <h4>Updated on <%#= DateTime.strptime(@user.updated_at.to_s, '%Y-%m-%d %H:%M:%S').to_time %> </h4> -->
+<h4>You registered on <%= l @user.created_at.to_date, :format => :long %> at <%= l @user.created_at, :format => :am_pm %> </h4> 
 
 <p>
   <b>First name:</b>
@@ -55,9 +54,16 @@
   <%#= @user.passport %>
 </p>
 -->
+<br />
+
 <p>
   <b>Accommodation type:</b>
   <%= @user.accommodation_type %>
+</p>
+
+<p>
+  <b>Accompanying guest:</b>
+  <%= @user.has_guest ? 'Yes': 'No'  %>
 </p>
 
 <% if @user.accommodation_type == 'Double use' %>
@@ -67,17 +73,14 @@
 </p>
 <% end %>
 
-<p>
-  <b>Accompanying guest:</b>
-  <%= @user.has_guest ? 'Yes': 'No'  %>
-</p>
-
 <br />
 
 <% if  @user.extra_accommodation %>
   <b>Will you require extra accommodation?</b>
   <%= @user.extra_accommodation ? 'Yes': 'No' %> 
-   [<%= @user.check_in %> : <%= @user.check_out %>]
+  <p>
+   <%= l @user.check_in, :format => :long %> - <%= l @user.check_out, :format => :long %>
+  </p>
 <% end %>
 
 <% if @user.guest_trip or @user.guest_supplement_HB or @user.guest_supplement_HBD %>
@@ -100,6 +103,17 @@
 <p>
   <b>Trip to Segovia (with Dinner) = €63: </b>
   <%= @user.guest_trip ? 'Yes': 'No' %>
+</p>
+<% end %>
+
+<br />
+
+<% if !@user.comment.empty?%>
+<p>
+  <b>Comments:</b>
+</p>
+<p>
+  <%= @user.comment %>
 </p>
 <% end %>
 

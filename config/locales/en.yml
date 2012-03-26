@@ -3,3 +3,14 @@
 
 en:
   hello: "Hello world"
+
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      long: "%B %d, %Y"
+
+  time:
+    formats:
+      default: "%H:%M:%S"
+      am_pm: "%l:%M %p"
+
