@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120326180342) do
+ActiveRecord::Schema.define(:version => 20120327185437) do
 
   create_table "abstracts", :force => true do |t|
     t.integer  "user_id"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(:version => 20120326180342) do
     t.date     "check_in"
     t.date     "check_out"
     t.text     "comment"
+    t.string   "billing_id"
+    t.float    "payment_due"
   end
 
 end
