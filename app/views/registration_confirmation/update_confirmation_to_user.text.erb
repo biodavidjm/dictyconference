@@ -10,6 +10,7 @@ Following are your registration details:
 	Address: <%= @user.address %>, <%= @user.city %>, <%= @user.country %> <%= @user.zipcode %>
 	Email: <%= @user.email %>
 	Phone: <%= @user.phone %>
+	VAT number/Tax exempt ID: <%= @user.billing_id%>
 
 	Accommodation type: <%= @user.accommodation_type %>
 	<% if Date.today < Date.parse("5/15/2012") %>
@@ -50,6 +51,8 @@ Following are your registration details:
 	Comments:
 	<%= @user.comment %>
 	<% end %>
+
+	Total amount due: <%= @user.payment_due%>
 
 To complete your registration please follow the payment instructions on <%= url_for(:host => "dicty12.dictybase.org", :controller => "registration", :action => "index") %>.
 Your registration will not be considered unless a payment confirmation is received.

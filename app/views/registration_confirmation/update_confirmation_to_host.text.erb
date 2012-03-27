@@ -10,6 +10,7 @@ Following are the registration details:
 	Address: <%= @user.address %>, <%= @user.city %>, <%= @user.country %> <%= @user.zipcode %>
 	Email: <%= @user.email %>
 	Phone: <%= @user.phone %>
+	VAT number/Tax exempt ID: <%= @user.billing_id%>
 
 	Accommodation type: <%= @user.accommodation_type %>
 	<% if Date.today < Date.parse("5/15/2012") %>
@@ -50,5 +51,7 @@ Following are the registration details:
 	Comments:
 	<%= @user.comment %>
 	<% end %>
+
+	Total amount due: <%= @user.payment_due%>
 
 	Thank you.
