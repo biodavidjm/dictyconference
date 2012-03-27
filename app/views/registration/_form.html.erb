@@ -1,7 +1,7 @@
 <% content_for :title, "Dicty12: Registration Form" %>
 <%#= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" %>
 <%#= javascript_include_tag :defaults %> <!-- Issue with rails.js. Hence using jQuery.min.js -->
-<%= javascript_include_tag "jquery", "jquery-ui-datepicker" %>
+<%= javascript_include_tag "jquery", "jquery-ui-datepicker", "money-min" %>
 <%= stylesheet_link_tag "jquery-ui-datepicker" %>
 
 
@@ -9,8 +9,15 @@
 
     $(document).ready(function() {
 
-        $( '#user_check_in' ).datepicker({ dateFormat: 'MM d, yy' });
-        $( '#user_check_out' ).datepicker({ dateFormat: 'MM d, yy' });
+        $('#user_check_in').datepicker(
+            { 
+                dateFormat: 'MM d, yy',
+                beforeShowDay: dictyMeetingDays
+            });
+        $( '#user_check_out' ).datepicker(
+            { 
+                dateFormat: 'MM d, yy'
+            });
 
         $('#user_has_guest').attr('checked', false)
         $("#user_has_guest").click(function() {
@@ -49,10 +56,34 @@
         $('label[for="payment_due"]').hide()
     });
 
+    $.getJSON(
+        'http://openexchangerates.org/latest.json',
+        function(data) {
+            if ( typeof fx !== "undefined" && fx.rates ) {
+                fx.rates = data.rates;
+                fx.base = data.base;
+            } else {
+                var fxSetup = {
+                    rates : data.rates,
+                    base : data.base
+                }
+            }
+        }
+    );
+
     $(document).click(function() {
         paymentDue()
     });
 
+    var dicty12Dates = ["7-29-2012", "7-30-2012", "7-31-2012", "8-1-2012", "8-2-2012"];
+    function dictyMeetingDays(date) {
+        var dateAsString = date.getDate() + "-" + (date.getMonth()+1) + "-" + date.getFullYear();
+        if ($.inArray(dateAsString, dicty12Dates) < 0) {
+            return [true,"","Book Now"];
+        } else {
+            return [false,"","Dicty12"];
+        }
+    }
 
     function paymentDue () {
         var final_amount = 0;
@@ -97,26 +128,10 @@
                 final_amount += 103.68 * num_days;     
             }    
         }     
-        var usd = currencyConverter(final_amount)
-        $('#final_amount').val('€' + final_amount.toFixed(2))  
-    }
 
-    function currencyConverter (amount) {
-        var from = 'EUR';
-        var to = 'USD';
- 
-        var dataString = "a=" + amount + "&from=" + from + "&to=" + to;
- 
-        $.ajax({
-            type: "GET",
-            url: 'http://www.google.com/finance/converter?',
-            data: dataString,
- 
-            success: function(data){
-                var val = $.parseJSON(data);
-                return val['rhs'];
-            }
-        });
+        var usd = fx.convert(final_amount, {from: "EUR", to: "USD"});
+        $('#final_amount').val('€' + final_amount.toFixed(2) + ' (~= $'+fx(final_amount).from('EUR').to('USD').toFixed(2)+')');  
+          
     }
 
     function showExtraAccOptions() {
@@ -145,8 +160,6 @@
     }
 
     function showPrice() {
-        
-        
         $('#view_price').show()
         $('#view_price').css({ 'font-weight': 'bold', 'font-size': '12px', 'color':'black', 'border': 'none', 'background-color':'white' });
 
@@ -364,7 +377,7 @@
         <tr>
           <td><%= label_tag 'payment_due', 'Total Amount Due', :type => 'text' %></td>
           <td>
-            <%= text_field_tag 'final_amount', '', :disabled=>true, :color => 'black' %>
+            <%= text_field_tag 'final_amount', '', :disabled=>true, :color => 'black', :size => '30' %>
           </td>
         </tr>
 
