@@ -24,6 +24,9 @@ Thank you for registering for the Annual International Dictyostelium Conference,
 			Early Registration: €795 (per person)
 		<% end %>
 	<% end %>
+	<% if @user.accommodation_type == 'Double use' %>
+	Sharing room with: <%= @user.roomie_first_name %> <%= @user.roomie_last_name %>
+	<% end %>
 
 	<% if @user.extra_accommodation %>
 	Extra accommodation? <%= @user.extra_accommodation ? 'Yes': 'No'  %>
@@ -32,9 +35,7 @@ Thank you for registering for the Annual International Dictyostelium Conference,
 	<% end %>
 
 	Accompanying guest? <%= @user.has_guest ? 'Yes': 'No'  %>
-	<% if @user.accommodation_type == 'Double use' %>
-	Sharing room with: <%= @user.roomie_first_name %> <%= @user.roomie_last_name %>
-	<% end %>
+	<% if @user.has_guest %>
 	<% if @user.guest_supplement_HB %>
 	Accommodation Supplement (Hotel + Breakfast): €207
 	<% end %>
@@ -44,13 +45,14 @@ Thank you for registering for the Annual International Dictyostelium Conference,
 	<% if @user.guest_trip %>
 	Trip to Segovia (with Dinner): €63
 	<% end %>
+	<% end %>
 
 	<% if !@user.comment.empty?%>
 	Comments:
 	<%= @user.comment %>
 	<% end %>
 
-	Total amount due: €<%= @user.payment_due%>
+	Total amount due: <%= @user.payment_due%>
 
 To complete your registration please follow the payment instructions on <%= url_for(:host => "dicty12.dictybase.org", :controller => "registration", :action => "index") %>.
 Your registration will not be considered unless a payment confirmation is received.

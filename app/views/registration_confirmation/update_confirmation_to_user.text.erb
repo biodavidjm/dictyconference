@@ -1,6 +1,6 @@
 Hello <%= @user.first_name %>,
 
-Your registration for the Annual International Dictyostelium Conference, 2012 was updated on <%= l @user.updated_at.to_date, :format => :long %> at <%= l @user.created_at, :format => :am_pm %> from the IP address <%= @user.last_login_ip %>
+Your registration for the Annual International Dictyostelium Conference, 2012 was updated on <%= l @user.updated_at.to_date, :format => :long %> at <%= l @user.created_at, :format => :am_pm %>.
 
 Following are your registration details:
 
@@ -26,6 +26,9 @@ Following are your registration details:
 			Early Registration: €795 (per person)
 		<% end %>
 	<% end %>
+	<% if @user.accommodation_type == 'Double use' %>
+	Sharing room with: <%= @user.roomie_first_name %> <%= @user.roomie_last_name %>
+	<% end %>
 
 	<% if @user.extra_accommodation %>
 	Extra accommodation? <%= @user.extra_accommodation ? 'Yes': 'No'  %>
@@ -34,9 +37,7 @@ Following are your registration details:
 	<% end %>
 
 	Accompanying guest? <%= @user.has_guest ? 'Yes': 'No'  %>
-	<% if @user.accommodation_type == 'Double use' %>
-	Sharing room with: <%= @user.roomie_first_name %> <%= @user.roomie_last_name %>
-	<% end %>
+	<% if @user.has_guest %>
 	<% if @user.guest_supplement_HB %>
 	Accommodation Supplement (Hotel + Breakfast): €207
 	<% end %>
@@ -46,13 +47,14 @@ Following are your registration details:
 	<% if @user.guest_trip %>
 	Trip to Segovia (with Dinner): €63
 	<% end %>
+	<% end %>
 
 	<% if !@user.comment.empty?%>
 	Comments:
 	<%= @user.comment %>
 	<% end %>
 
-	Total amount due: €<%= @user.payment_due%>
+	Total amount due: <%= @user.payment_due %>
 
 To complete your registration please follow the payment instructions on <%= url_for(:host => "dicty12.dictybase.org", :controller => "registration", :action => "index") %>.
 Your registration will not be considered unless a payment confirmation is received.

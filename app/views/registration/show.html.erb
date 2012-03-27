@@ -48,6 +48,10 @@
   <b>Phone:</b>
   <%= @user.phone %>
 </p>
+<p>
+  <b>VAT number/Tax exempt ID:</b>
+  <%= @user.billing_id %>
+</p>
 <!--
 <p>
   <b>Passport #:</b>
@@ -105,6 +109,13 @@
   <%= @user.guest_trip ? 'Yes': 'No' %>
 </p>
 <% end %>
+<hr/>
+<p>
+  <b>Total expenses:</b>
+</p>
+<p>
+  <%= @user.payment_due %>
+</p>
 
 <br />
 
@@ -116,5 +127,7 @@
   <%= @user.comment %>
 </p>
 <% end %>
+
+
 
 <% end %>

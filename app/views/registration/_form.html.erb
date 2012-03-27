@@ -7,16 +7,39 @@
 
 <script type="text/javascript">
 
+    var oneDay  = 24*60*60*1000;
+    var to_currency = ''
+
     $(document).ready(function() {
+
+        var dicty12Dates = ["7-29-2012", "7-30-2012", "7-31-2012", "8-1-2012", "8-2-2012"];
+        
+        function dictyMeetingDays(date) {
+            var dateAsString = (date.getMonth()+1) + "-" + date.getDate() + "-" + date.getFullYear();
+            if ($.inArray(dateAsString, dicty12Dates) < 0) {
+                return [true,"","Book Now"];
+            } else {
+                return [false,"","Dicty12"];
+            }
+        }
 
         $('#user_check_in').datepicker(
             { 
                 dateFormat: 'MM d, yy',
-                beforeShowDay: dictyMeetingDays
+                minDate: new Date(2012, 7-1, 15),
+                maxDate: new Date(2012, 8-1, 15),
+                showWeek: true,
+                numberOfMonths: 2//,
+                //beforeShowDay: dictyMeetingDays
             });
         $( '#user_check_out' ).datepicker(
             { 
-                dateFormat: 'MM d, yy'
+                dateFormat: 'MM d, yy',
+                minDate: new Date(2012, 7-1, 15),
+                maxDate: new Date(2012, 8-1, 15),
+                showWeek: true,
+                numberOfMonths: 2//,
+                //beforeShowDay: dictyMeetingDays
             });
 
         $('#user_has_guest').attr('checked', false)
@@ -50,10 +73,19 @@
             showPrice()
         })
 
-        $('#final_amount').val('')  
-        $('#final_amount').hide() 
-        $('#final_amount').css({ 'font-weight': 'bold', 'font-size': '12px', 'color':'black', 'border': 'none', 'background-color':'white' });
-        $('label[for="payment_due"]').hide()
+        $('#user_payment_due').val('')  
+        $('#user_payment_due').hide() 
+        $('#user_payment_due').css({ 'font-weight': 'bold', 'font-size': '12px', 'color':'black', 'border': 'none', 'background-color':'white' });
+        $('label[for="user_payment_due"]').hide()
+
+        $('#converted_currency').hide();
+        $('#converted_currency').val('');
+        $('#converted_currency').css({ //'font-weight': 'bold', 
+            'font-size': '12px', 'color':'black', 'border': 'none', 'background-color':'white' });
+        $('select#to_currency').hide();
+        $('select#to_currency').click(function() {
+            to_currency = $('select#to_currency :selected').val();
+        });
     });
 
     $.getJSON(
@@ -75,20 +107,14 @@
         paymentDue()
     });
 
-    var dicty12Dates = ["7-29-2012", "7-30-2012", "7-31-2012", "8-1-2012", "8-2-2012"];
-    function dictyMeetingDays(date) {
-        var dateAsString = date.getDate() + "-" + (date.getMonth()+1) + "-" + date.getFullYear();
-        if ($.inArray(dateAsString, dicty12Dates) < 0) {
-            return [true,"","Book Now"];
-        } else {
-            return [false,"","Dicty12"];
-        }
-    }
+    
 
     function paymentDue () {
         var final_amount = 0;
-        $('#final_amount').show()
-        $('label[for="payment_due"]').show()
+        $('#user_payment_due').show()
+        $('label[for="user_payment_due"]').show()
+        $('#converted_currency').show();
+        $('select#to_currency').show();
         
         if ($('#user_accommodation_type_single_use').is(':checked')) {
             if (getRegistrationType() == 'Early Registration'){
@@ -117,10 +143,10 @@
 
         if ($('#user_extra_accommodation').is(':checked')){
             var num_days = 0;
-            var oneDay  = 24*60*60*1000;
+            
             var checkin = new Date($('#user_check_in').val())
             var checkout = new Date($('#user_check_out').val())
-            num_days = Math.abs((checkout.getTime() - checkin.getTime()) / oneDay);
+            num_days = getNonDictyDays(checkin, checkout)
 
             if ($('#user_accommodation_type_single_use').is(':checked') && $('#user_check_in').val() != '' && $('#user_check_out').val() != '') {
                 final_amount += 90.72 * num_days;      
@@ -129,9 +155,30 @@
             }    
         }     
 
-        var usd = fx.convert(final_amount, {from: "EUR", to: "USD"});
-        $('#final_amount').val('€' + final_amount.toFixed(2) + ' (~= $'+fx(final_amount).from('EUR').to('USD').toFixed(2)+')');  
-          
+        $('#user_payment_due').val('€' + final_amount.toFixed(2)); 
+
+        var converted = 0
+        if (to_currency != ''){
+            converted = fx.convert(final_amount, {from: "EUR", to: to_currency}).toFixed(2);
+        }  
+        $('#converted_currency').val(converted);       
+    }
+
+    function getNonDictyDays (startDate, endDate) {
+        var dicty12Start = new Date(2012, 7-1, 29);
+        var dicty12End = new Date (2012, 8-1, 2);
+        var days = 0
+
+        if ((startDate < dicty12Start) && (endDate <= dicty12End) && (endDate > dicty12Start)){
+            days = Math.abs((dicty12Start.getTime() - startDate.getTime()) / oneDay);
+        } else if ((startDate >= dicty12Start) && (dicty12End < endDate) && (startDate < dicty12End)) {
+            days = Math.abs((endDate.getTime() - dicty12End.getTime()) / oneDay);
+        } else if ((startDate < dicty12Start) && (endDate < dicty12End)) {
+            days = 0;
+        } else if ((startDate < dicty12Start) && (endDate > dicty12End)) {
+            days = Math.abs((dicty12Start.getTime() - startDate.getTime()) / oneDay) + Math.abs((endDate.getTime() - dicty12End.getTime()) / oneDay);
+        }
+        return days;
     }
 
     function showExtraAccOptions() {
@@ -280,6 +327,10 @@
             <td><%= f.label :phone %></td>
             <td><%= f.text_field :phone, :required => true %></td>
         </tr>
+        <tr>
+            <td><%= f.label :billing_id, 'VAT number/Tax exempt ID' %></td>
+            <td><%= f.text_field :billing_id, :required => true %></td>
+        </tr>
         <!--
         <tr>
             <td>Passport #</td>
@@ -375,9 +426,17 @@
             <td><hr /></td>
         </tr>
         <tr>
-          <td><%= label_tag 'payment_due', 'Total Amount Due', :type => 'text' %></td>
+          <td><%= f.label :payment_due, 'Total Amount Due', :type => 'text' %></td>
           <td>
-            <%= text_field_tag 'final_amount', '', :disabled=>true, :color => 'black', :size => '30' %>
+            <table>
+            <tr>
+                <td><%= f.text_field :payment_due, :readonly => true, :color => 'black', :size => '12' %></td>
+                <td>
+                    <%= select_tag 'to_currency', options_for_select([['USD', 'USD'], ['INR', 'INR'], ['JPY', 'JPY'], ['CNY', 'CNY'], ['CAD', 'CAD']]) %> 
+                </td>
+                <td><%= text_field_tag 'converted_currency', '', :disabled=>true, :color => 'black', :size => '12' %></td>
+            </tr>
+            </table>
           </td>
         </tr>
 
