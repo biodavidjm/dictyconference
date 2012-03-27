@@ -15,16 +15,16 @@
 
     $(document).ready(function() {
 
-        var dicty12Dates = ["7-29-2012", "7-30-2012", "7-31-2012", "8-1-2012", "8-2-2012"];
+        // var dicty12Dates = ["7-29-2012", "7-30-2012", "7-31-2012", "8-1-2012", "8-2-2012"];
         
-        function dictyMeetingDays(date) {
-            var dateAsString = (date.getMonth()+1) + "-" + date.getDate() + "-" + date.getFullYear();
-            if ($.inArray(dateAsString, dicty12Dates) < 0) {
-                return [true,"","Book Now"];
-            } else {
-                return [false,"","Dicty12"];
-            }
-        }
+        // function dictyMeetingDays(date) {
+        //     var dateAsString = (date.getMonth()+1) + "-" + date.getDate() + "-" + date.getFullYear();
+        //     if ($.inArray(dateAsString, dicty12Dates) < 0) {
+        //         return [true,"","Book Now"];
+        //     } else {
+        //         return [false,"","Dicty12"];
+        //     }
+        // }
 
         $('#user_check_in').datepicker(
             { 
@@ -46,6 +46,7 @@
             });
 
         $('#user_has_guest').attr('checked', false)
+        $('#user_has_guest').attr('disabled', true)
         $("#user_has_guest").click(function() {
             showGuestOptions()
         })
@@ -127,9 +128,9 @@
             }   
         } else if ($('#user_accommodation_type_double_use').is(':checked')) {
             if (getRegistrationType() == 'Early Registration'){
-                final_amount += 675;
+                final_amount += 675 * 2;
             } else if (getRegistrationType() == 'Late Registration') {
-                final_amount += 795;
+                final_amount += 795 * 2;
             }  
         }
 
@@ -217,6 +218,8 @@
             $('label[for="label_roomie_name"]').show()
             $('#user_roomie_first_name').show()
             $('#user_roomie_last_name').show()
+
+            $('#user_has_guest').attr('disabled', false)
         
             $('#extra_view_price').val('€103.68 (per night)')
 
@@ -229,6 +232,15 @@
             $('#user_roomie_first_name').hide()
             $('#user_roomie_last_name').hide()
             $('label[for="label_roomie_name"]').hide()
+
+            $('#user_has_guest').attr('checked', false)
+            $('#user_has_guest').attr('disabled', true)
+            $('#user_guest_trip').hide()
+            $('#user_guest_supplement_HB').hide()
+            $('#user_guest_supplement_HBD').hide()
+            $('label[for="label_guest_dinner_trip"]').hide()
+            $('label[for="label_guest_supplement_1"]').hide()
+            $('label[for="label_guest_supplement_2"]').hide()
 
             $('#extra_view_price').val('€90.72 (per night)')
 
@@ -277,6 +289,7 @@
     }
 
 </script>
+
 
 <%= form_for @user, :html => {:multipart => true, :method => 'put'} do |f| %>
   
