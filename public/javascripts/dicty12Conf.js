@@ -3,30 +3,30 @@
 
     $(document).ready(function() {
 
-        // var dicty12Dates = ["7-29-2012", "7-30-2012", "7-31-2012", "8-1-2012", "8-2-2012"];
-        // function dictyMeetingDays(date) {
-        //     var dateAsString = (date.getMonth()+1) + "-" + date.getDate() + "-" + date.getFullYear();
-        //     if ($.inArray(dateAsString, dicty12Dates) < 0) {
-        //         return [true,"","Book Now"];
-        //     } else {
-        //         return [false,"","Dicty12"];
-        //     }
-        // }
+        var dicty12Dates = ["7-30-2012", "7-31-2012", "8-1-2012"];
+        function dictyMeetingDays(date) {
+            var dateAsString = (date.getMonth()+1) + "-" + date.getDate() + "-" + date.getFullYear();
+            if ($.inArray(dateAsString, dicty12Dates) < 0) {
+                return [true,"","Book Now"];
+            } else {
+                return [false,"","Dicty12"];
+            }
+        }
         $('#user_check_in').datepicker({
             dateFormat: 'MM d, yy',
             minDate: new Date(2012, 7 - 1, 15),
             maxDate: new Date(2012, 8 - 1, 15),
             showWeek: true,
-            numberOfMonths: 2 //,
-            //beforeShowDay: dictyMeetingDays
+            numberOfMonths: 2,
+            beforeShowDay: dictyMeetingDays
         });
         $('#user_check_out').datepicker({
             dateFormat: 'MM d, yy',
             minDate: new Date(2012, 7 - 1, 15),
             maxDate: new Date(2012, 8 - 1, 15),
             showWeek: true,
-            numberOfMonths: 2 //,
-            //beforeShowDay: dictyMeetingDays
+            numberOfMonths: 2,
+            beforeShowDay: dictyMeetingDays
         });
 
         $('#user_has_guest').attr({
@@ -179,17 +179,23 @@
 
     function getNonDictyDays(startDate, endDate) {
         var dicty12Start = new Date(2012, 7 - 1, 29);
-        var dicty12End = new Date(2012, 8 - 1, 2);
+        var dicty12End = new Date(2012, 8 - 1, 1);
         var days = 0
 
-        if ((startDate < dicty12Start) && (endDate <= dicty12End) && (endDate > dicty12Start)) {
+        if ((startDate < dicty12Start) && (endDate < dicty12End) && (endDate > dicty12Start)) {
             days = Math.abs((dicty12Start.getTime() - startDate.getTime()) / oneDay);
-        } else if ((startDate >= dicty12Start) && (dicty12End < endDate) && (startDate < dicty12End)) {
+        } else if ((startDate > dicty12Start) && (dicty12End < endDate) && (startDate < dicty12End)) {
             days = Math.abs((endDate.getTime() - dicty12End.getTime()) / oneDay);
-        } else if ((startDate < dicty12Start) && (endDate < dicty12End)) {
+        } else if ((startDate > dicty12Start) && (endDate < dicty12End)) {
             days = 0;
         } else if ((startDate < dicty12Start) && (endDate > dicty12End)) {
             days = Math.abs((dicty12Start.getTime() - startDate.getTime()) / oneDay) + Math.abs((endDate.getTime() - dicty12End.getTime()) / oneDay);
+        } else if ((startDate < dicty12Start) && (endDate <= dicty12Start)) {
+            days = Math.abs((endDate.getTime() - startDate.getTime()) / oneDay);   
+        } else if ((startDate > dicty12End) && (endDate > dicty12End)) {
+            days = Math.abs((endDate.getTime() - startDate.getTime()) / oneDay);   
+        } else if (startDate == endDate) {
+            days = 1;   
         }
         return days;
     }
