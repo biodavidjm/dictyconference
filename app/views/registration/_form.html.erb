@@ -5,7 +5,7 @@
 <%= stylesheet_link_tag "jquery-ui-datepicker" %>
 
 <%= form_for(@user, :url => registration_path) do |f| %>
-  
+
     <% if @user.errors.any? %>
         <div id="error_explanation">
             <h2>We have <%= pluralize(@user.errors.count, "error") %> on the form</h2>
@@ -14,9 +14,9 @@
                     <li><%= msg %></li>
                 <% end %>
             </ul>
-        </div>   
+        </div>
     <% end %>
- 
+
     <table>
         <tr>
             <td><%= f.label :first_name %></td>
@@ -58,19 +58,19 @@
             <td><%= f.label :billing_id, 'VAT number/Tax exempt ID' %></td>
             <td><%= f.text_field :billing_id, :required => true %></td>
         </tr>
-     
+
         <tr>
             <td>
                 <label for="accommodation_type">Accommodation</label>
             </td>
             <td>
                 <%# [ 'Single use', 'Double use' ].each do |accommodation_type| %>
-                  <%= f.radio_button(:accommodation_type, 'Single use', :required => true )%>
-                  <%= label_tag 'single_use', 'Single use' %>
-                  <%= f.radio_button(:accommodation_type, 'Double use', :required => true ) %>
-                  <%= label_tag 'double_use', 'Double use' %>
-                    <%#= f.radio_button 'accommodation_type', accommodation_type, :default => 'Single use', %>
-                    <%#= accommodation_type.humanize %>
+                <%= f.radio_button(:accommodation_type, 'Single use', :required => true )%>
+                <%= label_tag 'single_use', 'Single use' %>
+                <%= f.radio_button(:accommodation_type, 'Double use', :required => true ) %>
+                <%= label_tag 'double_use', 'Double use' %>
+                <%#= f.radio_button 'accommodation_type', accommodation_type, :default => 'Single use', %>
+                	<%#= accommodation_type.humanize %>
                 <%# end %>
             </td>
         </tr>
@@ -154,7 +154,7 @@
             <tr>
                 <td><%= f.text_field :payment_due, :readonly => true, :color => 'black', :size => '12' %></td>
                 <td>
-                    <%= select_tag 'to_currency', options_for_select([['USD', 'USD'], ['INR', 'INR'], ['JPY', 'JPY'], ['CNY', 'CNY'], ['CAD', 'CAD']]) %> 
+                    <%= select_tag 'to_currency', options_for_select([['AUD', 'AUD'], ['CAD', 'CAD'], ['CNY', 'CNY'], ['GBP', 'GBP'], ['INR', 'INR'], ['JPY', 'JPY'], ['NZD', 'NZD'], ['USD', 'USD']]) %>
                 </td>
                 <td><%= text_field_tag 'converted_currency', '', :disabled=>true, :color => 'black', :size => '12' %></td>
             </tr>
@@ -168,6 +168,6 @@
   <div class="actions">
     <%= f.submit "Register" %>
   </div>
-</p> 
- 
+</p>
+
 <% end %>

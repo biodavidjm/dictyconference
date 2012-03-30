@@ -33,8 +33,8 @@
             'checked': false,
             'disabled': true
         }).click(function() {
-            showGuestOptions()
-        })
+            showGuestOptions();
+        });
 
         $('#extra_view_price').hide();
         $('#extra_view_price').val('');
@@ -44,12 +44,12 @@
             showExtraAccOptions();
         });
 
-        $('#user_guest_trip').hide()
-        $('#user_guest_supplement_HB').hide()
-        $('#user_guest_supplement_HBD').hide()
-        $('label[for="label_guest_dinner_trip"]').hide()
-        $('label[for="label_guest_supplement_1"]').hide()
-        $('label[for="label_guest_supplement_2"]').hide()
+        $('#user_guest_trip').hide();
+        $('#user_guest_supplement_HB').hide();
+        $('#user_guest_supplement_HBD').hide();
+        $('label[for="label_guest_dinner_trip"]').hide();
+        $('label[for="label_guest_supplement_1"]').hide();
+        $('label[for="label_guest_supplement_2"]').hide();
 
         $('#view_price').hide();
         $('#user_roomie_first_name').hide();
@@ -57,7 +57,7 @@
         $('label[for="label_roomie_name"]').hide();
 
         $("input[type=radio]").attr('checked', false).click(function() {
-            showPrice()
+            showPrice();
         });
 
         $('#user_payment_due').val('');
@@ -68,11 +68,11 @@
             'border': 'none',
             'background-color': 'white'
         }).hide();
-        $('label[for="user_payment_due"]').hide()
+        $('label[for="user_payment_due"]').hide();
 
         $('#converted_currency').hide();
         $('#converted_currency').val('');
-        $('#converted_currency').css({ //'font-weight': 'bold', 
+        $('#converted_currency').css({ //'font-weight': 'bold',
             'font-size': '12px',
             'color': 'black',
             'border': 'none',
@@ -85,6 +85,7 @@
     });
 
     $.getJSON('http://openexchangerates.org/latest.json', function(data) {
+    "use strict";
         if (typeof fx !== "undefined" && fx.rates) {
             fx.rates = data.rates;
             fx.base = data.base;
@@ -92,16 +93,18 @@
             var fxSetup = {
                 rates: data.rates,
                 base: data.base
-            }
+            };
         }
     });
 
     $(document).click(function() {
-        paymentDue()
+    "use strict";
+        paymentDue();
     });
 
 
     function paymentDue() {
+	"use strict";
         var final_amount = 0;
         $('#user_payment_due').show();
         $('label[for="user_payment_due"]').show();
@@ -109,15 +112,15 @@
         $('select#to_currency').show();
 
         if ($('#user_accommodation_type_single_use').is(':checked')) {
-            if (getRegistrationType() == 'Early Registration') {
+            if (getRegistrationType() === 'Early Registration') {
                 final_amount += 830;
-            } else if (getRegistrationType() == 'Late Registration') {
+            } else if (getRegistrationType() === 'Late Registration') {
                 final_amount += 950;
             }
         } else if ($('#user_accommodation_type_double_use').is(':checked')) {
-            if (getRegistrationType() == 'Early Registration') {
+            if (getRegistrationType() === 'Early Registration') {
                 final_amount += 675;
-            } else if (getRegistrationType() == 'Late Registration') {
+            } else if (getRegistrationType() === 'Late Registration') {
                 final_amount += 795;
             }
         }
@@ -136,21 +139,21 @@
         if ($('#user_extra_accommodation').is(':checked')) {
             var num_days = 0;
 
-            var checkin = new Date($('#user_check_in').val())
-            var checkout = new Date($('#user_check_out').val())
-            num_days = getNonDictyDays(checkin, checkout)
+            var checkin = new Date($('#user_check_in').val());
+            var checkout = new Date($('#user_check_out').val());
+            num_days = getNonDictyDays(checkin, checkout);
 
-            if ($('#user_accommodation_type_single_use').is(':checked') && $('#user_check_in').val() != '' && $('#user_check_out').val() != '') {
+            if ($('#user_accommodation_type_single_use').is(':checked') && $('#user_check_in').val() !== '' && $('#user_check_out').val() !== '') {
                 final_amount += 90.72 * num_days;
-            } else if ($('#user_accommodation_type_double_use').is(':checked') && $('#user_check_in').val() != '' && $('#user_check_out').val() != '') {
+            } else if ($('#user_accommodation_type_double_use').is(':checked') && $('#user_check_in').val() !== '' && $('#user_check_out').val() !== '') {
                 final_amount += 103.68 * num_days;
             }
         }
 
         $('#user_payment_due').val('€' + final_amount.toFixed(2));
 
-        var converted = 0
-        if (to_currency != '') {
+        var converted = 0;
+        if (to_currency !== '') {
             converted = fx.convert(final_amount, {
                 from: "EUR",
                 to: to_currency
@@ -178,9 +181,10 @@
     // }
 
     function getNonDictyDays(startDate, endDate) {
+	"use strict";
         var dicty12Start = new Date(2012, 7 - 1, 29);
         var dicty12End = new Date(2012, 8 - 1, 2);
-        var days = 0
+        var days = 0;
 
         if ((startDate < dicty12Start) && (endDate <= dicty12End) && (endDate > dicty12Start)) {
             days = Math.abs((dicty12Start.getTime() - startDate.getTime()) / oneDay);
@@ -195,6 +199,7 @@
     }
 
     function showExtraAccOptions() {
+	"use strict";
         $('#extra_view_price').css({
             'font-weight': 'bold',
             'font-size': '12px',
@@ -203,15 +208,15 @@
             'background-color': 'white'
         });
         if ($('#user_extra_accommodation').is(':checked')) {
-            $('#extra_view_price').show()
-            $('#user_check_in').show()
-            $('#user_check_out').show()
+            $('#extra_view_price').show();
+            $('#user_check_in').show();
+            $('#user_check_out').show();
         } else {
-            $('#extra_view_price').hide()
-            $('#user_check_in').hide()
-            $('#user_check_out').hide()
-            $('#user_check_in').val('')
-            $('#user_check_out').val('')
+            $('#extra_view_price').hide();
+            $('#user_check_in').hide();
+            $('#user_check_out').hide();
+            $('#user_check_in').val('');
+            $('#user_check_out').val('');
         }
     }
 
@@ -219,19 +224,21 @@
      * either Early or Late
      */
     function getRegistrationType() {
+    "use strict";
         var registration_type;
         var early = Date.parse("5/31/2012"); // May 31, 2012
         var late = Date.parse("7/23/2012"); // July 23, 2012
         if (Date.now() <= early) {
-            registration_type = 'Early Registration'
+            registration_type = 'Early Registration';
         } else if (Date.now() > early && Date.now() <= late) {
-            registration_type = 'Late Registration'
+            registration_type = 'Late Registration';
         }
         return registration_type;
     }
 
     function showPrice() {
-        $('#view_price').show()
+    "use strict";
+        $('#view_price').show();
         $('#view_price').css({
             'font-weight': 'bold',
             'font-size': '12px',
@@ -241,75 +248,76 @@
         });
 
         if ($('#user_accommodation_type_double_use').is(':checked')) {
-            $('label[for="label_roomie_name"]').show()
-            $('#user_roomie_first_name').show()
-            $('#user_roomie_last_name').show()
+            $('label[for="label_roomie_name"]').show();
+            $('#user_roomie_first_name').show();
+            $('#user_roomie_last_name').show();
 
-            $('#user_has_guest').attr('disabled', false)
+            $('#user_has_guest').attr('disabled', false);
 
-            $('#extra_view_price').val('€103.68 (per night)')
+            $('#extra_view_price').val('€103.68 (per night)');
 
-            if (getRegistrationType() == 'Early Registration') {
-                $('#view_price').val('Early Registration: €675 (per person)')
-            } else if (getRegistrationType() == 'Late Registration') {
-                $('#view_price').val('Late Registration: €795 (per person)')
+            if (getRegistrationType() === 'Early Registration') {
+                $('#view_price').val('Early Registration: €675 (per person)');
+            } else if (getRegistrationType() === 'Late Registration') {
+                $('#view_price').val('Late Registration: €795 (per person)');
             }
         } else if ($('#user_accommodation_type_single_use').is(':checked')) {
-            $('#user_roomie_first_name').hide()
-            $('#user_roomie_last_name').hide()
-            $('label[for="label_roomie_name"]').hide()
+            $('#user_roomie_first_name').hide();
+            $('#user_roomie_last_name').hide();
+            $('label[for="label_roomie_name"]').hide();
 
             $('#user_has_guest').attr({
                 'checked': false,
                 'disabled': true
-            })
+            });
 
-            $('#user_guest_trip').hide()
-            $('#user_guest_supplement_HB').hide()
-            $('#user_guest_supplement_HBD').hide()
-            $('label[for="label_guest_dinner_trip"]').hide()
-            $('label[for="label_guest_supplement_1"]').hide()
-            $('label[for="label_guest_supplement_2"]').hide()
+            $('#user_guest_trip').hide();
+            $('#user_guest_supplement_HB').hide();
+            $('#user_guest_supplement_HBD').hide();
+            $('label[for="label_guest_dinner_trip"]').hide();
+            $('label[for="label_guest_supplement_1"]').hide();
+            $('label[for="label_guest_supplement_2"]').hide();
 
-            $('#extra_view_price').val('€90.72 (per night)')
+            $('#extra_view_price').val('€90.72 (per night)');
 
-            if (getRegistrationType() == 'Early Registration') {
-                $('#view_price').val('Early Registration: €830')
-            } else if (getRegistrationType() == 'Late Registration') {
-                $('#view_price').val('Late Registration: €950')
+            if (getRegistrationType() === 'Early Registration') {
+                $('#view_price').val('Early Registration: €830');
+            } else if (getRegistrationType() === 'Late Registration') {
+                $('#view_price').val('Late Registration: €950');
             }
         }
 
         $('#user_accommodation_type_single_use').click(function() {
-            $('#user_roomie_first_name').val('')
-            $('#user_roomie_last_name').val('')
-        })
+            $('#user_roomie_first_name').val('');
+            $('#user_roomie_last_name').val('');
+        });
     }
 
     function showGuestOptions() {
+    "use strict";
         if ($('#user_has_guest').is(':checked')) {
-            $('#user_guest_trip').show()
-            $('#user_guest_supplement_HB').show()
-            $('#user_guest_supplement_HBD').show()
-            $('label[for="label_guest_dinner_trip"]').show()
-            $('label[for="label_guest_supplement_1"]').show()
-            $('label[for="label_guest_supplement_2"]').show()
+            $('#user_guest_trip').show();
+            $('#user_guest_supplement_HB').show();
+            $('#user_guest_supplement_HBD').show();
+            $('label[for="label_guest_dinner_trip"]').show();
+            $('label[for="label_guest_supplement_1"]').show();
+            $('label[for="label_guest_supplement_2"]').show();
         } else {
-            $('#user_guest_trip').attr('checked', false).hide()
-            $('#user_guest_supplement_HB').attr('checked', false).hide()
-            $('#user_guest_supplement_HBD').attr('checked', false).hide()
-            $('label[for="label_guest_dinner_trip"]').hide()
-            $('label[for="label_guest_supplement_1"]').hide()
-            $('label[for="label_guest_supplement_2"]').hide()
+            $('#user_guest_trip').attr('checked', false).hide();
+            $('#user_guest_supplement_HB').attr('checked', false).hide();
+            $('#user_guest_supplement_HBD').attr('checked', false).hide();
+            $('label[for="label_guest_dinner_trip"]').hide();
+            $('label[for="label_guest_supplement_1"]').hide();
+            $('label[for="label_guest_supplement_2"]').hide();
         }
 
         $('#user_guest_supplement_HB').click(function() {
-            $('#user_guest_supplement_HB').attr('checked', true)
-            $('#user_guest_supplement_HBD').attr('checked', false)
-        })
+            $('#user_guest_supplement_HB').attr('checked', true);
+            $('#user_guest_supplement_HBD').attr('checked', false);
+        });
 
         $('#user_guest_supplement_HBD').click(function() {
-            $('#user_guest_supplement_HB').attr('checked', false)
-            $('#user_guest_supplement_HBD').attr('checked', true)
-        })
+            $('#user_guest_supplement_HB').attr('checked', false);
+            $('#user_guest_supplement_HBD').attr('checked', true);
+        });
     }
