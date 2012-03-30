@@ -1,5 +1,5 @@
-class UserSessionsController < ApplicationController
-  before_filter :login_required, :only => [:admin]
+ class UserSessionsController < ApplicationController
+  skip_before_filter :login_required, :only => [:admin]
   helper :all # include all helpers, all the time
   include UserSessionsHelper
   
@@ -7,44 +7,64 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new
   end
   
-  # Display admin login form
   def admin
   end
   
   def create
-    flash[:notice] =''
-    @user_session = UserSession.new(params[:user_session]);
-    has_valid_email = valid_email?(params[:user_session][:email])
-    
-    has_valid_password = verify_recaptcha
-    
     @user = get_user(params[:user_session])
-    valid_user = ! @user.nil?
-    if valid_user and has_valid_password
-      @user_session = UserSession.create(@user) 
-    end
-    @user_session.save do |result|
-      if result
-        flash[:notice] = "Successfully logged in."
-        logger.info "Successfully logged in user #{params[:user_session][:email]}."
-        if is_admin?
-          flash[:notice] = "Logged in as admin"
-          redirect_to admin_url
-        else
-          redirect_to abstracts_path
-        end
-      elsif ! valid_user and ! has_valid_email
-         @user_session.destroy
-         flash[:notice] = "Please enter a proper email and password."
-         render :action => :new
-      elsif has_valid_email and has_valid_password
-        redirect_to(new_user_path(:email => params[:user_session][:email]))
+    session[:email] = params[:user_session][:email]
+
+    has_valid_email = valid_email?(params[:user_session][:email])
+    has_valid_password = verify_recaptcha
+
+    # sorry dude,  you need to register before you break in
+    if !has_valid_email or !has_valid_password
+      logger.info 'Invalid user name and password'
+      flash[:notice] = 'Invalid email and/or password,  Please try again'
+      @user_session = UserSession.new
+      render :action => :new
+    else
+      if @user.nil?
+        if session[:where_from] == 'registration' 
+          if !is_registered?
+            flash[:notice] = "You are not registered"
+            redirect_to new_registration_path
+          else
+            flash[:notice] = "You are already registered with #{params[:user_session][:email]}"
+            redirect_to registration_path(:id => @user.id)
+          end
+		    elsif session[:where_from] == 'abstract'
+		      flash[:notice_error] = "Please try to register or submit an abstract first"
+		      redirect_to root_url
+		    end
       else
-        flash[:notice] = "Please enter a proper password."
-         @user_session.destroy
-         render :action => :new
-       end
-    end
+        @user_session = UserSession.new(@user) 
+    	
+		 	  if @user_session.save 
+        	logger.info "Successfully logged in user #{params[:user_session][:email]}."
+        	# if somebody did a half hearted registration
+        	if session[:where_from] == 'registration'
+        	  if is_registered?
+        	    flash[:notice] = "You are already registered with #{params[:user_session][:email]}"
+          	   redirect_to registration_path(:id => @user.id)
+          	else
+          	 redirect_to new_registration_path
+          	end
+          else
+            if is_admin?
+              flash[:notice] = "Logged in as admin"
+              redirect_to admin_url
+            else
+              redirect_to abstracts_path
+            end
+          end
+        else
+          logger.info 'Login failed !!!'
+          flash[:notice_error] = "Unable to login with #{params[:user_session][:email]},  Please try again"
+          render :action => :new
+        end
+    	 end
+		end
   end
   
   def destroy

@@ -5,7 +5,6 @@ module UsersHelper
   end
   
   def abstracts(user=nil)
-    return Abstract.find(:all, :conditions =>['(user_id = :user_id)',
-        {:user_id => user.id} ])
+    return Abstract.find(:all, :conditions =>['(user_id = :user_id)', {:user_id => user.id} ])
   end
 end

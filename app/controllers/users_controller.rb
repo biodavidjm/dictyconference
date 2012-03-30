@@ -69,12 +69,26 @@ class UsersController < ApplicationController
       if @user.save 
           logger.info "Successfully created profile."
           flash[:notice] = "Successfully created profile."
-          format.html { redirect_to(new_user_abstract_path(@user.id)) }
+          if session[:where_from] == 'registration'
+            format.html { redirect_to(new_registration_path(@user.id)) }
+            # format.xml  { render :xml => @user, :status => :created, :location => @user }
+          else
+            format.html { redirect_to(new_abstract_path(@user.id)) }
+            # format.xml  { render :xml => @user, :status => :created, :location => @user }
+          end
           format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
-          flash[:notice] = @user.errors
-          format.html { render :action => "new" }
-          format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        flash[:notice] = @user.errors
+        if session[:where_from] == 'registration'
+          # flash[:notice] = @user.errors
+          format.html { redirect_to new_registration_path }
+          # format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        else
+          # flash[:notice] = @user.errors
+          format.html { render :action => 'new' }
+          # format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        end
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -84,18 +98,25 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.attributes = params[:user]
-    
-    respond_to do |format|
-      if @user.save
-        flash[:notice] = "Successfully updated profile."
-        logger.info "Successfully updated profile."
-        format.html { redirect_to root_url }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        logger.info "Unable to update profile."
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+ 
+    if params[:commit] != 'Cancel' 
+      respond_to do |format|
+        if @user.save
+          flash[:notice] = "Successfully updated registration"
+          logger.info "Successfully updated registration for #{@user.email}"
+          RegistrationConfirmation.update_confirmation_to_host(@user).deliver
+          RegistrationConfirmation.update_confirmation_to_user(@user).deliver
+          format.html { redirect_to registration_path(current_user) }
+          format.xml  { render :xml => @user, :status => :created, :location => @user }
+        else
+          logger.info "Unable to update registration."
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        end
       end
+    else
+      flash[:notice] = "Cancelled"
+      redirect_to registration_path(current_user)
     end
   end
 

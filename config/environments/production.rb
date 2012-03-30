@@ -34,9 +34,6 @@ Dicty11::Application.configure do
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
-  # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
-
   # Enable threaded mode
   # config.threadsafe!
 
@@ -47,5 +44,16 @@ Dicty11::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  config.abstract_submission_deadline = '2012-Jun-22'
+  config.abstract_submission_deadline = '2012-Jun-15'
+
+  config.action_mailer.delivery_method = :smtp #, :sendmail, :login
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  
+  # ActionMailer SMPT settings
+  ActionMailer::Base.smtp_settings = {
+    # :address => "smtp.northwestern.edu",
+    :address => "mail.it.northwestern.edu",
+    :port => "25" 
+  }
 end

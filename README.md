@@ -7,46 +7,46 @@ This [link](http://www.tutorialspoint.com/ruby-on-rails/rails-directory-structur
 # Cloning the repository
 To begin with clone the repository from [Github/dictyconference](https://github.com/dictyBase/dictyconference/tree/feature/trial).
  
-```bash
+```shell
 git clone git://github.com/dictyBase/dictyconference.git
 ```
-Then switch to the ```feature/trial``` branch
+Then switch to the ```develop``` branch
 
-```bash
+```shell
 cd dictyconference
-git checkout feature/trial
+git checkout develop
 ```
 
 # Setting up RVM
-We will have the set up [RVM](https://rvm.beginrescueend.com/) so that you can use your version of gems. Just fire up your terminal and follow the steps to install ```rvm```.
+We will have the set up [RVM](https://rvm.beginrescueend.com/) so that you can use your version of gems. Just fire up your terminal and follow the steps to install ```ruby```.
 Then install the version of Ruby you want to use for your application;
 
-```bash
-rvm install 1.9.2
+```shell
+rvm install ree
 ```
 
 To use this version of Ruby for you application, do
 
-```bash
-rvm use 1.9.2
+```shell
+rvm use ree
 ```
 
 Now create a gemset called 'dictyConf' for our application
 
-```bash
+```shell
 rvm gemset create dictyConf
 rvm use @dictyConf
 ```
 
 Install [```rails```](http://rubyonrails.org/)
 
-```bash
+```shell
 gem install rails
 ```
 
 Next step is to install [```bundler```](http://gembundler.com/). It is a very handy gem. It will install all the gems from your ```Gemfile``` and set it up for application.
 
-```bash
+```shell
 gem install bundler
 ```
 
@@ -123,7 +123,7 @@ dictyConf:
 
 Also for the ```bcdb.staging``` (from ERB block) to work, you will have to create a ```staging.rb``` file in ```./config/environments/```
 
-```bash
+```shell
 cp development.rb staging.rb
 ```
 

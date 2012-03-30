@@ -4,10 +4,17 @@ class User < ActiveRecord::Base
     c.validate_password_field(false)
   end
 
-  validates_presence_of :email,  :first_name, :last_name
+  validates_presence_of :first_name, :last_name, :institute, :address, :city, :zipcode, :country, :phone
+  validates :email,   
+            :presence => true,   
+            :uniqueness => true, 
+            :format => { 
+              :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i 
+            }
+
 
 #  has_many :abstracts, :dependent => :delete_all
-  before_save :lowercase_email
+  before_save :lowercase_email, :validate_date
   before_validation :set_username
   
   def name
@@ -25,5 +32,18 @@ class User < ActiveRecord::Base
       self.username = self.email.downcase if !self.email.blank?
     end
   end
+
+  private
+
+  def validate_date
+    if self.extra_accommodation
+      if !self.check_in.is_a?(Date)
+        errors.add(:check_in, 'Must be a valid date') 
+      elsif !self.check_out.is_a?(Date)
+      errors.add(:check_out, 'must be a valid date')  
+      end
+    end
+  end
+
   
 end

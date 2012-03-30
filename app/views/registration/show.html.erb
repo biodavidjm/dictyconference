@@ -1,0 +1,133 @@
+<% content_for :title, "Dicty12: Registration Details" %>
+
+<p id="notice"><%= notice %></p>
+
+<h4>You registered on <%= l @user.created_at.to_date, :format => :long %> at <%= l @user.created_at, :format => :am_pm %> </h4> 
+
+<p>
+  <b>First name:</b>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @user.last_name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>Institute Affiliation:</b>
+  <%= @user.institute %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @user.address %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @user.city %>
+</p>
+
+<p>
+  <b>Zipcode:</b>
+  <%= @user.zipcode %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%= @user.country %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @user.phone %>
+</p>
+<p>
+  <b>VAT number/Tax exempt ID:</b>
+  <%= @user.billing_id %>
+</p>
+<!--
+<p>
+  <b>Passport #:</b>
+  <%#= @user.passport %>
+</p>
+-->
+<br />
+
+<p>
+  <b>Accommodation type:</b>
+  <%= @user.accommodation_type %>
+</p>
+
+<p>
+  <b>Accompanying guest:</b>
+  <%= @user.has_guest ? 'Yes': 'No'  %>
+</p>
+
+<% if @user.accommodation_type == 'Double use' %>
+  <p>
+    <b>Sharing room with:</b>
+    <%= @user.roomie_first_name %> <%= @user.roomie_last_name %>
+</p>
+<% end %>
+
+<br />
+
+<% if  @user.extra_accommodation %>
+  <b>Will you require extra accommodation?</b>
+  <%= @user.extra_accommodation ? 'Yes': 'No' %> 
+  <p>
+   <%= l @user.check_in, :format => :long %> - <%= l @user.check_out, :format => :long %>
+  </p>
+<% end %>
+
+<% if @user.guest_trip or @user.guest_supplement_HB or @user.guest_supplement_HBD %>
+<p><b>Supplementary Packages: </b></p>
+<% if @user.guest_supplement_HB %>
+<p>
+  <b>Accommodation Supplement (Hotel + Breakfast) = €207: </b>
+  <%= @user.guest_supplement_HB ? 'Yes': 'No' %>
+</p>
+<% end %>
+
+<% if @user.guest_supplement_HBD %>
+<p>
+  <b>Accommodation Supplement (Hotel + Breakfast + Dinner) = €327: </b>
+  <%= @user.guest_supplement_HBD ? 'Yes': 'No' %>
+</p>
+<% end %>
+
+<% if @user.guest_trip %>
+<p>
+  <b>Trip to Segovia (with Dinner) = €63: </b>
+  <%= @user.guest_trip ? 'Yes': 'No' %>
+</p>
+<% end %>
+<hr/>
+<p>
+  <b>Total expenses:</b>
+</p>
+<p>
+  <%= @user.payment_due %>
+</p>
+
+<br />
+
+<% if !@user.comment.empty?%>
+<p>
+  <b>Comments:</b>
+</p>
+<p>
+  <%= @user.comment %>
+</p>
+<% end %>
+
+
+
+<% end %>
