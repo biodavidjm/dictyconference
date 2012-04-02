@@ -3,7 +3,7 @@ body {
   font: 12px/1.231 arial,helvetica,clean,sans-serif;
   background:none repeat scroll 0 0 #333333;
   min-height: 700px;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif; 
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
 }
 
 div.field, div.actions {
@@ -50,7 +50,7 @@ div.field, div.actions {
 
 #header {
   color: white;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
   /*background-size:contain;
   /*margin: 0 0 0 0;*/
   /*background-image: url(../images/background.jpg);*/
@@ -58,7 +58,7 @@ div.field, div.actions {
    height: 370px;
   /*width: relative;
   width: 850px;*/
-  
+
 }
 
 #header a {
@@ -114,7 +114,7 @@ div.field, div.actions {
 }
 
 
-#container { 
+#container {
   /*overflow: auto;*/
   padding: 0;
   width: 850px;
@@ -234,7 +234,7 @@ td, tr {
   text-decoration:none;
   outline-style:none;
   outline-width:medium;
-  color: #993333; 
+  color: #993333;
   background-color:#fff;
 }
 
