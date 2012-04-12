@@ -1,18 +1,18 @@
 <% content_for :title, "Dicty12: List of abstracts" %>
 <h3>Abstract submission: </h3>
 
-<!--
-<%# if abstract_submission_open? %>
+
+<% if abstract_submission_open? %>
    <p class="button">
-       <%#= link_to image_tag("submit-abstract.png", :border=>0), new_abstract_path %>
+       <%= link_to image_tag("submit-abstract.png", :border=>0), new_abstract_path %>
    </p>
-<%# end %>
+<% end %>
 
 <h3>Submitted abstracts</h3>
 
-<%# if @abstracts.empty? %>
+<% if @abstracts.empty? %>
   — No abstracts submitted yet —
-<%# elsif logged_in? %>
+<% elsif logged_in? %>
   <table class="abstract">
     <tr>
       <th>Title</th>
@@ -20,28 +20,27 @@
       <th>Submitted</th>
       <th></th>
     </tr>
-    <%# @abstracts.each do |abstract| %>
+    <% @abstracts.each do |abstract| %>
       <tr>
         <td>
           <p class="title">
-          <%#= link_to abstract.title, abstract_path(abstract.id) %>
+          <%= link_to abstract.title, abstract_path(abstract.id) %>
           </p>
-          <p class="presenter"><%#=h abstract.presenter %></p>
+          <p class="presenter"><%=h abstract.presenter %></p>
         </td>
-        <td class="type"><%#=h abstract.abstract_type %></td>
+        <td class="type"><%=h abstract.abstract_type %></td>
         <td>
-          <span><%#= format_date(abstract.created_at) %></span>
+          <span><%= format_date(abstract.created_at) %></span>
         </td>
         <td>
-            <%#= link_to 'Show', abstract %>
-            <%#= link_to 'Edit', edit_abstract_path(abstract.id) if can_edit?(abstract) %>
-            <%#= link_to 'Destroy', abstract, :confirm => 'Are you sure?', :method => :delete if is_admin? %></td>
+            <%= link_to 'Show', abstract %>
+            <%= link_to 'Edit', edit_abstract_path(abstract.id) if can_edit?(abstract) %>
+            <%= link_to 'Destroy', abstract, :confirm => 'Are you sure?', :method => :delete if is_admin? %></td>
         </td>
-    <%# end %>
+    <% end %>
   </table>
-<%# else %>
+<% else %>
    You have to be logged in to see submitted abstracts
- <%# end %>
--->
+ <% end %>
 
-<p>Coming soon...</p>
+ <!-- <p>Coming soon...</p> -->

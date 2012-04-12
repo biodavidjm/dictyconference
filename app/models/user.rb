@@ -4,7 +4,11 @@ class User < ActiveRecord::Base
     c.validate_password_field(false)
   end
 
-  validates_presence_of :first_name, :last_name, :institute, :address, :city, :zipcode, :country, :phone
+  #if session[:where_from] == 'registration'
+  	validates_presence_of :first_name, :last_name, :institute, :address, :city, :zipcode, :country, :phone
+  #elsif session[:where_from] == 'abstract'
+	#validates_presence_of :first_name, :last_name
+  #end 
   validates :email,   
             :presence => true,   
             :uniqueness => true, 

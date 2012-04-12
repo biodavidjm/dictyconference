@@ -4,7 +4,8 @@ class AbstractsController < ApplicationController
   # GET /abstracts
   # GET /abstracts.xml
   def index
-    if params[:user_id] 
+	  session[:where_from] = 'abstract'
+	  if params[:user_id] 
       @abstracts = Abstract.find(:all, :conditions =>['user_id = :user_id',
         {:user_id => params[:user_id] } ])
     else

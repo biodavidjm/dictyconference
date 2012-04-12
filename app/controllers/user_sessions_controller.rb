@@ -2,7 +2,7 @@
   skip_before_filter :login_required, :only => [:admin]
   helper :all # include all helpers, all the time
   include UserSessionsHelper
-  
+ 
   def new
     @user_session = UserSession.new
   end
@@ -33,38 +33,38 @@
             flash[:notice] = "You are already registered with #{params[:user_session][:email]}"
             redirect_to registration_path(:id => @user.id)
           end
-		    elsif session[:where_from] == 'abstract'
-		      flash[:notice_error] = "Please try to register or submit an abstract first"
-		      redirect_to root_url
-		    end
+		elsif session[:where_from] == 'abstract'
+			flash[:notice_error] = "Please try to register or submit an abstract first"
+		    #redirect_to root_url
+			redirect_to new_user_path
+		end
       else
         @user_session = UserSession.new(@user) 
-    	
-		 	  if @user_session.save 
-        	logger.info "Successfully logged in user #{params[:user_session][:email]}."
-        	# if somebody did a half hearted registration
-        	if session[:where_from] == 'registration'
-        	  if is_registered?
-        	    flash[:notice] = "You are already registered with #{params[:user_session][:email]}"
-          	   redirect_to registration_path(:id => @user.id)
-          	else
-          	 redirect_to new_registration_path
-          	end
-          else
-            if is_admin?
-              flash[:notice] = "Logged in as admin"
-              redirect_to admin_url
-            else
-              redirect_to abstracts_path
-            end
-          end
-        else
-          logger.info 'Login failed !!!'
-          flash[:notice_error] = "Unable to login with #{params[:user_session][:email]},  Please try again"
-          render :action => :new
-        end
-    	 end
-		end
+ 			if @user_session.save 
+        		logger.info "Successfully logged in user #{params[:user_session][:email]}."
+        		# if somebody did a half hearted registration
+        		if session[:where_from] == 'registration'
+        	  		if is_registered?
+        	    		flash[:notice] = "You are already registered with #{params[:user_session][:email]}"
+          	   			redirect_to registration_path(:id => @user.id)
+          			else
+          	 			redirect_to new_registration_path
+          			end
+        		else
+            		if is_admin?
+              			flash[:notice] = "Logged in as admin"
+              			redirect_to admin_url
+            		else
+              			redirect_to abstracts_path
+            		end
+          		end
+        	else
+          		logger.info 'Login failed !!!'
+         		flash[:notice_error] = "Unable to login with #{params[:user_session][:email]},  Please try again"
+          		render :action => :new
+        	end
+    	end
+	end
   end
   
   def destroy

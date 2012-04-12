@@ -72,7 +72,7 @@ class UsersController < ApplicationController
           if session[:where_from] == 'registration'
             format.html { redirect_to(new_registration_path(@user.id)) }
             # format.xml  { render :xml => @user, :status => :created, :location => @user }
-          else
+		  elsif session[:where_from] == 'abstract'
             format.html { redirect_to(new_abstract_path(@user.id)) }
             # format.xml  { render :xml => @user, :status => :created, :location => @user }
           end
