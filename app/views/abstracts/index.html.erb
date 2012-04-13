@@ -1,12 +1,4 @@
-<% content_for :title, "Dicty12: List of abstracts" %>
-<h3>Abstract submission: </h3>
-
-
-<% if abstract_submission_open? %>
-   <p class="button">
-       <%= link_to image_tag("submit-abstract.png", :border=>0), new_abstract_path %>
-   </p>
-<% end %>
+<% content_for :title, "Dicty12: Abstracts" %>
 
 <h3>Submitted abstracts</h3>
 
@@ -42,5 +34,15 @@
 <% else %>
    You have to be logged in to see submitted abstracts
  <% end %>
+
+<br/><br/>
+
+ <!-- <h3>Abstract submission: </h3> -->
+
+<% if abstract_submission_open? %>
+   <p class="button" align="center">
+       <%= link_to image_tag("submit-abstract.png", :border=>0), new_abstract_path %>
+   </p>
+<% end %>
 
  <!-- <p>Coming soon...</p> -->

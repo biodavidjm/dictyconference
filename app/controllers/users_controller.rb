@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new
     email = params[:user_session][:email] if ! params[:user_session].nil?
-    email ||= params[:email] 
+    email ||= params[:email]
     password = params[:user_session][:password] if ! params[:user_session].nil?
     @user = User.new(:password=>password, :email=>email )
 
@@ -66,14 +66,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
      respond_to do |format|
-      if @user.save 
+      if @user.save
           logger.info "Successfully created profile."
           flash[:notice] = "Successfully created profile."
           if session[:where_from] == 'registration'
             format.html { redirect_to(new_registration_path(@user.id)) }
             # format.xml  { render :xml => @user, :status => :created, :location => @user }
 		  elsif session[:where_from] == 'abstract'
-            format.html { redirect_to(new_abstract_path(@user.id)) }
+            format.html { redirect_to(abstract_path) }
             # format.xml  { render :xml => @user, :status => :created, :location => @user }
           end
           format.xml  { render :xml => @user, :status => :created, :location => @user }
@@ -98,8 +98,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.attributes = params[:user]
- 
-    if params[:commit] != 'Cancel' 
+
+    if params[:commit] != 'Cancel'
       respond_to do |format|
         if @user.save
           flash[:notice] = "Successfully updated registration"

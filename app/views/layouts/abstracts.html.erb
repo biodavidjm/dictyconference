@@ -7,7 +7,7 @@
          <% end %>
 
          <% if has_abstract?(current_user) %>
-            <%= link_to 'My abstracts', user_abstracts_path(current_user)%> |
+			 <%= link_to 'My abstracts', abstract_path(Abstract.where(:user_id => current_user.id)) %> |
          <% end %>
 
          <%= link_to "Logout", logout_path %>
