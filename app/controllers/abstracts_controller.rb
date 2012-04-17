@@ -1,22 +1,22 @@
 class AbstractsController < ApplicationController
   skip_before_filter :login_required, :only => [ :index, :show ]
-  
+
   # GET /abstracts
   # GET /abstracts.xml
   def index
 	  session[:where_from] = 'abstract'
-	  if params[:user_id] 
+	  if params[:user_id]
       @abstracts = Abstract.find(:all, :conditions =>['user_id = :user_id',
         {:user_id => params[:user_id] } ])
     else
       @abstracts = Abstract.all
     end
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @abstracts }
       format.csv {
-        
+
         buffer = FasterCSV.generate do |csv|
           fields = [
             :user_id,
@@ -27,8 +27,8 @@ class AbstractsController < ApplicationController
             :abstract_type,
             :abstract,
             :agreement,
-            :note_to_organizers,            
-            :created_at, 
+            :note_to_organizers,
+            :created_at,
             :updated_at
           ]
           csv << fields.map{|field| field.to_s}
@@ -45,7 +45,7 @@ class AbstractsController < ApplicationController
   # GET /abstracts/1.xml
   def show
     @abstract = Abstract.find(params[:id])
-	#@abstract = Abstract.where(:user_id => current_user.id)
+	#@abstract = Abstract.where(:user_id => current_user.id).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

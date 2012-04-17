@@ -14,9 +14,9 @@ Dicty11::Application.routes.draw do
   resources :abstracts
 
 
-  # resources :user_sessions do
-  #   resources :abstracts
-  # end
+  resources :users do
+  	resources :abstracts
+  end
 
   # resources :users do
   #   resources :registration
