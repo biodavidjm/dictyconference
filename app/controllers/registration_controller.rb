@@ -32,7 +32,6 @@ class RegistrationController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @user.is_registered = 1
     render :action => 'edit'
   end
 

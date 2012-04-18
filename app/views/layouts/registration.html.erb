@@ -3,9 +3,9 @@
 
     <% if current_user %>
 
-      <%# if is_admin? %>
-        <!-- <%#= link_to "Admin panel", :controller => 'user_sessions', :action => 'admin' %> |  -->
-      <%# end %>
+      <% if is_admin? %>
+         <%= link_to "Admin panel", :controller => 'user_sessions', :action => 'admin' %> |
+      <% end %>
 
       <% if is_registered? %>
         <%= link_to 'Registration details', registration_path(current_user)%> |
@@ -13,7 +13,7 @@
 
       <% end %>
 
-      <%= link_to "Logout", logout_path %> |  
+      <%= link_to "Logout", logout_path %> |
 
       <%# else %>
         <%#= link_to "Login or sign up", login_path %>
