@@ -40,6 +40,7 @@ module Dicty11
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
+	# Abstract & registration deadlines
 	config.abstract_submission_deadline = Date.new(2012, 07, 13)
     config.registration_deadline = Date.new(2012, 07, 13)
 
