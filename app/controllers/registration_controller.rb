@@ -1,6 +1,6 @@
 class RegistrationController < ApplicationController
 	#current_tab :registration
-   
+
   def index
     session[:where_from] = 'registration'
   end
@@ -8,21 +8,22 @@ class RegistrationController < ApplicationController
   def new
     logger.info 'User is ***not*** registered'
     @user = User.new(:email => session[:email])
-   	render :action => 'new'   
+   	render :action => 'new'
   end
 
   def create
     @user = User.new(params[:user])
-	  @user.is_registered = 1
-    if @user.save 
-      
+	@user.is_registered = 1
+    if @user.save
       logger.info "Sending an email to #{@user.email}"
+
+      # Send confirmation emails to user and the host
       RegistrationConfirmation.registration_confirmation_to_user(@user).deliver
       RegistrationConfirmation.registration_confirmation_to_host(@user).deliver
 
       logger.info "Registration successful"
       flash[:notice] = "Registration Successful"
-      render :action => "view" 
+      render :action => "view"
     else
     	flash[:notice] = @user.errors
      	render :action => "new"
@@ -30,9 +31,9 @@ class RegistrationController < ApplicationController
   end
 
   def edit
-    # @user = User.find(params[:id])
-    @user = current_user
-    # render :action => 'edit'
+    @user = User.find(params[:id])
+    @user.is_registered = 1
+    render :action => 'edit'
   end
 
   def destroy
@@ -46,7 +47,8 @@ class RegistrationController < ApplicationController
   end
 
   def show
-  	@user = current_user
+  	@user = User.find(params[:id])
+  	#@user = current_user
 	end
 
 	def update

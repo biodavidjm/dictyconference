@@ -2,14 +2,14 @@
   skip_before_filter :login_required, :only => [:admin]
   helper :all # include all helpers, all the time
   include UserSessionsHelper
- 
+
   def new
     @user_session = UserSession.new
   end
-  
+
   def admin
   end
-  
+
   def create
     @user = get_user(params[:user_session])
     session[:email] = params[:user_session][:email]
@@ -25,7 +25,7 @@
       render :action => :new
     else
       if @user.nil?
-        if session[:where_from] == 'registration' 
+        if session[:where_from] == 'registration'
           if !is_registered?
             flash[:notice] = "You are not registered"
             redirect_to new_registration_path
@@ -39,14 +39,17 @@
 			redirect_to new_user_path
 		end
       else
-        @user_session = UserSession.new(@user) 
- 			if @user_session.save 
+        @user_session = UserSession.new(@user)
+ 			if @user_session.save
         		logger.info "Successfully logged in user #{params[:user_session][:email]}."
         		# if somebody did a half hearted registration
         		if session[:where_from] == 'registration'
         	  		if is_registered?
         	    		flash[:notice] = "You are already registered with #{params[:user_session][:email]}"
           	   			redirect_to registration_path(:id => @user.id)
+          			elsif !is_registered? and @user.email.empty? == false
+          			    flash[:notice] = "You are NOT registered, but your account exists with email #{params[:user_session][:email]}"
+          				redirect_to edit_registration_path(:id => @user.id)
           			else
           	 			redirect_to new_registration_path
           			end
@@ -66,7 +69,7 @@
     	end
 	end
   end
-  
+
   def destroy
     @user_session = UserSession.find
     @user_session.destroy
