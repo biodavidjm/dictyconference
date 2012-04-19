@@ -76,6 +76,13 @@ class AbstractsController < ApplicationController
 
     respond_to do |format|
       if @abstract.save
+      	logger.info "Sending confirmation email for abstract submission to #{User.find(@abstract.user_id)}"
+
+      	# Send confirmation emails to user and the host
+      	RegistrationConfirmation.abstract_confirmation_to_user(@abstract).deliver
+
+    	logger.info "Abstract submission successful"
+
         format.html { redirect_to(@abstract, :notice => 'Abstract was successfully created.') }
         format.xml  { render :xml => @abstract, :status => :created, :location => @abstract }
       else

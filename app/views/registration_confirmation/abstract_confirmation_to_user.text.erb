@@ -1,0 +1,16 @@
+Hello <%= @user.first_name %>,
+
+Thank you for submitting an abstract for the Annual International Dictyostelium Conference, 2012
+
+Abstract details:
+
+Title: <%= @abstract.title %>
+Presenter: <%= @abstract.presenter %>
+"<%= @abstract.abstract %>"
+
+<% if !@abstract.note_to_organizers.empty? %>
+Note to organizers: <%= @abstract.note_to_organizers %>
+<% end %>
+Thank you.
+
+*Please do not reply to this email.
