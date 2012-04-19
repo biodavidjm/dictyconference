@@ -1,5 +1,8 @@
 <% content_for :title, "Dicty12: Abstracts" %>
 
+<% if is_admin? %>
+	<h4>You are logged in as an ADMIN</h4>
+<% end %>
 <h3>Submitted abstracts</h3>
 
 <% if @abstracts.empty? %>

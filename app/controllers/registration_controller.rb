@@ -23,7 +23,7 @@ class RegistrationController < ApplicationController
 
       logger.info "Registration successful"
       flash[:notice] = "Registration Successful"
-      render :action => "view"
+      render :action => "confirm"
     else
     	flash[:notice] = @user.errors
      	render :action => "new"
@@ -51,6 +51,9 @@ class RegistrationController < ApplicationController
 	end
 
 	def update
+	end
+
+	def view
 	end
 
 end

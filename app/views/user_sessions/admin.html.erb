@@ -1,8 +1,11 @@
+<% content_for :title, "Dicty12: Registration Admin" %>
 <% if is_admin? %>
   <h1>Admin controls</h1>
 
+  <h4>You are logged in as an ADMIN</h4><h5>"With great power comes great responsibility" - Spider-man</h5>
+  <br/>
   <% if session[:where_from] == 'registration' %>
-	<%= link_to 'View registrations', "" %><br/><br/>
+	<%= link_to 'View registrations', :registrations %><br/><br/>
   <% elsif session[:where_from] == 'abstract' %>
   	<%= link_to 'Manage abstracts', "abstracts" %><br/><br/>
   	<%= link_to 'Export abstracts as csv', "abstracts.csv" %>

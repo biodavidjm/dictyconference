@@ -7,7 +7,6 @@
          <% end %>
 
          <% if has_abstract?(current_user) %>
-			 <%#= link_to 'My abstracts', abstract_path(Abstract.where(:user_id => current_user.id)) %> |
 			 <%= link_to 'My abstracts', user_abstracts_path(current_user) %> |
          <% end %>
 
@@ -16,7 +15,6 @@
          <%= link_to "Login or sign up", login_path %>
       <% end %>
    </div>
-
    <%= yield %>
 <% end %>
 
