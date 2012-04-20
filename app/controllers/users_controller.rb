@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new
     email = params[:user_session][:email] if ! params[:user_session].nil?
-    email ||= params[:email] 
+    email ||= params[:email]
     password = params[:user_session][:password] if ! params[:user_session].nil?
     @user = User.new(:password=>password, :email=>email )
 
@@ -65,15 +65,16 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     @user = User.new(params[:user])
+    @user.is_registered = 0
      respond_to do |format|
-      if @user.save 
+      if @user.save
           logger.info "Successfully created profile."
           flash[:notice] = "Successfully created profile."
           if session[:where_from] == 'registration'
             format.html { redirect_to(new_registration_path(@user.id)) }
             # format.xml  { render :xml => @user, :status => :created, :location => @user }
-          else
-            format.html { redirect_to(new_abstract_path(@user.id)) }
+		  elsif session[:where_from] == 'abstract'
+            format.html { redirect_to(abstract_path) }
             # format.xml  { render :xml => @user, :status => :created, :location => @user }
           end
           format.xml  { render :xml => @user, :status => :created, :location => @user }
@@ -98,14 +99,20 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.attributes = params[:user]
- 
-    if params[:commit] != 'Cancel' 
+    if session[:where_from] == 'registration'
+		@user.is_registered = 1
+	end
+
+    if params[:commit] != 'Cancel'
       respond_to do |format|
         if @user.save
           flash[:notice] = "Successfully updated registration"
           logger.info "Successfully updated registration for #{@user.email}"
+
+          # Send confirmation emails to user and the host
           RegistrationConfirmation.update_confirmation_to_host(@user).deliver
           RegistrationConfirmation.update_confirmation_to_user(@user).deliver
+
           format.html { redirect_to registration_path(current_user) }
           format.xml  { render :xml => @user, :status => :created, :location => @user }
         else

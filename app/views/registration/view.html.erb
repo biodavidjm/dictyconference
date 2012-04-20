@@ -1,10 +1,60 @@
-<% content_for :title, "Dicty12: Registration" %>
+<% content_for :title, "Dicty12: Admin" %>
 
-<p id="notice" style="font-size:16px;"><%= notice %></p>
-<p>
-	An email has been sent to confirm your registration. 
-	<br />
-	<p style="color:red; font-size:13px"><b>To complete the registration please following the instructions on <%= link_to 'Payment', registration_path %></b></p>
-	<br />
-	Thank you.
-</p>
+<%= javascript_include_tag "jquery.dataTables.nightly", "jquery", "jquery-dataTables" %>
+<%= stylesheet_link_tag "jquery-dataTables", "jquery-ui-overcast" %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#users').dataTable( {
+			"sScrollX": "200px",
+			"bJQueryUI": true,
+        	"bPaginate": true,
+        	"sPaginationType": "full_numbers",
+        	"bLengthChange": false,
+        	"bSort": true,
+        	//"bInfo": false,
+        	"bAutoWidth": true
+    	} );
+	} );
+</script>
+
+<% if is_admin? and logged_in? %>
+	<h4>You are logged in as an ADMIN</h4>
+	<h3>Registrations for Annual International Dictyostelium Conference 2012</h3>
+	<br/>
+	<table cellpadding="0" cellspacing="0" border="0" class="display" id="users">
+  		<thead>
+    		<tr>
+      			<th>First Name</th>
+      			<th>Last name</th>
+      			<th>Email</th>
+      			<th>Registered?</th>
+      			<th>Affiliation</th>
+      			<th>City</th>
+      			<th>Country</th>
+      			<th>Phone</th>
+      			<th>VAT #</th>
+      			<th>Accommodation</th>
+      			<th>Payment due</th>
+    		</tr>
+  		</thead>
+  		<tbody>
+    		<%- (User.find(:all)).each do |user| -%>
+      		<tr id="<%= dom_id(user) %>">
+        		<td><%= user.first_name %></td>
+        		<td><%= user.last_name %></td>
+        		<td><%= user.email %></td>
+        		<td><%= user.is_registered ? 'Yes': 'No' %></td>
+        		<td><%= user.institute %></td>
+        		<td><%= user.city %></td>
+        		<td><%= user.country %></td>
+        		<td><%= user.phone %></td>
+        		<td><%= user.billing_id %></td>
+        		<td><%= user.accommodation_type %></td>
+        		<td><%= user.payment_due %></td>
+      		</tr>
+    		<%- end -%>
+  		</tbody>
+	</table>
+<% end %>
+

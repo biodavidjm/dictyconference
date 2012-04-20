@@ -9,18 +9,18 @@ module ApplicationHelper
     record ||= @abstract || @user
     raise ArgumentError, "No record specified" unless record
     return true if is_admin?
-    return true if logged_in? && (current_user.id == record.user_id) && abstart_submission_open?
+    return true if logged_in? && (current_user.id == record.user_id) && abstract_submission_open?
   end
-  
+
   def is_admin?
     logger.info 'User is an admin'
     return true if logged_in? && current_user.is_admin
   end
-  
+
   def logged_in?
     ! current_user.blank?
   end
-  
+
   def is_registered? #(user=nil)
     return true if logged_in? && current_user.is_registered
   end
@@ -30,7 +30,7 @@ module ApplicationHelper
   end
 
   def registration_open?
-    Time.parse(Dicty11::Application.config.registration_deadline) >= Date.today ? true: false 
+    Time.parse(Dicty11::Application.config.registration_deadline) >= Date.today ? true: false
   end
 
 end
