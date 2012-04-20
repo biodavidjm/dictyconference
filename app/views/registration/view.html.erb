@@ -35,7 +35,8 @@
       			<th>Phone</th>
       			<th>VAT #</th>
       			<th>Accommodation</th>
-      			<th>Payment due</th>
+                <th>Payment due</th>
+                <th>Comments</th>
     		</tr>
   		</thead>
   		<tbody>
@@ -51,7 +52,8 @@
         		<td><%= user.phone %></td>
         		<td><%= user.billing_id %></td>
         		<td><%= user.accommodation_type %></td>
-        		<td><%= user.payment_due %></td>
+                <td><%= user.payment_due %></td>
+                <td><%= user.comment %></td>
       		</tr>
     		<%- end -%>
   		</tbody>
