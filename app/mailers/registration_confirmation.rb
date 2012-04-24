@@ -42,7 +42,7 @@ class RegistrationConfirmation < ActionMailer::Base
       @user = User.find(@abstract.user_id)
       mail(
         :to => @user.email,
-        :subject => "Updated Dicty12 Registration",
+        :subject => "Abstract Submission Confirmation for Dicty12",
         :content_type => "text/plain"
         )
     end
