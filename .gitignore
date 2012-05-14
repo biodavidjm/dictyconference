@@ -5,3 +5,4 @@ database.yml
 .bundle
 tmp
 vendor/*
+.rvmrc
