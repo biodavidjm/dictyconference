@@ -12,17 +12,17 @@ Following are the details;
 	VAT number/Tax exempt ID: <%= @user.billing_id%>
 
 	Accommodation type: <%= @user.accommodation_type %>
-	<% if Date.today < Date.parse("5/15/2012") %>
+	<% if Date.today <= Date.parse("5/31/2012") %>
 		<% if @user.accommodation_type == 'Single use' %>
 			Early Registration: €830
 		<% elsif @user.accommodation_type == 'Double use' %>
 			Early Registration: €675 (per person)
 		<% end %>
-	<% elsif Date.today > Date.parse("5/15/2012") && Date.today <  Date.parse("7/23/2012") %>
+	<% elsif Date.today > Date.parse("5/31/2012") && Date.today <=  Date.parse("7/23/2012") %>
 		<% if @user.accommodation_type == 'Single use' %>
-			Early Registration: €950
+			Late Registration: €950
 		<% elsif @user.accommodation_type == 'Double use' %>
-			Early Registration: €795 (per person)
+			Late Registration: €795 (per person)
 		<% end %>
 	<% end %>
 	<% if @user.accommodation_type == 'Double use' %>
