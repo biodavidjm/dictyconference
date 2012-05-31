@@ -12,6 +12,7 @@
         //         return [false,"","Dicty12"];
         //     }
         // }
+        //alert($('#early_registration_deadline').val());
         $('#user_check_in').datepicker({
             dateFormat: 'MM d, yy',
             minDate: new Date(2012, 7 - 1, 15),
@@ -103,6 +104,9 @@
     });
 
 
+    /* Method to calculate payment due depending on whether the registration is early or late
+     *
+     */
     function paymentDue() {
 	"use strict";
         var final_amount = 0;
@@ -180,6 +184,9 @@
     // }
     // }
 
+    /* 
+     *
+     */
     function getNonDictyDays(startDate, endDate) {
 	"use strict";
         var dicty12Start = new Date(2012, 7 - 1, 29);
@@ -198,6 +205,9 @@
         return days;
     }
 
+    /* 
+     *
+     */
     function showExtraAccOptions() {
 	"use strict";
         $('#extra_view_price').css({
@@ -226,8 +236,10 @@
     function getRegistrationType() {
     "use strict";
         var registration_type;
-        var early = Date.parse("5/31/2012"); // May 31, 2012
-        var late = Date.parse("7/23/2012"); // July 23, 2012
+        //var early = Date.parse("5/31/2012"); // May 31, 2012
+        var early = Date.parse($('#early_registration_deadline').val()); // June 11, 2012
+        //var late = Date.parse("7/23/2012"); // July 23, 2012
+        var late = Date.parse($('#registration_deadline').val()); // July 23, 2012
         if (Date.now() <= early) {
             registration_type = 'Early Registration';
         } else if (Date.now() > early && Date.now() <= late) {
@@ -236,6 +248,9 @@
         return registration_type;
     }
 
+    /* 
+     *
+     */
     function showPrice() {
     "use strict";
         $('#view_price').show();
@@ -293,6 +308,9 @@
         });
     }
 
+    /* 
+     *
+     */
     function showGuestOptions() {
     "use strict";
         if ($('#user_has_guest').is(':checked')) {
