@@ -6,6 +6,9 @@
 <%= javascript_include_tag "jquery", "jquery-ui-datepicker", "money-min", "dicty12Conf" %>
 <%= stylesheet_link_tag "jquery-ui-datepicker" %>
 
+<%= hidden_field_tag 'early_registration_deadline', Dicty11::Application.config.early_registration_deadline %>
+<%= hidden_field_tag 'registration_deadline', Dicty11::Application.config.registration_deadline %>
+
 <%= form_for @user, :html => {:multipart => true, :method => 'put'} do |f| %>
 
     <% if @user.errors.any? %>
@@ -163,13 +166,10 @@
 
     </table>
 
-
-<p>
   <div class="actions">
     <%= f.submit "Update" %>
     <%= submit_tag 'Cancel', :action => 'show' %>
   </div>
-</p>
 
 <% end %>
 
