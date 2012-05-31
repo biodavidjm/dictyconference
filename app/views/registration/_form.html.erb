@@ -1,8 +1,12 @@
 <% content_for :title, "Dicty12: Registration Form" %>
 <%#= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" %>
-<%#= javascript_include_tag :defaults %> <!-- Issue with rails.js. Hence using jQuery.min.js -->
+<%#= javascript_include_tag :defaults %> 
+<!-- Issue with rails.js. Hence using jQuery.min.js -->
 <%= javascript_include_tag "jquery", "jquery-ui-datepicker", "money-min", "dicty12Conf" %>
 <%= stylesheet_link_tag "jquery-ui-datepicker" %>
+
+<%= hidden_field_tag 'early_registration_deadline', Dicty11::Application.config.early_registration_deadline %>
+<%= hidden_field_tag 'registration_deadline', Dicty11::Application.config.registration_deadline %>
 
 <%= form_for(@user, :url => registration_path) do |f| %>
 

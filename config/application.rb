@@ -22,8 +22,8 @@ module Dicty11
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 
-	# Enable/disable asset pipeline
-	# config.assets.enabled = true
+    # Enable/disable asset pipeline
+    # config.assets.enabled = true
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -45,7 +45,8 @@ module Dicty11
 
     # Abstract & registration deadline
     config.abstract_submission_deadline = '2012-Jun-11'
-    config.registration_deadline = '2012-Jul-13'
+    config.early_registration_deadline = '6/11/2012'
+    config.registration_deadline = '7/13/2012'
 
   end
 end
