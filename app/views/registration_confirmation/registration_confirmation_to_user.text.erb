@@ -11,13 +11,13 @@ Thank you for registering for the Annual International Dictyostelium Conference,
 	VAT number/Tax exempt ID: <%= @user.billing_id%>
 
 	Accommodation type: <%= @user.accommodation_type %>
-	<% if Date.today <= Date.parse("5/31/2012") %>
+	<% if Date.today <= Date.parse(Dicty11::Application.config.early_registration_deadline) %>
 		<% if @user.accommodation_type == 'Single use' %>
 			Early Registration: €830
 		<% elsif @user.accommodation_type == 'Double use' %>
 			Early Registration: €675 (per person)
 		<% end %>
-	<% elsif Date.today > Date.parse("5/31/2012") && Date.today <=  Date.parse("7/23/2012") %>
+	<% elsif Date.today > Date.parse(Dicty11::Application.config.early_registration_deadline) && Date.today <=  Date.parse(Dicty11::Application.config.registration_deadline) %>
 		<% if @user.accommodation_type == 'Single use' %>
 			Late Registration: €950
 		<% elsif @user.accommodation_type == 'Double use' %>
