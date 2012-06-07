@@ -6,11 +6,11 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#users').dataTable( {
-			"sScrollX": "200px",
+			"sScrollX": "250px",
 			"bJQueryUI": true,
         	"bPaginate": true,
-        	"sPaginationType": "full_numbers",
-        	"bLengthChange": false,
+            "sPaginationType": "two_button", //"full_numbers",
+        	"bLengthChange": true,
         	"bSort": true,
         	//"bInfo": false,
         	"bAutoWidth": true
@@ -28,9 +28,8 @@
       			<th>First Name</th>
       			<th>Last name</th>
       			<th>Email</th>
-      			<th>Registered?</th>
-      			<th>Affiliation</th>
-      			<th>City</th>
+                <th>Registered on</th>
+                <th>Affiliation</th>
       			<th>Country</th>
       			<th>Phone</th>
       			<th>VAT #</th>
@@ -40,22 +39,21 @@
     		</tr>
   		</thead>
   		<tbody>
-    		<%- (User.find(:all)).each do |user| -%>
-      		<tr id="<%= dom_id(user) %>">
-        		<td><%= user.first_name %></td>
-        		<td><%= user.last_name %></td>
-        		<td><%= user.email %></td>
-        		<td><%= user.is_registered ? 'Yes': 'No' %></td>
-        		<td><%= user.institute %></td>
-        		<td><%= user.city %></td>
-        		<td><%= user.country %></td>
-        		<td><%= user.phone %></td>
-        		<td><%= user.billing_id %></td>
-        		<td><%= user.accommodation_type %></td>
-                <td><%= user.payment_due %></td>
-                <td><%= user.comment %></td>
-      		</tr>
-    		<%- end -%>
+          <% (User.find(:all, :conditions => {:is_registered => true})).each do |user| %>
+      	  <tr id="<%= dom_id(user) %>">
+       		<td><%= user.first_name %></td>
+       		<td><%= user.last_name %></td>
+       		<td><%= user.email %></td>
+            <td><%= l user.created_at.to_date, :format => :long %></td>
+        	<td><%= user.institute %></td>
+        	<td><%= user.country %></td>
+        	<td><%= user.phone %></td>
+        	<td><%= user.billing_id %></td>
+        	<td><%= user.accommodation_type %></td>
+            <td><%= user.payment_due %></td>
+            <td><%= user.comment %></td>
+          </tr>  
+    	  <% end %>
   		</tbody>
 	</table>
 <% end %>
