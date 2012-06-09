@@ -166,6 +166,8 @@ div.field, div.actions {
   text-decoration: none;
 }
 
+.clear { clear:both; }
+
 pre {
   margin: 0;
   font: 13px/1.231 arial,helvetica,clean,sans-serif;

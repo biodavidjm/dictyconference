@@ -1,19 +1,40 @@
 <% content_for :title, "Dicty12: Admin" %>
 
-<%= javascript_include_tag "jquery.dataTables.nightly", "jquery", "jquery-dataTables" %>
-<%= stylesheet_link_tag "jquery-dataTables", "jquery-ui-overcast" %>
+<%= javascript_include_tag "jquery.dataTables.nightly", "jquery", "jquery-dataTables", "TableTools", "ZeroClipboard" %>
+<%= stylesheet_link_tag "jquery-dataTables", "jquery-ui-overcast", "TableTools", "TableTools_JUI" %>
 
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#users').dataTable( {
 			"sScrollX": "200px",
 			"bJQueryUI": false,
-        	"bPaginate": true,
-            "sPaginationType": /*"two_button",*/ "full_numbers",
-        	"bLengthChange": true,
-        	"bSort": true,
-        	//"bInfo": false,
-        	"bAutoWidth": true
+      "bPaginate": true,
+      "sPaginationType": /*"two_button",*/ "full_numbers",
+      "bLengthChange": true,
+      "bSort": true,
+      //"bInfo": false,
+      "bAutoWidth": true,
+
+      "iDisplayLength": 20,
+      "sDom": 'CT<"clear">lfrtip',
+      //"sDom": 'T<"clear"><"H"lTf>rt<"F"ip>',
+      "oTableTools": {
+        "aButtons": [
+          "print",
+          {
+            "sExtends": "csv",
+            "sFileName": "Dicty12_registrations.csv",
+            "bFooter": false
+          },
+          {
+            "sExtends": "pdf",
+            "sFileName": "Dicty12_registrations.pdf",
+            "sTitle": "Dicty12 Registrations",
+            "sPdfOrientation": "landscape"
+          }
+        ]
+      
+      }
     	} );
 	} );
 </script>
@@ -28,14 +49,14 @@
       			<th>First Name</th>
       			<th>Last name</th>
       			<th>Email</th>
-                <th>Registered on</th>
-                <th>Affiliation</th>
+            <th>Registered on</th>
+            <th>Comments</th>
+            <th>Affiliation</th>
       			<th>Country</th>
       			<th>Phone</th>
       			<th>VAT #</th>
       			<th>Accommodation</th>
-                <th>Payment due</th>
-                <th>Comments</th>
+            <th>Payment due</th>
     		</tr>
   		</thead>
   		<tbody>
@@ -44,17 +65,18 @@
        		<td><%= user.first_name %></td>
        		<td><%= user.last_name %></td>
        		<td><%= user.email %></td>
-            <td><%= l user.created_at.to_date, :format => :long %></td>
+          <td><%= l user.created_at.to_date, :format => :long %></td>
+          <td><%= user.comment %></td>
         	<td><%= user.institute %></td>
         	<td><%= user.country %></td>
         	<td><%= user.phone %></td>
         	<td><%= user.billing_id %></td>
         	<td><%= user.accommodation_type %></td>
-            <td><%= user.payment_due %></td>
-            <td><%= user.comment %></td>
+          <td><%= user.payment_due %></td>
           </tr>  
     	  <% end %>
   		</tbody>
 	</table>
+  <div style="clear:both"></div>
 <% end %>
 
