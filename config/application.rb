@@ -45,7 +45,7 @@ module Dicty11
 
     # Abstract & registration deadline
     config.abstract_submission_deadline = '2012-Jun-11'
-    config.early_registration_deadline = '6/11/2012'
+    config.early_registration_deadline = '6/12/2012'
     config.registration_deadline = '7/13/2012'
 
   end
