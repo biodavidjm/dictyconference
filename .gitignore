@@ -1,7 +1,7 @@
 log/*
 .DS_Store
 database.yml
-.Gemfile.lock
+Gemfile.lock
 .bundle
 tmp
 vendor/*
