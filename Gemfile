@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 source 'http://download.bioinformatics.northwestern.edu/gems/'
 
-gem 'rails', '>=3.0.3'
+gem 'rails', '3.0.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -10,7 +10,6 @@ gem 'pg'
 gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'fastercsv'
-gem 'prawn'
 
 # NUBIC's bcdatabase
 group :prod, :staging do
