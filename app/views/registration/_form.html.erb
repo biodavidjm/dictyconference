@@ -8,7 +8,7 @@
 <%= hidden_field_tag 'early_registration_deadline', Dicty11::Application.config.early_registration_deadline %>
 <%= hidden_field_tag 'registration_deadline', Dicty11::Application.config.registration_deadline %>
 
-<%= form_for(@user, :url => new_registration_path) do |f| %>
+<%= form_for(@user, :url => { :controller => :registration, :action => "create" }) do |f| %>
 
     <% if @user.errors.any? %>
         <div id="error_explanation">
