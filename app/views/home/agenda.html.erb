@@ -1,20 +1,576 @@
 <% content_for :title, "Dicty12: Agenda" %>
+
+<%= javascript_include_tag "jquery.dataTables.nightly", "jquery", "jquery-dataTables", "jquery-ui-tabs", "TableTools", "ZeroClipboard" %>
+<%= stylesheet_link_tag "jquery-dataTables", "jquery-ui-tabs-overcast", "TableTools", "TableTools_JUI" %>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $("#tabs").tabs( {
+        "show": function(event, ui) {
+            var table = $.fn.dataTable.fnTables(true);
+            if ( table.length > 0 ) {
+                $(table).dataTable().fnAdjustColumnSizing();
+            }
+        }
+    } );
+     
+    $('table.display').dataTable( {
+        "sScrollY": "200px",
+        "bScrollCollapse": true,
+        "bPaginate": false,
+        "bJQueryUI": true,
+        "aoColumnDefs": [
+            { "sWidth": "10%", "aTargets": [ -1 ] }
+        ]
+    } );
+
+    $('#mon').dataTable( {
+        "bJQueryUI": false,
+        "sPaginationType": "full_numbers",
+        "sDom": '<"H"Tfr>t<"F"ip>'
+        //"sDom": 'CT<"clear">lfrtip'
+    } );
+
+    $('#tue').dataTable( {
+        "bJQueryUI": false,
+        "sPaginationType": "full_numbers",
+        "sDom": '<"H"Tfr>t<"F"ip>'
+    } );
+
+    $('#wed').dataTable( {
+        "bJQueryUI": false,
+        "sPaginationType": "full_numbers",
+        "sDom": '<"H"Tfr>t<"F"ip>'
+    } );
+
+    $('#thur').dataTable( {
+        "bJQueryUI": false,
+        "sPaginationType": "full_numbers",
+        "sDom": '<"H"Tfr>t<"F"ip>'
+    } );
+
+} );
+</script>
+
 <h3>Dicty 2012 Conference Schedule</h3>
 
+<body>
 <p>
     Scientific sessions will be held from July 30th, in the morning, to August 2nd at noon.
-<br/>
-    More information coming soon…
+<!-- <br/>
+    More information coming soon… -->
 </p>
 
-<!--
-<p>
+
+<!-- <p>
    Talks are scheduled for 15 minutes with 10 minutes for discussion. <br>
    Poster size maximum is 6 ft (1.8 m) long and 4 ft (1.2 m) high.  All posters will be displayed throughout the meeting<br>
    Click <a href="/meeting_program.pdf">Here</a> to download meeting program (pdf)
-</p>
+</p> -->
+    
+<div id="tabs">
+    <ul>
+        <li><a href="#monday">Monday, July 30th</a></li>
+        <li><a href="#tuesday">Tuesday, July 31st</a></li>
+        <li><a href="#wednesday">Wednesday, August 1st</a></li>
+        <li><a href="#thursday">Thursday, August 2nd</a></li>
+    </ul>
 
-<table>
+<div id="monday">
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="mon">
+    <tr>
+        <td>9:00-11:00</td>
+        <td nowrap><h4>Session 1. Transcriptional regulation</h4></td>
+        <td>Chair: <b>Gadi Shaulsky</b></td>
+    </tr>
+  
+    <tr>
+        <td></td>
+        <td nowrap>Jonathan Chubb</td>
+        <td>Dynamics of signalling to transcription in living cells</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Matthew Jones-Rhoades</td>
+        <td>Diverse microRNAs in dictyostelid social amoebae</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Catherine Pears</td>
+        <td>Acetylation of histone H3 variants.</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Tsuyoshi Araki</td>
+        <td>Dissection of the Dictyostelium STATc activation pathways</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Thomas Winckler</td>
+        <td>Deeply conserved gene regulatory functions of the carboxy-terminal domains of dictyostelid C-module-binding factors</td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>11:00-11:30</td>
+        <td><b>Coffee Break</b></td>
+    </tr>
+
+    <tr>
+        <td>11:30-13:15</td>
+        <td nowrap><h4>Session 2. Signalling</h4></td>
+        <td>Chair: <b>Robert Insall</b></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td nowrap>Louise Fets</td>
+        <td>A PIP5kinase required for signalling downstream of Ras is crucial for chemotactic gradient sensing</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Doris Heinrich</td>
+        <td>Probing PI3-Kinase based feedback in alternating chemotactic gradient fields with ongoing cell starvation time</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Jesús Lacal</td>
+        <td>Regulation of chemotaxis by GSK-3 and a related kinase GlkA</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Satoshi Sawai</td>
+        <td>Geometries of phosphatidylinositol waves and large-scale membrane deformation in randomly moving Dictysotelium</td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>13:30-15:00</td>
+        <td><b>Lunch</b></td>
+        <td>dictyBase Scientific Advisory Meeting (13:20 - 15:30)</td>
+    </tr>
+
+    <tr>
+        <td>15:30-17:15</td>
+        <td nowrap><h4>Session 3. Chemotaxis-I</h4></td>
+        <td>Chair: <b>Rick Firtel</b></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td nowrap>Bill Loomis</td>
+        <td>Adaptation, amplification and memory of a chemotactic gradient</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Joseph Brzostowski</td>
+        <td>Phosphorylation of chemoattractant receptors regulates chemotaxis, actin re-organization and signal-relay in Dictyostelium discoideum</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Dawid Jowhar</td>
+        <td>Reversing the polarity of migrating Dictyostelium cells</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Chris Janetopoulos</td>
+        <td>The influence of polarized morphologies on directed migration</td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>17:15-17:45</td>
+        <td><b>Coffee Break</b></td>
+    </tr>
+
+    <tr>
+        <td>17:45-19:30</td>
+        <td nowrap><h4>Session 4. Chemotaxis-II</h4></td>
+        <td>Chair: <b>Bill Loomis</b></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td nowrap>Rick Firtel</td>
+        <td>Chemotaxing cells implement two distinct modes of adhesion dynamics and lateral and axial contractility to control their migration speed</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>John Nichols</td>
+        <td>The phosphoproteomics of chemotaxis</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Rama Kataria</td>
+        <td>Ric8 an important regulator of heterotrimeric G-protein signalling</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Gadi Shaulsky</td>
+        <td>The role of self-recognition in cAMP signalling, differentiation and cheating</td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>20:00-21:30</td>
+        <td><b>Dinner</b></td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>21:30-23:30</td>
+        <td><b>Posters' Visit</b></td>
+    </tr>
+
+</table>
+</div>
+
+<div id="tuesday">
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="tue">
+    
+    <tr>
+        <td>9:00-11:00</td>
+        <td nowrap><h4>Session 5. Membrane trafficking</h4></td>
+        <td>Chair: <b>Gerald Weeks</b></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td nowrap>Julia von Bülow</td>
+        <td>AqpB: the first functional aquoporin water channel from Dictyostelium discoideum amoebae is potentially gated</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Thierry Soldati</td>
+        <td>Rab8a regulates the exocyst-mediated kiss-and-run discharge of the Dictyostelium contractile vacuole</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Khalid Arhzaouy</td>
+        <td>Heterotrimeric p97/p97R155C complexes induce dominant negative changes in wild-type and autophagy 9-deficient Dictyostelium cells</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Ricardo Escalante</td>
+        <td>Autophagy in Dictyostelium: Vmp1 is required for the origin of the autophagosomes</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Pierre Cosson</td>
+        <td>TM9 proteins: role in intracellular sorting of transmembrane domains</td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>11:00-11:30</td>
+        <td><b>Coffee Break</b></td>
+    </tr>
+
+    <tr>
+        <td>11:30-13:15</td>
+        <td nowrap><h4>Session 6. Cytoskeleton</h4></td>
+        <td>Chair: <b>Ralf Gräf</b></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td nowrap>Richard Tyson</td>
+        <td>Elucidating the mechanisms of blebbing</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Julia Gallinger</td>
+        <td>Filactin: a primadonna among actin variants in Dictyostelium amoebae</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Annette Müller-Taubenberger</td>
+        <td>Filamin in Dictyostelium amoebae and leukocytes</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Margaret A. Titus</td>
+        <td>Expression of the TalinA FERM domain disrupts cell-substrate adhesion</td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>13:30-15:00</td>
+        <td><b>Lunch</b></td>
+    </tr>
+
+    <tr>
+        <td>15:30-17:15</td>
+        <td nowrap><h4>Session 7. Stress and disease-I</h4></td>
+        <td>Chair: <b>Ludwig Eichinger</b></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td nowrap>Arjan Kortholt</td>
+        <td>Dictyostelium Roco proteins to study LRRK2-mediated Parkinson disease</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Robin Williams</td>
+        <td>A conserved role of Human Presenilin 1 from amoeba to humans</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Liliana Malinovska</td>
+        <td>Dictyostelium discoideum - A new paradigm to study protein aggregation and proteostasis</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Chris Thompson</td>
+        <td>Identification of a novel molecular mechanism by which ATP-gated ion channels regulate intracellular processes</td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>17:15-17:45</td>
+        <td><b>Coffee Break</b></td>
+    </tr>
+
+    <tr>
+        <td>17:45-19:130</td>
+        <td nowrap><h4>Session 8. Stress and disease-II</h4></td>
+        <td>Chair: <b>Robin Williams</b></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td nowrap>Hellen C. Ishikawa-Ankerhold</td>
+        <td>Composition and dynamics of nuclear and cytoplasmic actin rods in Dictyostelium</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Salvatore Bozzaro</td>
+        <td>The Nramp (Natural Resistance Associated Macrophage Protein) protein family and iron homeostasis in Dictyostelium</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Sascha Thewes</td>
+        <td>About the connection of calcineurin and mitochondria in Dictyostelium discoideum</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>James L. Platt</td>
+        <td>A CHD Chromatin-remodeler regulates nucleosome phasing in a limited gene set in Dictyostelium discoideum</td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>20:00-21:30</td>
+        <td><b>Dinner</b></td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>21:30-23:30</td>
+        <td><b>Posters' Visit</b></td>
+    </tr>
+    
+</table>
+</div>
+
+<div id="wednesday">
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="wed">
+    
+    <tr>
+        <td>9:00-11:00</td>
+        <td nowrap><h4>Session 9. Cell cycle</h4></td>
+        <td>Chair: <b>Adrian Tsang</b></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td nowrap>Adrian Tsang</td>
+        <td>Transcriptome analysis of cell-cycle mutants: a glimpse into the molecular events underpinning cell-fate bias</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Tatjana Peter</td>
+        <td>Molecular and microscopic characterization of CP75, a novel Dictyostelium centrosome protein</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Christoph Gallinger</td>
+        <td>The role of Mo25 for cytokinesis in Dictyostelium discoideum</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Nick Lakin</td>
+        <td>Regulation of DNA repair in Dictyostelium</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Kimchi Strasser</td>
+        <td>Regulation of cell proliferation and cell-type specification in Dictyostelium by Cdk1</td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>11:00-11:30</td>
+        <td><b>Coffee</b></td>
+        <td>Harry MacWilliams' Memorial</td>
+    </tr>
+
+    <tr>
+        <td>11:00-13:15</td>
+        <td nowrap><h4>Session 10. Cell differentiation</h4></td>
+        <td>Chair: <b>Adriano Ceccarelli</b></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td nowrap>Zhi-Hui Chen</td>
+        <td>Dictyostelium discoideum uses the prokaryote second messenger c-di-GMP as an apically secreted signal for stalk cell differentiation</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Hideko Urushihara</td>
+        <td>Involvement of the plant fertilization protein Hap2/GCS-1 in the gamete interaction of Dictyostelium discoideum</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Koki Nagayama</td>
+        <td>Generating order from chaos: noise, heterogeneity and robustness during developmental patterning in Dictyostelium</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Suzy Battom</td>
+        <td>Cell type specific sorting out during Dictyostelium pattern formation</td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>13:30-15:00</td>
+        <td><b>Lunch</b></td>
+    </tr>
+
+    <tr>
+        <td>15:30-17:15</td>
+        <td nowrap><h4>Session 11. Chemotaxis-III/dictyBase</h4></td>
+        <td>Chair: <b>Rex Chisholm</b></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td nowrap>Vladimir Zykov</td>
+        <td>Selection of spiral waves in excitable media with a phase wave at the wave back</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Seido Nagano</td>
+        <td>A molecular network underlying spontaneous cAMP oscillation and a key role of G-protein dynamics</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Robert Insall</td>
+        <td>SCAR/WAVE, actin, and how pseudopods are controlled</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Petra Fey</td>
+        <td>dictyBase literature curation and how authors can help</td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>17:15-24:00</td>
+        <td><b>Visit to Segovia</b></td>
+    </tr>
+</table>
+</div>
+
+<div id="thursday">
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="thur">
+    
+    <tr>
+        <td>9:00-11:00</td>
+        <td nowrap><h4>Session 12. Dictyostelium-microbial interactions</h4></td>
+        <td>Chair: <b>Pierre Cosson</b></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td nowrap>Hubert Hilbi</td>
+        <td>Subversion of phosphoinositide lipids and small GTPases by Legionella in Dictyostelium</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Monica Hagedorn</td>
+        <td>Role of actin and actin-binding proteins during mycobacterial infections in a Dictyostelium model system</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Matthias Leippe</td>
+        <td>Saposin-like proteins are implicated in antibacterial defence of Dictyostelium</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Xuezhi Zhang</td>
+        <td>Exploring the roles of NADPH oxidases in Dictyostelium discoideum</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Adam Kuspa</td>
+        <td>Initial characterization of the Dictyostelium Microbiome</td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>11:00-11:30</td>
+        <td><b>Coffee</b></td>
+    </tr>
+
+    <tr>
+        <td>11:30-13:15</td>
+        <td nowrap><h4>Session 13. Evolution and development</h4></td>
+        <td>Chair: <b>Adam Kuspa</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>David C. Queller</td>
+        <td>Dictyostelium development shows a novel pattern of evolutionary conservation</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Kurato Mohri</td>
+        <td>Switching expression of prespore and prestalk marker orthologues during fruiting body development of Acytostelium subglobosum</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Elizabeth Ostrowski</td>
+        <td>Birth-and-death evolution of the tgr genes in Dictyostelium discoideum</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td nowrap>Joan E. Strassmann</td>
+        <td>Dictyostelium discoideum as a social organism</td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>13:30-15:00</td>
+        <td><b>Lunch</b></td>
+    </tr>
+
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>15:00</td>
+        <td><b>Departure</b></td>
+    </tr>
+
+</table>
+</div>
+
+</div>
+</body>
+
+<!-- <table>
     <tr>
         <th><h4>Sunday, Aug. 14</h4></th>
     </tr>
@@ -148,4 +704,4 @@
         <td>Farewell</td>
     </tr> 	         
 </table>
--->
+ -->
