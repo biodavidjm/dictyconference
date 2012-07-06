@@ -25,6 +25,13 @@ $(document).ready(function() {
         ]
     } );
 
+    $('#sun').dataTable( {
+        "bJQueryUI": false,
+        "sPaginationType": "full_numbers",
+        "sDom": '<"H"Tfr>t<"F"ip>'
+        //"sDom": 'CT<"clear">lfrtip'
+    } );
+
     $('#mon').dataTable( {
         "bJQueryUI": false,
         "sPaginationType": "full_numbers",
@@ -71,11 +78,28 @@ $(document).ready(function() {
     
 <div id="tabs">
     <ul>
-        <li><a href="#monday">Monday, July 30th</a></li>
-        <li><a href="#tuesday">Tuesday, July 31st</a></li>
-        <li><a href="#wednesday">Wednesday, August 1st</a></li>
-        <li><a href="#thursday">Thursday, August 2nd</a></li>
+        <li><a href="#sunday">Sunday, July 29</a></li>
+        <li><a href="#monday">Monday, July 30</a></li>
+        <li><a href="#tuesday">Tuesday, July 31</a></li>
+        <li><a href="#wednesday">Wednesday, August 1</a></li>
+        <li><a href="#thursday">Thursday, August 2</a></li>
     </ul>
+
+<div id="sunday">
+    <table cellpadding="0" cellspacing="0" border="0" class="display" id="mon">
+        <tr>
+            <td>17:30-21:00</td>
+            <td><b>Registration</b></td>
+            <td></td>
+        </tr> 
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td>21:00</td>
+            <td><b>Welcome Dinner</b></td>
+            <td></td>
+        </tr>
+    </table>
+</div>    
 
 <div id="monday">
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="mon">
