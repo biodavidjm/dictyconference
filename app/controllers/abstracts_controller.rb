@@ -45,7 +45,7 @@ class AbstractsController < ApplicationController
   # GET /abstracts/1.xml
   def show
     @abstract = Abstract.find(params[:id])
-	#@abstract = Abstract.where(:user_id => current_user.id).find(params[:id])
+	 #@abstract = Abstract.where(:user_id => current_user.id).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
