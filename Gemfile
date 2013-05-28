@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
-source 'http://download.bioinformatics.northwestern.edu/gems/'
+# source 'http://download.bioinformatics.northwestern.edu/gems/'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.20'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
-gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
+# gem 'pg'
+gem 'authlogic'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'fastercsv'
 
@@ -23,5 +23,5 @@ end
 
 # SQLite
 group :development do
-  gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
+	gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 end
