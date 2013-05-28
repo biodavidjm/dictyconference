@@ -1,4 +1,4 @@
-<% content_for :title, "Dicty12: Update Registration" %>
+<% content_for :title, "Dicty13: Update Registration" %>
 <p id="notice"><%= notice %></p>
 
 <h3>Editing registration</h3>
@@ -11,165 +11,183 @@
 
 <%= form_for @user, :html => {:multipart => true, :method => 'put'} do |f| %>
 
-    <% if @user.errors.any? %>
-        <div id="error_explanation">
-            <h2>We have <%= pluralize(@user.errors.count, "error") %> on the form</h2>
-            <ul>
-                <% @user.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
+	<% if @user.errors.any? %>
+		<div id="error_explanation">
+			<h2>We have <%= pluralize(@user.errors.count, "error") %> on the form</h2>
+			<ul>
+				<% @user.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 
-  <%#= session[:where_from] %>
+	<%#= session[:where_from] %>
 
-    <table>
-        <tr>
-            <td><%= f.label :first_name %></td>
-            <td><%= f.text_field :first_name, :required => true, :mark => '*' %></td>
-        </tr>
-        <tr>
-            <td><%= f.label :last_name %></td>
-            <td><%= f.text_field :last_name, :required => true %></td>
-        </tr>
-        <tr>
-            <td><%= f.label :email %></td>
-            <td><%= f.text_field :email, :disabled=>true, :required => true %></td>
-        </tr>
-        <tr>
-            <td><%= f.label :institute, "Institute Affiliation" %></td>
-            <td><%= f.text_field :institute, :required => true %></td>
-        </tr>
-        <tr>
-            <td><%= f.label :address %></td>
-            <td><%= f.text_field :address, :required => true %></td>
-        </tr>
-        <tr>
-            <td><%= f.label :city %></td>
-            <td><%= f.text_field :city, :required => true %></td>
-        </tr>
-        <tr>
-            <td><%= f.label :zipcode %></td>
-            <td><%= f.text_field :zipcode, :required => true %></td>
-        </tr>
-        <tr>
-            <td><%= f.label :country %></td>
-            <td><%= f.text_field :country, :required => true %></td>
-        </tr>
-        <tr>
-            <td><%= f.label :phone %></td>
-            <td><%= f.text_field :phone, :required => true %></td>
-        </tr>
-        <tr>
-            <td><%= f.label :billing_id, 'VAT number/Tax exempt ID' %></td>
-            <td><%= f.text_field :billing_id, :required => true %></td>
-        </tr>
-        <tr>
-            <td>
-                <label for="accommodation_type">Accommodation</label>
-            </td>
-            <td>
-                <%= f.radio_button(:accommodation_type, 'Single use', :required => true )%>
-                <%= label_tag 'single_use', 'Single use' %>
-                <%= f.radio_button(:accommodation_type, 'Double use', :required => true ) %>
-                <%= label_tag 'double_use', 'Double use' %>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-              <%= text_field_tag 'view_price', '', :disabled=>true, :size => "45", :color => 'black' %>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-              <%= label_tag 'label_roomie_name', 'Person to share room:' %>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-              <%= f.text_field :roomie_first_name, :placeholder => "First Name", :size => "25" %>
-              <%= f.text_field :roomie_last_name, :placeholder => "Last Name", :size => "25" %>
-            </td>
-        </tr>
-        <tr>
-            <td><%= label_tag 'Will you require extra accommodation?' %></td>
-            <td>
-                <%= f.check_box(:extra_accommodation, :default => false ) %>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-              <%= text_field_tag 'extra_view_price', '', :disabled=>true, :size => "45", :color => 'black' %>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <%= f.text_field :check_in, :placeholder => "Check-in", :size => "25" %>
-                <%= f.text_field :check_out, :placeholder => "Check-out", :size => "25" %>
-            </td>
-        </tr>
-        <tr>
-            <td><%= label_tag 'Have an accompanying guest?' %></td>
-            <td><%= f.check_box(:has_guest, :default => false, :onclick => 'showGuestOptions()') %></td>
-          </tr>
-        <tr>
-            <td></td>
-            <td>
-              <%= f.check_box :guest_supplement_HB %>
-              <%= label_tag 'label_guest_supplement_1', 'Accommodation Supplement (Hotel + Breakfast): €207' %>
-            </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <%= f.check_box :guest_supplement_HBD %>
-            <%= label_tag 'label_guest_supplement_2', 'Accommodation Supplement (Hotel + Breakfast + Dinner): €327' %>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <%= f.check_box :guest_trip %>
-            <%= label_tag 'label_guest_dinner_trip', 'Trip to Segovia (with Dinner): €63', :type => 'text' %>
-          </td>
-        </tr>
-        <tr>
-          <td><%= label_tag 'label_comments', 'Comments', :type => 'text' %></td>
-          <td>
-            <%= f.text_area :comment, :rows => 5, :cols => 26 %>
-          </td>
-        </tr>
-        <tr>
-            <td><hr /></td>
-            <td><hr /></td>
-        </tr>
-        <tr>
-          <td><%= f.label :payment_due, 'Total Amount Due' %></td>
-          <td>
-            <table>
-            <tr>
-                <td><%= f.text_field :payment_due, :readonly => true, :color => 'black', :size => '12' %></td>
-                <td>
-                    <%= select_tag 'to_currency', options_for_select([['AUD', 'AUD'], ['CAD', 'CAD'], ['CNY', 'CNY'], ['GBP', 'GBP'], ['INR', 'INR'], ['JPY', 'JPY'], ['NZD', 'NZD'], ['USD', 'USD']]) %>
-                </td>
-                <td><%= text_field_tag 'converted_currency', '', :disabled=>true, :color => 'black', :size => '12' %></td>
-            </tr>
-            </table>
-          </td>
-        </tr>
+	<table>
+		<tr>
+			<td><%= f.label :first_name %></td>
+			<td><%= f.text_field :first_name, :required => true, :mark => '*' %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :last_name %></td>
+			<td><%= f.text_field :last_name, :required => true %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :email %></td>
+			<td><%= f.text_field :email, :disabled=>true, :required => true %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :institute, "Institute Affiliation" %></td>
+			<td><%= f.text_field :institute, :required => true %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :address %></td>
+			<td><%= f.text_field :address, :required => true %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :city %></td>
+			<td><%= f.text_field :city, :required => true %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :zipcode %></td>
+			<td><%= f.text_field :zipcode, :required => true %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :country %></td>
+			<td><%= f.text_field :country, :required => true %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :phone %></td>
+			<td><%= f.text_field :phone, :required => true %></td>
+		</tr>
+		<!--
+		<tr>
+			<td><%#= f.label :billing_id, 'VAT number/Tax exempt ID' %></td>
+			<td><%#= f.text_field :billing_id, :required => true %></td>
+		</tr>
+		-->
+		<tr>
+			<td>
+				<label for="accommodation_type">Accommodation</label>
+			</td>
+			<td>
+				<%= f.radio_button(:accommodation_type, 'Single use', :required => true )%>
+				<%= label_tag 'single_use', 'Single use' %>
+				<%= f.radio_button(:accommodation_type, 'Double use', :required => true ) %>
+				<%= label_tag 'double_use', 'Double use' %>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<%= text_field_tag 'view_price', '', :disabled=>true, :size => "45", :color => 'black' %>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<%= label_tag 'label_roomie_name', 'Person to share room:' %>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<%= f.text_field :roomie_first_name, :placeholder => "First Name", :size => "25" %>
+				<%= f.text_field :roomie_last_name, :placeholder => "Last Name", :size => "25" %>
+			</td>
+		</tr>
+		<tr>
+			<td><%= label_tag 'Will you require extra accommodation?' %></td>
+			<td>
+				<%= f.check_box(:extra_accommodation, :default => false ) %>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<%= text_field_tag 'extra_view_price', '', :disabled=>true, :size => "45", :color => 'black' %>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<%= f.text_field :check_in, :placeholder => "Check-in", :size => "25" %>
+				<%= f.text_field :check_out, :placeholder => "Check-out", :size => "25" %>
+			</td>
+		</tr>
+		<tr>
+			<td><%= label_tag 'Have an accompanying guest?' %></td>
+			<td><%= f.check_box(:has_guest, :default => false, :onclick => 'showGuestOptions()') %></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<%= f.check_box :guest_double_no_BDB %>
+				<%= label_tag 'label_guest_double_no_BDB', '4 nights in double without Breakfast, Dinner and Banquet: $268.00' %>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<%= f.check_box :guest_single_no_BDB %>
+				<%= label_tag 'label_guest_single_no_BDB', '4 nights in single without Breakfast, Dinner and Banquet: $536.00' %>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<%= f.check_box :guest_double_BDB %>
+				<%= label_tag 'label_guest_double_BDB', '4 nights in double with Breakfast, Dinner and Banquet: $470.00' %>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<%= f.check_box :guest_single_BDB %>
+				<%= label_tag 'label_guest_single_BDB', '4 nights in single with Breakfast, Dinner and Banquet: $738.00' %>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<%= f.check_box :guest_trip %>
+				<%= label_tag 'label_guest_dinner_trip', 'Excursion: $50', :type => 'text' %>
+			</td>
+		</tr>
+		<tr>
+			<td><%= label_tag 'label_comments', 'Comments', :type => 'text' %></td>
+			<td>
+				<%= f.text_area :comment, :rows => 5, :cols => 26 %>
+			</td>
+		</tr>
+		<tr>
+			<td><hr/></td>
+			<td><hr/></td>
+		</tr>
+		<tr>
+			<td><%= f.label :payment_due, 'Total Amount Due' %></td>
+			<td>
+				<table>
+					<tr>
+						<td><%= f.text_field :payment_due, :readonly => true, :color => 'black', :size => '12' %></td>
+						<!--
+						<td>
+							<%= select_tag 'to_currency', options_for_select([['AUD', 'AUD'], ['CAD', 'CAD'], ['CNY', 'CNY'], ['GBP', 'GBP'], ['INR', 'INR'], ['JPY', 'JPY'], ['NZD', 'NZD'], ['USD', 'USD']]) %>
+						</td>
+						<td><%= text_field_tag 'converted_currency', '', :disabled=>true, :color => 'black', :size => '12' %></td>
+						-->
+					</tr>
+				</table>
+			</td>
+		</tr>
 
-    </table>
+	</table>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-    <%= submit_tag 'Cancel', :action => 'show' %>
-  </div>
+	<div class="actions">
+		<%= f.submit "Update" %>
+		<%= submit_tag 'Cancel', :action => 'show' %>
+	</div>
 
 <% end %>
 
