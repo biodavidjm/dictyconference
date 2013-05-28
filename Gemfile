@@ -6,7 +6,7 @@ gem 'rails', '3.0.20'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-# gem 'pg'
+gem 'pg'
 gem 'authlogic'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'fastercsv'
