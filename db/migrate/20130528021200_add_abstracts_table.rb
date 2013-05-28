@@ -1,4 +1,4 @@
-class CreateAbstracts < ActiveRecord::Migration
+class AddAbstractsTable < ActiveRecord::Migration
   def self.up
     create_table :abstracts do |t|
       t.integer :user_id
