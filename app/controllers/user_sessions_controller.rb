@@ -1,7 +1,7 @@
 class UserSessionsController < ApplicationController
 	skip_before_filter :login_required, :only => [:admin]
-	helper :all # include all helpers, all the time
-	include UserSessionsHelper
+	#helper :all # include all helpers, all the time
+	include UserSessionsHelper, UsersHelper
 
 	def new
 		@user_session = UserSession.new
@@ -17,7 +17,6 @@ class UserSessionsController < ApplicationController
 		has_valid_email = valid_email?(params[:user_session][:email])
 		has_valid_password = verify_recaptcha
 
-		# sorry dude,  you need to register before you break in
 		if !has_valid_email or !has_valid_password
 			logger.info 'Invalid user name and password'
 			flash[:notice] = 'Invalid email and/or password,  Please try again'
