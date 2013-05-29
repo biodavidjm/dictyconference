@@ -11,3 +11,5 @@ db/migrate_old/
 *.db
 non-app/
 doc/app
+test/
+coverage/
