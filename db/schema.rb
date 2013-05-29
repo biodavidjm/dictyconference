@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120327220334) do
+ActiveRecord::Schema.define(:version => 20130528161042) do
 
   create_table "abstracts", :force => true do |t|
     t.integer  "user_id"
@@ -22,21 +23,21 @@ ActiveRecord::Schema.define(:version => 20120327220334) do
     t.string   "abstract_type"
     t.string   "authors"
     t.text     "address"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "email",                                   :null => false
+    t.string   "email"
     t.boolean  "is_admin",             :default => false
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "crypted_password"
     t.string   "password_salt"
-    t.string   "persistence_token",                       :null => false
+    t.string   "persistence_token",    :default => "0",   :null => false
     t.integer  "login_count",          :default => 0,     :null => false
     t.integer  "failed_login_count",   :default => 0,     :null => false
     t.datetime "last_request_at"
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20120327220334) do
     t.boolean  "has_guest"
     t.string   "roomie_first_name"
     t.string   "roomie_last_name"
+    t.string   "guest_supplement"
     t.boolean  "guest_trip"
     t.boolean  "guest_supplement_HB"
     t.boolean  "guest_supplement_HBD"
@@ -63,8 +65,11 @@ ActiveRecord::Schema.define(:version => 20120327220334) do
     t.date     "check_in"
     t.date     "check_out"
     t.text     "comment"
-    t.string   "billing_id"
     t.string   "payment_due"
+    t.boolean  "guest_single_no_BDB"
+    t.boolean  "guest_single_BDB"
+    t.boolean  "guest_double_no_BDB"
+    t.boolean  "guest_double_BDB"
   end
 
 end

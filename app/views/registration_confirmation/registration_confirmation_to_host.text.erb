@@ -1,59 +1,67 @@
 Hello,
 
-We have a new registration for the Annual International Dictyostelium Conference, 2012.
+We have a new registration for the Annual International Dictyostelium Conference, 2013.
 Following are the details;
 
-	Name: <%= @user.first_name %> <%= @user.last_name%>
+Name: <%= @user.first_name %> <%= @user.last_name%>
 	Institute affiliation: <%= @user.institute %>
 
-	Address: <%= @user.address %>, <%= @user.city %>, <%= @user.country %> <%= @user.zipcode %>
+Address: <%= @user.address %>, <%= @user.city %>, <%= @user.country %> <%= @user.zipcode %>
 	Email: <%= @user.email %>
-	Phone: <%= @user.phone %>
-	VAT number/Tax exempt ID: <%= @user.billing_id%>
+Phone: <%= @user.phone %>
 
 	Accommodation type: <%= @user.accommodation_type %>
-	<% if Date.today <= Date.parse(Dicty11::Application.config.early_registration_deadline) %>
-		<% if @user.accommodation_type == 'Single use' %>
-			Early Registration: €830
-		<% elsif @user.accommodation_type == 'Double use' %>
-			Early Registration: €675 (per person)
-		<% end %>
-	<% elsif Date.today > Date.parse(Dicty11::Application.config.early_registration_deadline) && Date.today <=  Date.parse(Dicty11::Application.config.registration_deadline) %>
-		<% if @user.accommodation_type == 'Single use' %>
-			Late Registration: €950
-		<% elsif @user.accommodation_type == 'Double use' %>
-			Late Registration: €795 (per person)
-		<% end %>
+<% if Date.today <= Date.parse(Dicty11::Application.config.early_registration_deadline) %>
+	<% if @user.accommodation_type == 'Single use' %>
+		Early Registration: $1200
+	<% elsif @user.accommodation_type == 'Double use' %>
+		Early Registration: $950 (per person)
 	<% end %>
-	<% if @user.accommodation_type == 'Double use' %>
+<% elsif Date.today > Date.parse(Dicty11::Application.config.early_registration_deadline) && Date.today <=  Date.parse(Dicty11::Application.config.registration_deadline) %>
+	<% if @user.accommodation_type == 'Single use' %>
+		Late Registration: $1300
+	<% elsif @user.accommodation_type == 'Double use' %>
+		Late Registration: $1050 (per person)
+	<% end %>
+<% end %>
+
+<% if @user.accommodation_type == 'Double use' %>
 	Sharing room with: <%= @user.roomie_first_name %> <%= @user.roomie_last_name %>
 	<% end %>
 
 	<% if @user.extra_accommodation %>
-	Extra accommodation? <%= @user.extra_accommodation ? 'Yes': 'No'  %>
+		Extra accommodation? <%= @user.extra_accommodation ? 'Yes': 'No'  %>
 	Check-in: <%= l @user.check_in, :format => :long %>
-	Check-out: <%= l @user.check_out, :format => :long %>
+Check-out: <%= l @user.check_out, :format => :long %>
 	<% end %>
 
 	Accompanying guest? <%= @user.has_guest ? 'Yes': 'No'  %>
 	<% if @user.has_guest %>
-	<% if @user.guest_supplement_HB %>
-	Accommodation Supplement (Hotel + Breakfast): €207
-	<% end %>
-	<% if @user.guest_supplement_HBD %>
-	Accommodation Supplement (Hotel + Breakfast + Dinner): €327
-	<% end %>
-	<% if @user.guest_trip %>
-	Trip to Segovia (with Dinner): €63
-	<% end %>
+		<% if @user.accommodation_type == 'Single use' %>
+			<% if @user.guest_single_BDB %>
+				4 nights in single with Breakfast, Dinner and Banquet: $738.00
+			<% elsif @user.guest_single_no_BDB %>
+				4 nights in single without Breakfast, Dinner and Banquet: $536.00
+			<% end %>
+		<% elsif @user.accommodation_type == 'Double use' %>
+			<% if @user.guest_double_BDB %>
+				4 nights in double with Breakfast, Dinner and Banquet: $470.00
+			<% elsif @user.guest_double_no_BDB %>
+				4 nights in double without Breakfast, Dinner and Banquet: $268.00
+			<% end %>
+		<% end %>
+		<% if @user.guest_trip %>
+			Excursion: $50
+		<% end %>
 	<% end %>
 
-	<% if !@user.comment.empty?%>
+
+<% if !@user.comment.empty?%>
 	Comments:
 	<%= @user.comment %>
-	<% end %>
+<% end %>
 
-	Total amount due: <%= @user.payment_due%>
+Total amount due: <%= @user.payment_due%>
 
 We have asked him/her to make the payment and send the confirmation to you. 
 

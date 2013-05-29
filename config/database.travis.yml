@@ -1,0 +1,7 @@
+test:
+    adapter: postgresql
+    database: dictyconf_test
+    pool: 5
+    user: postgres
+    password: 
+    min_messages: ERROR
