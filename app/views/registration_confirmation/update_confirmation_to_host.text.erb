@@ -16,7 +16,7 @@ Phone: <%= @user.phone %>
 	<% if @user.accommodation_type == 'Single use' %>
 		Early Registration: $1200
 	<% elsif @user.accommodation_type == 'Double use' %>
-		Early Registration: €950 (per person)
+		Early Registration: $950 (per person)
 	<% end %>
 <% elsif Date.today > Date.parse(Dicty11::Application.config.early_registration_deadline) && Date.today <=  Date.parse(Dicty11::Application.config.registration_deadline) %>
 	<% if @user.accommodation_type == 'Single use' %>
