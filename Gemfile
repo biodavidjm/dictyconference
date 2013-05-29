@@ -1,27 +1,29 @@
 source 'http://rubygems.org'
-# source 'http://download.bioinformatics.northwestern.edu/gems/'
 
 gem 'rails', '3.0.20'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# PostgreSQL for production & staging
+group :production, :staging do
+	gem 'pg'
+end
 
-gem 'pg'
+# SQLite for development & testing
+group :development, :test do
+	gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
+end
+
 gem 'authlogic'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'fastercsv'
 
 # NUBIC's bcdatabase
 group :prod, :staging do
-	gem 'bcdatabase', '1.2.1'
+	gem 'bcdatabase', '1.2.3'
 end
 
 # RSpec for testing
-#group :test do
-#  gem 'rspec-rails'
-#end
+gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
+gem 'assert_difference', :group => [:development, :test]
 
-# SQLite
-group :development do
-	gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
-end
+# Coveralls for calculating code coverage
+gem 'coveralls', require: false
