@@ -1,48 +1,48 @@
-<% content_for :title, "Dicty12: Abstracts" %>
+<% content_for :title, "Dicty13: Abstracts" %>
 
 <%= javascript_include_tag "jquery.dataTables.nightly", "jquery", "jquery-dataTables", "TableTools", "ZeroClipboard" %>
 <%= stylesheet_link_tag "jquery-dataTables", "jquery-ui-overcast", "TableTools", "TableTools_JUI" %>
 
 <script type="text/javascript">
-  $(document).ready(function() {
-    $('#abstract').dataTable( {
-      //"sScrollX": "500px",
-      "bJQueryUI": false,
-      "bPaginate": true,
-      "sPaginationType": /*"two_button",*/ "full_numbers",
-      "bLengthChange": true,
-      "bSort": true,
-      //"bInfo": false,
-      "bAutoWidth": true,
+	$(document).ready(function() {
+			$('#abstract').dataTable( {
+				//"sScrollX": "500px",
+				"bJQueryUI": false,
+				"bPaginate": true,
+				"sPaginationType": /*"two_button",*/ "full_numbers",
+				"bLengthChange": true,
+				"bSort": true,
+				//"bInfo": false,
+				"bAutoWidth": true,
 
-      /*"iDisplayLength": 20,
-      "sDom": 'CT<"clear">lfrtip',
-      //"sDom": 'T<"clear"><"H"lTf>rt<"F"ip>',
-      "oTableTools": {
-        "aButtons": [
-          "print",
-          {
-            "sExtends": "csv",
-            "sFileName": "Dicty12_registrations.csv",
-            "bFooter": false
-          },
-          {
-            "sExtends": "pdf",
-            "sFileName": "Dicty12_registrations.pdf",
-            "sTitle": "Dicty12 Registrations",
-            "sPdfOrientation": "landscape"
-          }
-        ]
-      
-      }*/
+				/*"iDisplayLength": 20,
+				  "sDom": 'CT<"clear">lfrtip',
+				//"sDom": 'T<"clear"><"H"lTf>rt<"F"ip>',
+				"oTableTools": {
+				"aButtons": [
+				"print",
+				{
+				"sExtends": "csv",
+				"sFileName": "Dicty12_registrations.csv",
+				"bFooter": false
+				},
+				{
+				"sExtends": "pdf",
+				"sFileName": "Dicty12_registrations.pdf",
+				"sTitle": "Dicty12 Registrations",
+				"sPdfOrientation": "landscape"
+				}
+				]
 
-      } );
-  } );
+				}*/
+
+			} );
+	} );
 </script>
 
-<h3>Please submit your abstract no later than June 15, 2012</h3>
+<h3>Please submit your abstract no later than July 10, 2013</h3>
 
-<b>The abstract book is available and can be viewed <a href="<%= ENV["RAILS_RELATIVE_URL_ROOT"] %>/Dicty12_Abstract_Book.pdf">here</a></b>.
+<!--<b>The abstract book is available and can be viewed <a href="<%= ENV["RAILS_RELATIVE_URL_ROOT"] %>/Dicty12_Abstract_Book.pdf">here</a></b>.-->
 
 <h4>Abstracts</h4>
 <p>To submit your abstracts, please fill out all fields (the 'Note to organizers' field is optional). Abstracts should not exceed 300 words.</p>
@@ -59,58 +59,58 @@
 <h3>Submitted abstracts</h3>
 
 <% if @abstracts.empty? %>
-  — No abstracts submitted yet —
+	— No abstracts submitted yet —
 <% elsif logged_in? %>
-  <table class="display" id="abstract">
-    <thead>
-    <tr>
-      <th>Title</th>
-      <th>Presenter</th>
-      <th>Type</th>
-      <th>Submitted</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @abstracts.each do |abstract| %>
-      <tr>
-        <td>
-          <!-- <p class="title"> -->
-          <%= link_to abstract.title, abstract_path(abstract.id) %>
-          <!-- </p>  -->
-          <!-- <p class="presenter"><%#=h abstract.presenter %></p> -->
-        </td>
-        <td><%=h abstract.presenter %></td>
-        <td class="type"><%=h abstract.abstract_type %></td>
-        <td>
-          <span><%= format_date(abstract.created_at) %></span>
-        </td>
-        <td>
-            <%= link_to 'Show', abstract %> | 
-            <%= link_to 'Edit', edit_abstract_path(abstract.id) if can_edit?(abstract) %> | 
-            <%= link_to 'Destroy', abstract, :confirm => 'Are you sure?', :method => :delete if is_admin? %></td>
-        </td>
-    <% end %>
-  </tbody>
-  </table>
+	<table class="display" id="abstract">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Presenter</th>
+				<th>Type</th>
+				<th>Submitted</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @abstracts.each do |abstract| %>
+				<tr>
+					<td>
+						<!-- <p class="title"> -->
+						<%= link_to abstract.title, abstract_path(abstract.id) %>
+						<!-- </p>  -->
+						<!-- <p class="presenter"><%#=h abstract.presenter %></p> -->
+					</td>
+					<td><%=h abstract.presenter %></td>
+					<td class="type"><%=h abstract.abstract_type %></td>
+					<td>
+						<span><%= format_date(abstract.created_at) %></span>
+					</td>
+					<td>
+						<%= link_to 'Show', abstract %> | 
+						<%= link_to 'Edit', edit_abstract_path(abstract.id) if can_edit?(abstract) %> | 
+						<%= link_to 'Destroy', abstract, :confirm => 'Are you sure?', :method => :delete if is_admin? %></td>
+				</td>
+			<% end %>
+		</tbody>
+	</table>
 <% else %>
-   You have to be logged in to see submitted abstracts
- <% end %>
+	You have to be logged in to see submitted abstracts
+<% end %>
 
 <br/><br/>
 
- <!-- <h3>Abstract submission: </h3> -->
+<!-- <h3>Abstract submission: </h3> -->
 
 <% if abstract_submission_open? %>
 	<% if logged_in? %>
-   		<p class="button" align="center">
-       		<%= link_to image_tag("submit-abstract.png", :border=>0), new_abstract_path %>
-   		</p>
-   	<% else %>
-   		<p class="button" align="center">
-       		<%= link_to image_tag("submit-abstract.png", :border=>0), login_path %>
-   		</p>
-   	<% end %>
+		<p class="button" align="center">
+		<%= link_to image_tag("submit-abstract.png", :border=>0), new_abstract_path %>
+		</p>
+	<% else %>
+		<p class="button" align="center">
+		<%= link_to image_tag("submit-abstract.png", :border=>0), login_path %>
+		</p>
+	<% end %>
 <% end %>
 
- <!-- <p>Coming soon...</p> -->
+<!-- <p>Coming soon...</p> -->

@@ -1,5 +1,4 @@
 log/*
-.DS_Store
 database.yml
 Gemfile.lock
 .bundle
@@ -8,3 +7,9 @@ vendor/*
 .rvmrc
 *.doc*
 *.pdf
+db/migrate_old/
+*.db
+non-app/
+doc/app
+test/
+coverage/
