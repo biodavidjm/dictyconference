@@ -3,31 +3,20 @@ var to_currency = '';
 
 $(document).ready(function() {
 
-	// var dicty12Dates = ["7-29-2012", "7-30-2012", "7-31-2012", "8-1-2012", "8-2-2012"];
-	// function dictyMeetingDays(date) {
-	//     var dateAsString = (date.getMonth()+1) + "-" + date.getDate() + "-" + date.getFullYear();
-	//     if ($.inArray(dateAsString, dicty12Dates) < 0) {
-	//         return [true,"","Book Now"];
-	//     } else {
-	//         return [false,"","Dicty12"];
-	//     }
-	// }
-	//alert($('#early_registration_deadline').val());
 	$('#user_check_in').datepicker({
 		dateFormat: 'MM d, yy',
 		minDate: new Date(2013, 7 - 1, 15),
-		maxDate: new Date(2013, 8 - 1, 15),
+		maxDate: new Date(2013, 8 - 1, 3),
 		showWeek: true,
 		numberOfMonths: 2 //,
-		//beforeShowDay: dictyMeetingDays
 	});
+
 	$('#user_check_out').datepicker({
 		dateFormat: 'MM d, yy',
-		minDate: new Date(2013, 7 - 1, 20),
+		minDate: new Date(2013, 8 - 1, 9),
 		maxDate: new Date(2013, 8 - 1, 25),
 		showWeek: true,
 		numberOfMonths: 2 //,
-		//beforeShowDay: dictyMeetingDays
 	});
 
 	$('#user_has_guest').attr({
@@ -73,6 +62,7 @@ $(document).ready(function() {
 		'border': 'none',
 		'background-color': 'white'
 	}).hide();
+
 	$('label[for="user_payment_due"]').hide();
 
 	$('#converted_currency').hide();
@@ -201,8 +191,8 @@ function paymentDue() {
  */
 function getNonDictyDays(startDate, endDate) {
 	"use strict";
-	var dicty12Start = new Date(2013, 7 - 1, 29);
-	var dicty12End = new Date(2013, 8 - 1, 2);
+	var dicty12Start = new Date(2013, 8 - 1, 4);
+	var dicty12End = new Date(2013, 8 - 1, 8);
 	var days = 0;
 
 	if ((startDate < dicty12Start) && (endDate <= dicty12End) && (endDate > dicty12Start)) {
@@ -294,11 +284,6 @@ function showPrice() {
 		$('label[for="label_roomie_name"]').hide();
 
 		$('#user_has_guest').attr('disabled', false);
-		/*$('#user_has_guest').attr({
-		  'checked': false,
-		  'disabled': true
-		  });
-		  */
 
 		$('#user_guest_trip').hide();
 		$('#user_guest_supplement_HB').hide();
