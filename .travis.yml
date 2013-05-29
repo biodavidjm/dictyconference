@@ -1,0 +1,18 @@
+language: ruby
+rvm:
+    - 1.9.3
+    - 1.9.2
+branches:
+    only:
+        - feature/dicty13
+env:
+    - DB=postgresql
+script:
+    - "RAILS_ENV=test bundle exec rake db:migrate"
+    - "bundle exec rake db:test:prepare"
+    - "bundle exec rake spec"
+before_script:
+    - cp config/database.travis.yml config/database.yml
+    - psql -c 'create database dictyconf_test' -U postgres
+notifications:
+    email: false
