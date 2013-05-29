@@ -16,8 +16,11 @@
     <div class="wrapper">
       <header>
         <h1>Dictyostelium Conference Website</h1>
-        <p>Ruby on Rails web application for dictyBase conference website</p>
+        <p>Ruby on Rails web application for the Annual Dictyostelium International Conference</p>
+
         <p class="view"><a href="https://github.com/dictyBase/dictyconference">View the Project on GitHub <small>dictyBase/dictyconference</small></a></p>
+
+
         <ul>
           <li><a href="https://github.com/dictyBase/dictyconference/zipball/master">Download <strong>ZIP File</strong></a></li>
           <li><a href="https://github.com/dictyBase/dictyconference/tarball/master">Download <strong>TAR Ball</strong></a></li>
@@ -25,15 +28,20 @@
         </ul>
       </header>
       <section>
-        <h2>Ruby on rails web application for dictybase conference</h2>
+        <h2>
+<a name="web-application-for-dictyostelium-international-conference" class="anchor" href="#web-application-for-dictyostelium-international-conference"><span class="octicon octicon-link"></span></a>Web application for Dictyostelium International Conference</h2>
 
-<p>This wiki will help you deploy the dictyConference Ruby on Rails application.</p>
+<p>Ruby on Rails web application for the Annual Dictyostelium International Conference</p>
 
-<p>This <a href="http://www.tutorialspoint.com/ruby-on-rails/rails-directory-structure.htm">link</a> will help you understand the directory structure of a rails application</p>
+<p><a href="https://travis-ci.org/dictyBase/dictyconference"><img src="https://secure.travis-ci.org/dictyBase/dictyconference.png?branch=feature/dicty13" alt="Build Status"></a> <a href="https://coveralls.io/r/dictyBase/dictyconference"><img src="https://coveralls.io/repos/dictyBase/dictyconference/badge.png?branch=feature/dicty13" alt="Coverage Status"></a> <a href="https://gemnasium.com/dictyBase/dictyconference"><img src="https://gemnasium.com/dictyBase/dictyconference.png" alt="Dependency Status"></a></p>
 
-<h1>Cloning the repository</h1>
+<h4>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h4>
 
-<p>To begin with clone the repository from <a href="https://github.com/dictyBase/dictyconference/tree/feature/trial">Github/dictyconference</a>.</p>
+<h5>
+<a name="cloning-the-repository" class="anchor" href="#cloning-the-repository"><span class="octicon octicon-link"></span></a>Cloning the repository</h5>
+
+<p>To begin with clone the repository from <a href="https://github.com/dictyBase/dictyconference">Github/dictyconference</a>.</p>
 
 <pre lang="shell"><code>git clone git://github.com/dictyBase/dictyconference.git
 </code></pre>
@@ -44,77 +52,26 @@
 git checkout develop
 </code></pre>
 
-<h1>Setting up RVM</h1>
+<h4>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h4>
 
-<p>We will have the set up <a href="https://rvm.beginrescueend.com/">RVM</a> so that you can use your version of gems. Just fire up your terminal and follow the steps to install <code>ruby</code>.
-Then install the version of Ruby you want to use for your application;</p>
+<h5>
+<a name="recaptcha" class="anchor" href="#recaptcha"><span class="octicon octicon-link"></span></a><a href="https://www.google.com/recaptcha">reCAPTCHA</a>
+</h5>
 
-<pre lang="shell"><code>rvm install ree
-</code></pre>
-
-<p>To use this version of Ruby for you application, do</p>
-
-<pre lang="shell"><code>rvm use ree
-</code></pre>
-
-<p>Now create a gemset called 'dictyConf' for our application</p>
-
-<pre lang="shell"><code>rvm gemset create dictyConf
-rvm use @dictyConf
-</code></pre>
-
-<p>Install <a href="http://rubyonrails.org/"><code>rails</code></a></p>
-
-<pre lang="shell"><code>gem install rails
-</code></pre>
-
-<p>Next step is to install <a href="http://gembundler.com/"><code>bundler</code></a>. It is a very handy gem. It will install all the gems from your <code>Gemfile</code> and set it up for application.</p>
-
-<pre lang="shell"><code>gem install bundler
-</code></pre>
-
-<h1>Setting up 'bcdatabase'</h1>
+<h5>
+<a name="bcdatabase" class="anchor" href="#bcdatabase"><span class="octicon octicon-link"></span></a>bcdatabase</h5>
 
 <p><a href="http://www.nucats.northwestern.edu/clinical-research-resources/data-collection-biomedical-informatics-and-nubic/bioinformatics-overview.html">NUBIC</a> has a library and utility called <a href="https://github.com/NUBIC/bcdatabase"><code>bcdatabase</code></a> which provides database configuration parameter management for Ruby on Rails applications. It provides a simple mechanism for separating database configuration attributes from application source code so that there's no temptation to check passwords into the version control system.</p>
 
 <p>Before we can use this gem we have to modify the <code>Gemfile</code> to add the following source and gem</p>
 
-<div class="highlight">
-<pre><span class="n">source</span> <span class="s1">'http://download.bioinformatics.northwestern.edu/gems/'</span>
+<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'bcdatabase'</span><span class="p">,</span> <span class="s1">'1.2.3'</span>
+</pre></div>
 
-<span class="n">gem</span> <span class="s1">'bcdatabase'</span><span class="p">,</span> <span class="s1">'1.2.1'</span>
-</pre>
-</div>
+<p>If you want to use <code>bcdatabase</code> for the <code>staging</code> your application, your <code>./config/database.yml</code> file will look like this</p>
 
-
-<p>It is pretty easy to use this gem (now that we have figured it out). When you create a rails application using <code>rails new &lt;app_name&gt;</code>, a database configuration file is created in <code>./config/database.yml</code> which looks like (default)</p>
-
-<div class="highlight">
-<pre><span class="l-Scalar-Plain">development</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">sqlite3</span>
-  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">db/development.sqlite3</span>
-  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-  <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
-
-<span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">sqlite3</span>
-  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">db/test.sqlite3</span>
-  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-  <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
-
-<span class="l-Scalar-Plain">production</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">sqlite3</span>
-  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">db/production.sqlite3</span>
-  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-  <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
-</pre>
-</div>
-
-
-<p>If you want to use <code>bcdatabase</code> for the staging your application, your <code>./config/database.yml</code> file will look like this</p>
-
-<div class="highlight">
-<pre><span class="l-Scalar-Plain">&lt;%</span>
+<div class="highlight"><pre><span class="l-Scalar-Plain">&lt;%</span>
   <span class="l-Scalar-Plain">require 'bcdatabase'</span>
   <span class="l-Scalar-Plain">bcdb = Bcdatabase.load</span>
 <span class="l-Scalar-Plain">%&gt;</span>
@@ -138,35 +95,45 @@ rvm use @dictyConf
   <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
 
 <span class="l-Scalar-Plain">&lt;%= bcdb.staging :pstage, 'dictyConf' %&gt;</span>
-</pre>
-</div>
-
+</pre></div>
 
 <p>The <code>pstage</code> parameter points to a configuration block <code>dictyConf</code> in a YAML file <code>/etc/nubic/db/pstage.yml</code> (on your staging server). This configuration block which will have the actual database configuration looks like</p>
 
-<div class="highlight">
-<pre><span class="l-Scalar-Plain">dictyConf</span><span class="p-Indicator">:</span>
+<div class="highlight"><pre><span class="l-Scalar-Plain">dictyConf</span><span class="p-Indicator">:</span>
   <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;db_name&gt;</span>
   <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;db_user&gt;</span>
   <span class="l-Scalar-Plain">epassword</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;encrypted_password&gt;</span>
-</pre>
-</div>
-
+</pre></div>
 
 <p>Also for the <code>bcdb.staging</code> (from ERB block) to work, you will have to create a <code>staging.rb</code> file in <code>./config/environments/</code></p>
 
 <pre lang="shell"><code>cp development.rb staging.rb
 </code></pre>
 
-<h1>Final steps</h1>
+<h4>
+<a name="tests" class="anchor" href="#tests"><span class="octicon octicon-link"></span></a>Tests</h4>
+
+<p>To use <code>rspec</code>, add following to the <code>Gemfile</code></p>
+
+<div class="highlight"><pre><span class="n">gem</span> <span class="s2">"rspec-rails"</span><span class="p">,</span> <span class="s2">"&gt;= 2.0.1"</span><span class="p">,</span> <span class="ss">:group</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span><span class="o">]</span>
+<span class="n">gem</span> <span class="s1">'assert_difference'</span><span class="p">,</span> <span class="ss">:group</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:test</span><span class="o">]</span>
+</pre></div>
+
+<h5>
+<a name="coveralls-for-code-coverage" class="anchor" href="#coveralls-for-code-coverage"><span class="octicon octicon-link"></span></a>Coveralls for code coverage</h5>
+
+<p>Add this to your <code>Gemfile</code>, </p>
+
+<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'coveralls'</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+</pre></div>
+
+<h3>
+<a name="final-steps" class="anchor" href="#final-steps"><span class="octicon octicon-link"></span></a>Final steps</h3>
 
 <p>Install all the dependencies using <code>bundler</code></p>
 
-<div class="highlight">
-<pre>bundle install
-</pre>
-</div>
-
+<div class="highlight"><pre>bundle install
+</pre></div>
 
 <p>And before you deploy you will have to migrate your database under the staging environment.</p>
 
@@ -174,10 +141,6 @@ rvm use @dictyConf
 </code></pre>
 
 <p>Ask your system administrator to setup your application with Apache server and you are good to go.</p>
-
-<h1>Testing</h1>
-
-<p>You can use <a href="http://rspec.info/"><code>rspec</code></a> or <a href="https://github.com/thoughtbot/factory_girl"><code>factory_girl</code></a> for <code>fixtures</code>.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/dictyBase">dictyBase</a></p>
