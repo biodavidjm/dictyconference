@@ -13,3 +13,4 @@ non-app/
 doc/app
 test/
 coverage/
+config/initializers/first_data.rb
