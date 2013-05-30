@@ -64,6 +64,8 @@ class RegistrationController < ApplicationController
 		if logged_in?
 			@user = current_user
 
+			session[:x_fp_hash] = nil
+
 			amount = @user.payment_due.gsub("$", "")
 			currency_mode = "USD"
 			timestamp = Time.now
@@ -74,8 +76,8 @@ class RegistrationController < ApplicationController
 
 			# digest = HMAC::MD5.new(hash.to_s).hexdigest
 			x_fp_hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('md5'), TRANSACTION_KEY, hash.to_s)
-			session[:x_fp_hash] = x_fp_hash
 
+			session[:x_fp_hash] = x_fp_hash
 		end
 	end
 
