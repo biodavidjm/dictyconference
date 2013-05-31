@@ -10,7 +10,6 @@ Dicty11::Application.routes.draw do
 	match '/register' => 'registration#new', :as => :register
 	match '/registrations' => 'registration#view', :as => :registrations
 	match '/payment' => 'registration#payment', :as => :payment_redirect
-	match '/checkout' => 'registration#checkout', :as => :checkout
 	# match '/users/:id', :to => 'users#show', :as => :user
 
 	resources :user_sessions
