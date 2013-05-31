@@ -64,8 +64,7 @@ class RegistrationController < ApplicationController
 		if logged_in?
 			@user = current_user
 
-			x_fp_hash = nil
-			logger.info "#{@x_fp_hash}"
+			logger.info "Processing registration payment"
 
 			amount = @user.payment_due.gsub("$", "")
 			timestamp = Time.now.utc.to_i
@@ -74,21 +73,21 @@ class RegistrationController < ApplicationController
 
 			x_fp_hash = OpenSSL::HMAC.hexdigest('md5', TRANSACTION_KEY, hmac_data)
 
-			data = {x_login: X_LOGIN, x_currency_code: "USD", x_fp_timestamp: timestamp, x_amount: amount, x_fp_sequence: x_fp_sequence, x_fp_hash: x_fp_hash, x_show_form: 'PAYMENT_FORM'}
+			#data = {x_login: X_LOGIN, x_currency_code: "USD", x_fp_timestamp: timestamp, x_amount: amount, x_fp_sequence: x_fp_sequence, x_fp_hash: x_fp_hash, x_show_form: 'PAYMENT_FORM'}
 
-			url = URI.parse(FIRSTDATA_URL)
-			req = Net::HTTP::Post.new(url.path)
-			req.form_data = data
-			con = Net::HTTP.new(url.host, url.port)
-			con.use_ssl = true
-			res = con.request(req)
+			#url = URI.parse(FIRSTDATA_URL)
+			#req = Net::HTTP::Post.new(url.path)
+			#req.form_data = data
+			#con = Net::HTTP.new(url.host, url.port)
+			#con.use_ssl = true
+			#res = con.request(req)
 
-			if res.code == '302'
-				logger.info "Redirecting to - #{res['Location']}"
-				redirect_to res['Location']
-			else 
-				logger.info "Rendering default template"
-			end
+			#if res.code == '302'
+				#logger.info "Redirecting to - #{res['Location']}"
+				#redirect_to res['Location']
+			#else 
+				#logger.info "Rendering default template"
+			#end
 
 		end
 	end
