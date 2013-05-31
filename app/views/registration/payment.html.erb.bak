@@ -1,0 +1,30 @@
+<% content_for :title, "Dicty13: Payment" %>
+
+<br/>
+<div class="container">
+	<p>
+	Total amount due is <b><%= @user.payment_due %></b>. You will have to proceed to secure credit card payment form to make the payment.	
+	</p>
+	<!--
+	<p>* The HMAC::MD5 hash generated for you - <b><%#= @x_fp_hash %></b></p>
+	<p>HMAC Data - <%#= X_LOGIN %>^<%#= @fp_sequence %>^<%#= @timestamp.to_s %>^<%#= @amount.to_s %>^<%#= @currency_mode %></p>
+	-->
+	<br/>
+
+	<%= form_tag( :payment_redirect, :method => "post") do %>
+		<%#= hidden_field_tag 'x_login', X_LOGIN %>
+		<%#= hidden_field_tag 'x_currency_code', @currency_mode %>
+		<%#= hidden_field_tag 'x_fp_timestamp', @timestamp %>
+		<%#= hidden_field_tag 'x_amount', @amount %>
+		<%#= hidden_field_tag 'x_fp_sequence', @fp_sequence %>
+		<%#= hidden_field_tag 'x_fp_hash', @x_fp_hash %>
+
+		<%#= hidden_field_tag 'x_show_form', 'PAYMENT_FORM' %>
+
+		<%= submit_tag "Proceed to Checkout" %>
+	<% end %>
+
+	<br/>
+	<i>* Display of hash is just for staging. It will be taken out once the credit card payment system is fully functional</i>
+
+</div>
