@@ -52,6 +52,7 @@ Registration to the meeting is open via wire transfer, but we will have a credit
 		<tr><td>IBAN:</td><td>Bank of America does not have an IBAN number since the United States does not participate in IBAN program</td></tr>
 	</table>
 	<br/>
+
 	<div class="actions">
 		<% if logged_in? %>
 			<%= button_to "Pay with Credit Card", :payment_redirect, method: "get" %>
@@ -59,6 +60,7 @@ Registration to the meeting is open via wire transfer, but we will have a credit
 			<%= button_to "Pay with Credit Card", login_path %>
 		<% end %>
 	</div>
+
 </div>
 
 <h3>Cancellation</h3>
