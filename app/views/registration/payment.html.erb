@@ -1,0 +1,20 @@
+<% content_for :title, "Dicty13: Payment" %>
+
+<%= javascript_include_tag "cc_payment" %>
+
+<br/>
+<div class="container">
+	<p>
+	Total amount due is <b><%= @user.payment_due %></b>. You will have to proceed to secure credit card payment form to make the payment.	
+	</p>
+	<br/>
+
+	<%= form_tag( :payment_redirect, :method => "post", id: "payment_redirect") do %>
+		<%#= submit_tag "Proceed to Checkout" %>
+		<%= button_to_function "Proceed to Checkout", "process_payment()" %>
+	<% end %>
+
+	<br/>
+	<i>* Display of hash is just for staging. It will be taken out once the credit card payment system is fully functional</i>
+
+</div>
