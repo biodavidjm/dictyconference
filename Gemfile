@@ -14,6 +14,7 @@ end
 
 gem 'authlogic'
 gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'nokogiri'
 gem 'fastercsv'
 
 # NUBIC's bcdatabase
