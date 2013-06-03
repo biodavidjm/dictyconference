@@ -89,7 +89,8 @@ class RegistrationController < ApplicationController
 				#redirect_to res['Location']
 
 				# Parsing cookie check URL
-				doc = Nokogiri::HTML(open(res['Location']))
+				html = open(res['Location'])
+				doc = Nokogiri::HTML(html.string)
 				links = doc.css('a')
 				hrefs = links.map { |link| link.attribute('href').to_s}.uniq.sort.delete_if { |href| href.empty?}
 				hrefs.each {|href|
@@ -101,17 +102,6 @@ class RegistrationController < ApplicationController
 						redirect_to payment_form_url
 					end
 				}
-				#logger.info "#{hrefs}"
-
-				#url2 = URI.parse(res['Location'])
-				#req2 = Net::HTTP::Get.new(url2.path)
-				#con2 = Net::HTTP.new(url2.host, url2.port)
-				#con2.use_ssl = true
-				#res2 = con2.request(req2)
-
-				#logger.info "#{res2.code}"
-				#logger.info "#{res2.body}"
-				#redirect_to res2['Location']
 			else 
 				logger.info "Rendering default template"
 			end
