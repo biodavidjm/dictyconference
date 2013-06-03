@@ -12,9 +12,10 @@
 
 ```ruby
 hmac_data = X_LOGIN + "^" + @fp_sequence.to_s + "^" + @timestamp.to_s + "^" + @amount.to_s + "^" + @currency_mode
-@x_fp_hash = OpenSSL::HMAC.hexdigest('md5', TRANSACTION_KEY, hmac_data)
+x_fp_hash = OpenSSL::HMAC.hexdigest('md5', TRANSACTION_KEY, hmac_data)
 ```
 
-3. Create form which submits to FirstData URL
+3. `POST` to FirstData URL
 	* Include all the parameters above in the form, along with the generated MD5 hash
-
+	* Use `Net::HTTP::Post` and `Net::HTTP.use_ssl = true`
+	* `POST` returns a check cookie URL. Parse HTML and extract link for payment form
