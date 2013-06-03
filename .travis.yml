@@ -2,9 +2,10 @@ language: ruby
 rvm:
     - 1.9.3
     - 1.9.2
+    - 1.9.1
 branches:
     only:
-        - feature/dicty13
+        - develop 
 env:
     - DB=postgresql
 script:
