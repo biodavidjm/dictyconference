@@ -1,3 +1,6 @@
+
+require 'open-uri'
+
 class RegistrationController < ApplicationController
 
 	include UsersHelper
@@ -61,20 +64,18 @@ class RegistrationController < ApplicationController
 	end
 
 	def payment
-		if logged_in?
+		if logged_in? and is_registered?
 			@user = current_user
 
-			x_fp_hash = nil
-			logger.info "#{@x_fp_hash}"
-
 			amount = @user.payment_due.gsub("$", "")
+			currency_code = "USD"
 			timestamp = Time.now.utc.to_i
 			x_fp_sequence = Random.rand(1000..100000) + 12345 	
-			hmac_data = X_LOGIN + "^" + x_fp_sequence.to_s + "^" + timestamp.to_s + "^" + amount.to_s + "^USD"
+			hmac_data = X_LOGIN + "^" + x_fp_sequence.to_s + "^" + timestamp.to_s + "^" + amount.to_s + "^" + currency_code
 
 			x_fp_hash = OpenSSL::HMAC.hexdigest('md5', TRANSACTION_KEY, hmac_data)
 
-			data = {x_login: X_LOGIN, x_currency_code: "USD", x_fp_timestamp: timestamp, x_amount: amount, x_fp_sequence: x_fp_sequence, x_fp_hash: x_fp_hash, x_show_form: 'PAYMENT_FORM'}
+			data = {x_login: X_LOGIN, x_currency_code: currency_code, x_fp_timestamp: timestamp, x_amount: amount, x_fp_sequence: x_fp_sequence, x_fp_hash: x_fp_hash, x_show_form: 'PAYMENT_FORM'}
 
 			url = URI.parse(FIRSTDATA_URL)
 			req = Net::HTTP::Post.new(url.path)
@@ -84,8 +85,33 @@ class RegistrationController < ApplicationController
 			res = con.request(req)
 
 			if res.code == '302'
-				logger.info "Redirecting to - #{res['Location']}"
-				redirect_to res['Location']
+				# logger.info "Redirecting to - #{res['Location']}"
+				#redirect_to res['Location']
+
+				# Parsing cookie check URL
+				doc = Nokogiri::HTML(open(res['Location']))
+				links = doc.css('a')
+				hrefs = links.map { |link| link.attribute('href').to_s}.uniq.sort.delete_if { |href| href.empty?}
+				hrefs.each {|href|
+					# Matching pattern to check for payment form URL
+					if href.match(/^\/payment\/retry_cookies?/)
+						logger.info "#{href}"
+						payment_form_url = FIRSTDATA_URL.gsub("/payment", "") + href
+						# Redirecting to the payment form URL
+						redirect_to payment_form_url
+					end
+				}
+				#logger.info "#{hrefs}"
+
+				#url2 = URI.parse(res['Location'])
+				#req2 = Net::HTTP::Get.new(url2.path)
+				#con2 = Net::HTTP.new(url2.host, url2.port)
+				#con2.use_ssl = true
+				#res2 = con2.request(req2)
+
+				#logger.info "#{res2.code}"
+				#logger.info "#{res2.body}"
+				#redirect_to res2['Location']
 			else 
 				logger.info "Rendering default template"
 			end
