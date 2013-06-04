@@ -12,14 +12,15 @@ describe UserSessionsController do
 	end
 
 	it "should destroy existing session" do
+		post :create, :user_session => { :email => "jane_doe@antartica.org" }
 		delete :destroy
 		assert_nil UserSession.find
-		#assert_redirected_to :login
+		assert_redirected_to :login
 	end
 
 	it "should redirect to signup, if user doesn't exist" do 
 		post :create, :user_session => { :email => "sergio_ramos@fifa.org" }
-		#assert_redirected_to :signup
+		assert_redirected_to new_user_path
 	end
 
 end
