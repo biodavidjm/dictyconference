@@ -120,9 +120,11 @@ class UsersController < ApplicationController
 					flash[:notice] = "Successfully updated registration"
 					logger.info "Successfully updated registration for #{@user.email}"
 
-					# Send confirmation emails to user and the host
-					RegistrationConfirmation.update_confirmation_to_host(@user).deliver
-					RegistrationConfirmation.update_confirmation_to_user(@user).deliver
+					if !Rails.env.test?
+						# Send confirmation emails to user and the host
+						RegistrationConfirmation.update_confirmation_to_host(@user).deliver
+						RegistrationConfirmation.update_confirmation_to_user(@user).deliver
+					end 
 
 					format.html { redirect_to registration_path(current_user) }
 					format.xml  { render :xml => @user, :status => :created, :location => @user }
