@@ -36,6 +36,8 @@ class UserSessionsController < ApplicationController
 					flash[:notice_error] = "Please try to register or submit an abstract first"
 					#redirect_to root_url
 					redirect_to new_user_path
+				else
+					redirect_to new_user_path
 				end
 			else
 				@user_session = UserSession.new(@user)
