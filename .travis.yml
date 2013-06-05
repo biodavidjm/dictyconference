@@ -4,7 +4,7 @@ rvm:
     - 1.9.2
 branches:
     only:
-        - feature/dicty13
+        - develop 
 env:
     - DB=postgresql
 script:

@@ -85,7 +85,7 @@ gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
 gem 'assert_difference', :group => [:test]
 ```
 
-##### Coveralls for code coverage
+##### [Coveralls](https://coveralls.io/) for code coverage
 
 Add this to your `Gemfile`, 
 

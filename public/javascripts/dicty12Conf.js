@@ -6,14 +6,14 @@ $(document).ready(function() {
 	$('#user_check_in').datepicker({
 		dateFormat: 'MM d, yy',
 		minDate: new Date(2013, 7 - 1, 15),
-		maxDate: new Date(2013, 8 - 1, 3),
+		maxDate: new Date(2013, 8 - 1, 25),
 		showWeek: true,
 		numberOfMonths: 2 //,
 	});
 
 	$('#user_check_out').datepicker({
 		dateFormat: 'MM d, yy',
-		minDate: new Date(2013, 8 - 1, 9),
+		minDate: new Date(2013, 7 - 1, 15),
 		maxDate: new Date(2013, 8 - 1, 25),
 		showWeek: true,
 		numberOfMonths: 2 //,
