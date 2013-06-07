@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528161042) do
+ActiveRecord::Schema.define(:version => 20130607205057) do
 
   create_table "abstracts", :force => true do |t|
     t.integer  "user_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20130528161042) do
     t.boolean  "guest_single_BDB"
     t.boolean  "guest_double_no_BDB"
     t.boolean  "guest_double_BDB"
+    t.string   "excursion_type"
   end
 
 end
