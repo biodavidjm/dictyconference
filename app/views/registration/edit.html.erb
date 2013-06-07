@@ -185,8 +185,12 @@
 	</table>
 
 	<div class="actions">
-		<%= f.submit "Update" %>
-		<%= submit_tag 'Cancel', :action => 'show' %>
+		<% if is_registered? %>
+			<%= f.submit "Update" %>
+			<%= submit_tag 'Cancel', :action => 'show' %>
+		<% else %>
+			<%= f.submit "Register" %>
+		<% end %>
 	</div>
 
 <% end %>
