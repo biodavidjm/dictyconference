@@ -64,6 +64,17 @@
 			<td><%#= f.text_field :billing_id, :required => true %></td>
 		</tr>
 		-->
+		<tr>
+			<td>
+				<label for="excursion_type">Excursion</label>
+			</td>
+			<td>
+				<%= f.radio_button(:excursion_type, 'Whitewater Rafting', :required => true )%>
+				<%= label_tag 'rafting', 'Whitewater Rafting' %>
+				<%= f.radio_button(:excursion_type, 'Tour of Biltmore Estate', :required => true ) %>
+				<%= label_tag 'biltmore', 'Tour of Biltmore Estate' %>
+			</td>
+		</tr>
 
 		<tr>
 			<td>
