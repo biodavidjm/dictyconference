@@ -11,7 +11,8 @@ Address: <%= @user.address %>, <%= @user.city %>, <%= @user.country %> <%= @user
 	Email: <%= @user.email %>
 Phone: <%= @user.phone %>
 
-	Accommodation type: <%= @user.accommodation_type %>
+Excursion: <%= @user.excursion_type %>
+Accommodation type: <%= @user.accommodation_type %>
 <% if Date.today <= Date.parse(Dicty11::Application.config.early_registration_deadline) %>
 	<% if @user.accommodation_type == 'Single use' %>
 		Early Registration: $1200

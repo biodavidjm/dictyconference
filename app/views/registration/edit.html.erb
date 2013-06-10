@@ -61,12 +61,17 @@
 			<td><%= f.label :phone %></td>
 			<td><%= f.text_field :phone, :required => true %></td>
 		</tr>
-		<!--
 		<tr>
-			<td><%#= f.label :billing_id, 'VAT number/Tax exempt ID' %></td>
-			<td><%#= f.text_field :billing_id, :required => true %></td>
+			<td>
+				<label for="excursion_type">Excursion</label>
+			</td>
+			<td>
+				<%= f.radio_button(:excursion_type, 'Whitewater Rafting', :required => true )%>
+				<%= label_tag 'rafting', 'Whitewater Rafting' %>
+				<%= f.radio_button(:excursion_type, 'Biltmore tour', :required => true ) %>
+				<%= label_tag 'biltmore', 'Biltmore tour' %>
+			</td>
 		</tr>
-		-->
 		<tr>
 			<td>
 				<label for="accommodation_type">Accommodation</label>
