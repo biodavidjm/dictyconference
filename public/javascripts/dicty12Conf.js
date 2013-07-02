@@ -238,7 +238,7 @@ function showExtraAccOptions() {
 function getRegistrationType() {
 	"use strict";
 	var registration_type;
-	var early = Date.parse("6/30/2013"); // May 31, 2013
+	var early = Date.parse("7/15/2013"); // May 31, 2013
 	//var early = Date.parse($('#early_registration_deadline').val()); // June 21, 2013
 	var late = Date.parse("7/26/2013"); // July 23, 2013
 	//var late = Date.parse($('#registration_deadline').val()); // July 26, 2013
