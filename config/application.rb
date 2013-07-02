@@ -44,7 +44,7 @@ module Dicty11
 		config.filter_parameters += [:password]
 
 		# Abstract & registration deadline
-		config.abstract_submission_deadline = '26th Jul 2013 11:59:00 PM' #'6/19/2012'
+		config.abstract_submission_deadline = '14th Jul 2013 11:59:00 PM' #'6/19/2012'
 		config.early_registration_deadline = '14th Jul 2013 11:59:00 PM' #'6/16/2012'
 		config.registration_deadline = '26th Jul 2013 11:59:00 PM' #'7/25/2012'
 
