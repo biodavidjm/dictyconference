@@ -9,7 +9,9 @@
 
 			<% if is_registered? %>
 				<%= link_to 'Registration details', registration_path(current_user)%> |
-				<%= link_to 'Edit', edit_registration_path(current_user)%> |
+				<% if DateTime.now <= DateTime.parse('3rd Aug 2013 11:59:00 PM') %>
+					<%= link_to 'Edit', edit_registration_path(current_user)%> |
+				<% end %>
 			<% end %>
 
 			<%= link_to "Logout", logout_path %>
