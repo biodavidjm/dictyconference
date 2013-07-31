@@ -1,7 +1,7 @@
 ## Web application for Dictyostelium International Conference
 Ruby on Rails web application for the Annual Dictyostelium International Conference
 
-[![Build Status](https://secure.travis-ci.org/dictyBase/dictyconference.png?branch=develop)](https://travis-ci.org/dictyBase/dictyconference) [![Coverage Status](https://coveralls.io/repos/dictyBase/dictyconference/badge.png?branch=develop)](https://coveralls.io/r/dictyBase/dictyconference) [![Dependency Status](https://gemnasium.com/dictyBase/dictyconference.png)](https://gemnasium.com/dictyBase/dictyconference)
+[![Build Status](https://secure.travis-ci.org/dictyBase/dictyconference.png?branch=develop)](https://travis-ci.org/dictyBase/dictyconference) [![Coverage Status](https://coveralls.io/repos/dictyBase/dictyconference/badge.png?branch=develop)](https://coveralls.io/r/dictyBase/dictyconference) [![Dependency Status](https://gemnasium.com/dictyBase/dictyconference.png)](https://gemnasium.com/dictyBase/dictyconference) [![Code Climate](https://codeclimate.com/github/dictyBase/dictyconference.png)](https://codeclimate.com/github/dictyBase/dictyconference)
 
 #### Getting started
 
