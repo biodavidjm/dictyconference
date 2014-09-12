@@ -19,20 +19,22 @@ git checkout develop
 ```
 
 ##### Ruby and related packages: Installation & Configuration on Mac OS X (Mavericks)
+The ruby version running on the server for dicty13 is `ruby 1.9.3p429 (2013-05-15 revision 40747) [x86_64-linux]`. Therefore, the same ruby version must be installed locally (developer box) to __stage__ the site locally.
+
 We manage Ruby versions using `rbenv`. To install and use it, check out their [instructions](https://github.com/sstephenson/rbenv). This is a summary (Sep 2014):
 
 ```shell
 brew update
 brew install rbenv ruby-build
 echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-rbenv install 2.1.2
+rbenv install 1.9.3-p429
 ```
 Then, go to the github project folder (e.g. `dictyconference`), and on the branch that you are using to make changes do:
 
-1. Create the file `.ruby-version` and include the installed version (i.e. 2.1.2)
+1. Create the file `.ruby-version` and include the installed version (i.e. 1.9.3-p429)
 2. Add the file `.ruby-version` file to `.gitignore`
 
-This will automatically make `rbenv` to choose the specified Ruby version when you are in this directory
+As consequence, `rbenv` will make possible to use that ruby version when you are in the working directory.
 
 
 #### Configuration
