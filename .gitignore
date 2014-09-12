@@ -14,3 +14,4 @@ doc/app
 test/
 coverage/
 config/initializers/first_data.rb
+.ruby-version
