@@ -4,25 +4,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-		<title><%= h(yield(:title) || "Dicty13") %></title>
+		<title><%= h(yield(:title) || "Dicty 2015") %></title>
 		<%= stylesheet_link_tag 'scaffold' %>
 		<%= yield(:head) %>
 	</head>
 	<body>
-		<div id="wrapper">
-			<div id="container" class="centered">
+		<div> <!-- It was using the id="wrapper", but not sure yet where it is -->
+			<div id="container" class="centered"> 
 				<div id="header">
 					<!--<img src="../images/Dicty_2012_smooth.gif" alt="Dicty12 Header" height="320px" width="850px" /> -->
 					<!-- image_tag("dicty13_header.gif", :height => '300', :width => '850') If you want to remove comments, replace html comments by the ruby marks-->
 					<%= image_tag("dicty15_header.gif", :height => '300', :width => '850') %>
 
-					<div id="menu">
+<!-- 					<div id="menu">
 						<table>
 							<tr>
 								<td>
 									<%= link_to 'Home', :controller => 'home',  :action => 'index' %>
 								</td>
-								<td>
+
+							<td>
 									<%= link_to 'Agenda', :controller => 'home',  :action => 'agenda' %>
 								</td>
 								<td>
@@ -38,19 +39,18 @@
 								<td>
 									<%= link_to 'Sponsors', :controller => 'home',  :action => 'sponsors' %>
 								</td>
-							</tr>
+ 						</tr>
 						</table>
-					</div>
+					</div> -->
 				</div>
 				<div id="content">
 					<%= content_for?(:content) ? yield(:content) : yield %>
 				</div>
 				<div id="footer">
-
 					<p style="text-align:center;">
-					Header image credits: Asheville Convention and Visitors Bureau, Robert Brucker 
+					Header image credits: Royal Holloway 
 					<br/>
-					&copy; <a href="http://dictybase.org">dictyBase.org</a> 2013
+					&copy; <a href="http://dictybase.org">dictyBase.org</a> 2015
 					</p>
 				</div>
 			</div>
