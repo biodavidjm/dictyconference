@@ -7,6 +7,23 @@ body {
   font-family: arial;
 }
 
+a:link {
+  text-decoration: underline;
+  color:#FF4000;
+}
+a:visited {
+  text-decoration: underline;
+  color: #FF4000;
+}
+a:hover {
+  text-decoration: none;
+  color: lightblue;
+}
+a:active {
+  text-decoration: underline;
+  color: #FF4000;
+}
+
 div.field, div.actions {
   margin-bottom: 10px;
 }
@@ -148,9 +165,38 @@ div.field, div.actions {
 ;
 }
 .mainDates {
-  font-size: 16px;
-  color: #CC5200  ;
+  font-size: 18px;
+  color: #FF0040;
   font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.highLightColor {
+  /*color: #006633;*/
+  color: #088A08;
+  font-weight: bold;
+}
+
+/*OPEN REGISTRATION STYLES*/
+
+.registrationBox {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+
+  border: 3px #088A08 solid;
+  border-radius: 30px;
+}
+
+.registrationBox h1 {
+  padding-top: 0px;
+}
+
+/*HOSTS / ORGANIZERS*/
+
+.hostBox {
+  padding-top: 50px;
+
 }
 
 .organizer {
@@ -158,28 +204,6 @@ div.field, div.actions {
   font-weight: bold;
 }
 
-.highLightColor {
-  /*color: #006633;*/
-  color: #D00000;
-  font-weight: bold;
-}
-
-#location{
-  font-size: 14px;
-}
-
-#blueLabel {
-  color: blue;
-}
-
-#left {
-  /*margin: 15px 0 5px 0;*/
-  /*margin: 0 15px;*/
-  margin-left: 40px;
-  padding: 10px 10px;
-  width: 370px;
-  float: left;
-}
 
 .welcome {
   font-size: 14px;
@@ -189,14 +213,31 @@ div.field, div.actions {
   padding-left: 10px;
 }
 
+
+.location{
+  font-size: 14px;
+  padding-bottom: 10px;
+}
+
+#blueLabel {
+  color: blue;
+}
+
+#left {
+
+  padding-left: 30px;
+  padding-right: 10px;
+  width: 370px;
+  float: left;
+}
+
 #right {
-  /*padding: 5px 5px 5px 5px;*/
-  /*margin: 30px 0 0 0;*/
-  /*margin: 0px 35px;*/
-  margin-right: 20px;
-  padding: 10px 5px;
+
+  padding-left: 10px;
+  padding-right: 30px;
+
+  width:370px;  
   float: right;
-  width:340px;
 }
 
 #content{
@@ -253,14 +294,6 @@ pre {
 
 .sponsors h4{
   margin: 0;
-}
-
-a:link {
-  color: #F26522;
-}
-
-a:visited {
-  color: #000;
 }
 
 ul{
