@@ -33,11 +33,6 @@ div.field, div.actions {
 }
 
 .field_with_errors {
-/*
-  padding: 2px;
-  background-color: red;
-  display: table;
-*/
   display: inline;
 }
 
@@ -69,14 +64,6 @@ div.field, div.actions {
 #header {
   color: white;
   background-repeat: no-repeat;
-  /*background-size:contain;
-  /*margin: 0 0 0 0;*/
-  /*background-image: url(../images/background.jpg);*/
-  /*background-image: url(../images/Dicty_2012_smooth.gif);
-   height: 370px;
-  /*width: relative;
-  width: 850px;*/
-
 }
 
 #header a {
@@ -186,6 +173,7 @@ div.field, div.actions {
 
   border: 3px #088A08 solid;
   border-radius: 30px;
+  background-color: #E0F8EC;
 }
 
 .registrationBox h1 {

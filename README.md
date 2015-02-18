@@ -1,11 +1,15 @@
 ## Web application for Dictyostelium International Conference
-Ruby on Rails web application for the Annual Dictyostelium International Conference
+___Ruby on Rails web application for the Annual Dictyostelium International Conference___
 
 [![Build Status](https://secure.travis-ci.org/dictyBase/dictyconference.png?branch=develop)](https://travis-ci.org/dictyBase/dictyconference) [![Coverage Status](https://coveralls.io/repos/dictyBase/dictyconference/badge.png?branch=develop)](https://coveralls.io/r/dictyBase/dictyconference) [![Dependency Status](https://gemnasium.com/dictyBase/dictyconference.png)](https://gemnasium.com/dictyBase/dictyconference) [![Code Climate](https://codeclimate.com/github/dictyBase/dictyconference.png)](https://codeclimate.com/github/dictyBase/dictyconference)
 
-#### Getting started
+* [dicty12](http://dicty12.dictybase.org/)
+* [dicty13](http://dicty13.dictybase.org/)
+* [dicty15](http://dicty15.dictybase.org/)
 
-##### Cloning the repository
+# Getting started
+
+## Cloning the repository
 To begin with clone the repository from [Github/dictyconference](https://github.com/dictyBase/dictyconference).
  
 ```shell
@@ -18,7 +22,9 @@ cd dictyconference
 git checkout develop
 ```
 
-##### Ruby and related packages: Installation & Configuration on Mac OS X (Mavericks)
+## About Ruby on Rails and related 
+
+##### Installation & Configuration on Mac OS X (Mavericks)
 We manage Ruby versions using `rbenv`. To install and use it, check out their [instructions](https://github.com/sstephenson/rbenv). This is a summary (Sep 2014):
 
 ```shell
@@ -29,13 +35,31 @@ rbenv install 2.1.2
 ```
 Then, go to the github project folder (e.g. `dictyconference`), and on the branch that you are using to make changes do:
 
-1. Create the file `.ruby-version` and include the installed version (i.e. 2.1.2)
+1. Create the file `.ruby-version` and include the installed version (i.e. 1.9.3-p429)
 2. Add the file `.ruby-version` file to `.gitignore`
 
-This will automatically make `rbenv` to choose the specified Ruby version when you are in this directory
+This will automatically make `rbenv` to choose the specified Ruby version when you are in this directory.
 
+Install all the dependencies using ```bundler```
 
-#### Configuration
+```bash
+bundle install
+```
+
+##### Development:
+
+`rails server` will let you see the changes as you develop.
+
+## Configuration
+
+The details of the configuration has changed for the [dicty15](http://dicty15.dictybase.org/) conference version with respect to previos version (check [old configuration](#oldconfig) below. The details of the configuration that has changed are those related to our host (NUBIC).
+
+* database. They don’t use `bcdatabase` anymore. Instead, they now use [Confluence](https://confluence.nubic.northwestern.edu/dashboard.action). 
+
+* Deployment. Nubic uses the `gem [capistrano](https://rubygems.org/gems/capistrano)`. This gem takes care of the deployment itself. For example, it creates the current version of the web and reorganize the structure of the folder to keep the old versions
+
+<a name="oldconfig"/>
+## Old configuration
 
 ##### [reCAPTCHA](https://www.google.com/recaptcha)
 
@@ -92,7 +116,7 @@ Also for the ```bcdb.staging``` (from ERB block) to work, you will have to creat
 cp development.rb staging.rb
 ```
 
-#### Tests
+##### Tests
 
 To use `rspec`, add following to the `Gemfile`
 
@@ -109,7 +133,7 @@ Add this to your `Gemfile`,
 gem 'coveralls', require: false
 ```
 
-### Final steps
+##### Final steps
 Install all the dependencies using ```bundler```
 
 ```bash
