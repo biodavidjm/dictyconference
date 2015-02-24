@@ -22,50 +22,41 @@
 	</head>
 	
 	<body>
-		<div> <!-- It was using the id="wrapper", but not sure yet where it is -->
-			<div id="container" class="centered"> 
-				<div id="header">
-					<!--<img src="../images/Dicty_2012_smooth.gif" alt="Dicty12 Header" height="320px" width="850px" /> -->
-					<!-- image_tag("dicty13_header.gif", :height => '300', :width => '850') If you want to remove comments, replace html comments by the ruby marks-->
-					<%= image_tag("dicty15_header.gif", :height => '300', :width => '850') %>
-<!-- 
- 					<div id="menu">
-						<table>
-							<tr>
-								<td>
-									<%= link_to 'Home', :controller => 'home',  :action => 'index' %>
-								</td>
+		<div id="container" class="centered"> 
+			
+			<!-- <div class="onHeaderTop">   </div> -->
+			<div class="header">
+				
+				<!-- MAIN IMAGE -->
+				<%= image_tag("dicty15_header.gif", :height => '300', :width => '850') %>
+				
+				<!-- MAIN MENU -->
+				<div class="onHeaderBelow">
+					<span class="menu">
+						<%= link_to 'Home', :controller => 'home',  :action => 'index' %>
+					</span>
+					<span class="menu">
+						<%= link_to 'Agenda', :controller => 'home',  :action => 'agenda' %>
+					</span>
+					<span class="menu">
+						<%= link_to 'Registration', :controller => 'home',  :action => 'registration' %>
+					</span>
 
-							<td>
-									<%= link_to 'Agenda', :controller => 'home',  :action => 'agenda' %>
-								</td>
-								<td>
-									<%= link_to 'Registration', :controller => 'registration',  :action => 'index' %>
-									<%#= link_to 'Registration', registration_path %>
-								</td>
-								<td>
-									<%= link_to 'Travel', :controller => 'home',  :action => 'transport' %>
-								</td>
-								<td>
-									<%= link_to 'Abstract', abstracts_path %>
-								</td>
-								<td>
-									<%= link_to 'Sponsors', :controller => 'home',  :action => 'sponsors' %>
-								</td>
- 						</tr>
-						</table>
-					</div> -->
 				</div>
-				<div id="content">
-					<%= content_for?(:content) ? yield(:content) : yield %>
-				</div>
-				<div id="footer">
-					<p style="text-align:center;">
-					Header image credits: Royal Holloway 
-					<br/>
-					&copy; <a href="http://dictybase.org">dictyBase.org</a> 2015
-					</p>
-				</div>
+
+			</div> 
+			<!-- END OF HEADER -->
+
+			<div id="content">
+				<%= content_for?(:content) ? yield(:content) : yield %>
+			</div>
+
+			<div id="footer">
+				<p style="text-align:center;">
+				Header image credits: Royal Holloway 
+				<br/>
+				&copy; <a href="http://dictybase.org">dictyBase.org</a> 2015
+				</p>
 			</div>
 		</div>
 	</body>

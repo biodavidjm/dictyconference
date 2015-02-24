@@ -9,15 +9,15 @@ body {
 
 a:link {
   text-decoration: underline;
-  color:#FF4000;
+  color:#86B404;
 }
 a:visited {
-  text-decoration: underline;
-  color: #FF4000;
+  text-decoration: none;
+  color: #86B404;
 }
 a:hover {
   text-decoration: none;
-  color: lightblue;
+  color: #86B404;
 }
 a:active {
   text-decoration: underline;
@@ -61,16 +61,123 @@ div.field, div.actions {
   list-style: square;
 }
 
-#header {
-  color: white;
-  background-repeat: no-repeat;
+/*HEADER*/
+
+.onHeaderTop {
+  background-color: black;
+  padding-top: 20px;
 }
 
-#header a {
-  color: black;
-  text-decoration:underline;
-	background-color:white;
+.header {
+  background-color: black;
 }
+
+.onHeaderBelow {
+  background-color: black;
+  color:white;
+
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+.menu {
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 14px;
+}
+
+.menu a:link {
+  text-decoration: none;
+  color: white;
+}
+.menu a:visited {
+  text-decoration: none;
+  color: white;
+}
+.menu a:hover {
+  text-decoration: none;
+  color: #86B404;
+}
+.menu a:active {
+  text-decoration: underline;
+  color: yellow;
+}
+
+
+/*REGISTRATION*/
+
+.regHeader {
+  font-size: 55px;
+  font-weight: bold;
+  text-align: center;
+  color: #86B404;
+  letter-spacing: 5px;
+  text-shadow: 1px 3px #002E3D;
+
+  padding-bottom: 0px;
+  padding-top: 10px;
+}
+
+.regDescription {
+  margin-left: 100px;
+  margin-right: 100px;
+  font-size: 16px;
+}
+
+table#reg {
+  width:100%;
+  border-spacing: 5px;
+}
+
+.regTable {
+  padding: 5px 20px 20px 20px;
+  font-size: 16px;
+  border: 3px black solid;
+  border-radius: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 100px;
+  margin-right:100px;
+
+}
+
+.tableHeader {
+    font-size: 20px;  
+    font-weight: bold;
+    text-align: center;
+}
+
+.tableSubHeader {
+  text-align: center;
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.tableBlankSpace {
+  height: 20px;
+}
+
+.sideHeaderRegular {
+  font-size: 20px;
+  font-weight: bold;
+  color: #0B4C5F;
+}
+
+.sideHeaderStudents {
+  font-size: 20px;
+  font-weight: bold;
+  color: #86B404;
+}
+
+#alignCenter {
+  text-align: center;
+  font-size: 18px;
+}
+
+/*END OF RESGISTRATION*/
+
 
 #descriptor {
   font-size: 19px;
@@ -87,35 +194,6 @@ div.field, div.actions {
   position: relative;
   top: -40px;
   width:200px;
-}
-
-#menu table{
-  margin: 5px 0 0 12px;
-  /*top: 10px;*/
-  width:98%;
-  font-size:20px;
-  position: relative;
-}
-
-#menu td {
-  padding-left: 15px;
-  width: 10%;
-}
-
-/*#home-content {
-  margin:0;
-  padding: 15px 15px;
-  width:650px;
-  font-size: 13px;
-  text-align: justify;
-}*/
-
-#home-content {
-  /*margin: 15px 0 5px 0;*/
-  /*margin: 0 15px;*/
-  /*padding: 10px 15px;*/
-  width: 850px;
-  float: left;
 }
 
 
@@ -136,21 +214,25 @@ div.field, div.actions {
   text-align: center;
 }
 
+/*DICTY 15*/
+
+/*HOME*/
 .mainDicty {
   font-size: 55px;
   font-weight: bold;
   color: #008AB8;
   padding-bottom: 0px;
   letter-spacing: 5px;
-  text-shadow: -1px -2px #002E3D ;
+  text-shadow: 1px 3px #002E3D ;
 }
+
 .mainConference {
   font-size: 18px;
   font-weight: bold;
   padding-bottom: 20px;
   color:#293D66;
-;
 }
+
 .mainDates {
   font-size: 18px;
   color: #FF0040;

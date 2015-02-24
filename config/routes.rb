@@ -7,8 +7,9 @@ Dicty11::Application.routes.draw do
 
 	match '/admin' => 'user_sessions#admin', :as => :admin
 
-	match '/register' => 'registration#new', :as => :register
-	match '/registrations' => 'registration#view', :as => :registrations
+	#DJM match '/register' => 'registration#new', :as => :register 
+	#DJM match '/registrations' => 'registration#view', :as => :registrations
+
 	match '/payment' => 'registration#payment', :as => :payment_redirect
 	# match '/users/:id', :to => 'users#show', :as => :user
 
@@ -28,5 +29,7 @@ Dicty11::Application.routes.draw do
 	match '/agenda' => 'home#agenda', :as => :agenda
 	match '/transport' => 'home#transport', :as => :transport
 	match '/sponsors' => 'home#sponsors', :as => :sponsors
+	match '/regitration' => 'home#registration', :as => :registration #DJM
+
 
 end
