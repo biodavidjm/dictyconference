@@ -8,6 +8,8 @@
 		<%= stylesheet_link_tag 'scaffold' %>
 		<%= yield(:head) %>
 
+		<link href='http://fonts.googleapis.com/css?family=Chelsea+Market' rel='stylesheet' type='text/css'>
+
 		<!-- Google Analytics track code -->
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -25,13 +27,13 @@
 		<div id="container" class="centered"> 
 			
 			<!-- <div class="onHeaderTop">   </div> -->
-			<div class="header">
+			<div class="mainMenu">
 				
 				<!-- MAIN IMAGE -->
 				<%= image_tag("dicty15_header.gif", :height => '300', :width => '850') %>
 				
 				<!-- MAIN MENU -->
-				<div class="onHeaderBelow">
+				<div class="menuBelow">
 					<span class="menu">
 						<%= link_to 'Home', :controller => 'home',  :action => 'index' %>
 					</span>
