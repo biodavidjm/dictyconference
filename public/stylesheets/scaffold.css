@@ -10,6 +10,11 @@ body {
   font-family: arial;
 }
 
+h3{
+  margin: 0px;
+  padding:0px;
+}
+
 a:link {
   text-decoration: underline;
   color:#86B404;
@@ -112,6 +117,76 @@ table#headerTable {
   /*border: 1px solid yellow;*/
 }
 
+.subDicty {
+  font-size: 20px;
+  font-family: 'Chelsea Market', Georgia, serif;
+  color: #008AB8;
+  letter-spacing: 5px;
+  text-align: left;
+  padding-bottom: 5px;
+}
+
+.subConference {
+  font-size: 10px;
+  font-family: 'Chelsea Market', Georgia, serif;
+  letter-spacing: 2px;
+  color:white;
+  text-align: left;
+  padding-bottom: 5px;
+}
+
+.subDate {
+  font-size: 10px;
+  font-family: 'Chelsea Market', Georgia, serif;
+  color:red;
+  text-align: left;
+  padding-bottom: 5px;
+}
+
+.regHeaderTitle {
+  font-size: 45px;
+  font-family: 'Chelsea Market', Georgia, serif;
+
+  /*font-weight: bold;*/
+  text-align: right;
+  color: #86B404;
+  letter-spacing: 5px;
+  /*text-shadow: 2px 2px grey;*/
+
+  padding-bottom: 20px;
+  padding-top: 10px;
+
+  background-color: black;
+}
+
+.agendaHeaderTitle {
+  font-size: 45px;
+  font-family: 'Chelsea Market', Georgia, serif;
+
+  text-align: right;
+  color: #FF8000;
+  letter-spacing: 5px;
+  /*text-shadow: 2px 2px grey;*/
+
+  padding-bottom: 20px;
+  padding-top: 10px;
+
+  background-color: black;
+}
+
+.excursionHeaderTitle {
+  font-size: 45px;
+  font-family: 'Chelsea Market', Georgia, serif;
+
+  text-align: right;
+  color: yellow;
+  letter-spacing: 5px;
+  /*text-shadow: 2px 2px grey;*/
+
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+
 
 /*HOME*/
 
@@ -169,7 +244,7 @@ table#headerTable {
 /*HOSTS / ORGANIZERS*/
 
 .hostBox {
-  padding-top: 50px;
+  padding-top: 20px;
 
 }
 
@@ -184,7 +259,8 @@ table#headerTable {
   padding-bottom: 10px;
 }
 .textBoxes {
-  padding-left: 10px;
+  padding: 5px 10px 10px 10px;
+  font-size: 14px;
 }
 
 #blueLabel {
@@ -240,52 +316,10 @@ table#headerTable {
 
 /*REGISTRATION*/
 
-.regHeaderTitle {
-  font-size: 45px;
-  font-family: 'Chelsea Market', Georgia, serif;
-
-  /*font-weight: bold;*/
-  text-align: right;
-  color: #86B404;
-  letter-spacing: 5px;
-  /*text-shadow: 2px 2px grey;*/
-
-  padding-bottom: 20px;
-  padding-top: 10px;
-
-  background-color: black;
-}
-
-.subDicty {
-  font-size: 20px;
-  font-family: 'Chelsea Market', Georgia, serif;
-  color: #008AB8;
-  letter-spacing: 5px;
-  text-align: left;
-  padding-bottom: 5px;
-}
-
-.subConference {
-  font-size: 10px;
-  font-family: 'Chelsea Market', Georgia, serif;
-  letter-spacing: 2px;
-  color:white;
-  text-align: left;
-  padding-bottom: 5px;
-}
-
-.subDate {
-  font-size: 10px;
-  font-family: 'Chelsea Market', Georgia, serif;
-  color:red;
-  text-align: left;
-  padding-bottom: 5px;
-}
-
 .regDescription {
   margin-left: 100px;
   margin-right: 100px;
-  font-size: 16px;
+  font-size: 14px;
   padding-top: 10px;
 }
 
@@ -339,10 +373,32 @@ table#regFees {
   text-align: center;
   font-size: 18px;
 }
-
+/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 /*END OF RESGISTRATION*/
 
 
+/*AGENDA*/
+/*------------------------------*/
+.agendaBody {
+  margin-left: 100px;
+  margin-right: 100px;
+  font-size: 14px;
+  padding-top: 10px;
+}
+
+.agendaDivTable {
+  padding: 0px 10px 20px 10px;
+}
+
+table#agendaTable {
+  width:100%;
+  border-spacing: 5px;
+}
+
+
+
+/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
+/*end of AGENDA*/
 
 
 
@@ -374,15 +430,15 @@ pre {
   margin: 0;
 }
 
-ul{
+/*ul{
   margin: 0;
   margin-left: 15px;
   padding: 0;
-}
+}*/
 
-li {
+/*li {
   padding-left: 10px;
-}
+}*/
 
 h4 {
   color: #F26522;

@@ -42,31 +42,33 @@
 		</div>
 
 		<div>
-			<h3><b>Transport Options</b></h3>
-			<p> <em>By Train</em></p>
+			<h2>Transport Options</h2>
+
+			<h3><em>By Train</em></h3>
 
 				<div class="textBoxes">
 					The nearest train station is Egham, approximately 1 mile from Royal Holloway. It has direct links to London Waterloo, Ascot, Reading and Weybridge.
 				</div>
 			
-			<p> <em>By Bus</em></p>
+			<h3><em>By Bus</em></h3>
 			
 				<div class="textBoxes">
 					Buses from Windsor, Slough and Heathrow Airport stop just outside the College gates.
 				</div>
 			
-			<p> <em>By Plane</em></p>
+			<h3><em>By Plane</em></h3>
 				<div class="textBoxes">
 					London Heathrow Airport is only 8 miles away.
 					<br/><br/>
 					
 				</div>
 
-			<h3><b>Plan your journey</b></h3>
+			<h2>Plan your journey</h2>
+
 			<div class="textBoxes">
-				<p>
+				<span>
 					To plan your journey via public transport you can use the <a href="http://www.traveline.org.uk/" target="_blank">Travel Line</a> service, which provides details of train, bus and coach services.
-				</p>
+				</span>
 				
 				<p>
 					If you’re journey will only involve train travel then please use the <a target="_blank" href="http://ojp.nationalrail.co.uk/service/planjourney/search">National Rail Enquiries</a> which provides details of train times and ticket prices.
@@ -97,12 +99,13 @@
 	<div id="right">
 
 		<div class="registrationBox">
-			<h1 class="highLightColor"> Registration is open</h1>
-			<p class="welcome"> Please <a href="https://www.eventsforce.net/dicty2015"> <strong>visit this link</strong></a> to register for the conference <small>(managed by the Royal Holloway)</small></p>
+			<h1 class="highLightColor"> <%= link_to 'Registration is open', :controller => 'home',  :action => 'registration' %>  </h1>
+
+			<!-- <p class="welcome"> Please <a href="https://www.eventsforce.net/dicty2015"> <strong>visit this link</strong></a> to register for the conference <small>(managed by the Royal Holloway)</small></p> -->
 		</div>
 
 		<div class="hostBox">
-			<em>Hosted by</em>:<br/>
+			<h3><em>Hosted by</em></h3>
 			<p>
 				<div class="organizer">Robin Williams</div>
 				School of Biological Sciences, Royal Holloway University of London.<br/>

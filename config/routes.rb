@@ -30,6 +30,7 @@ Dicty11::Application.routes.draw do
 	match '/transport' => 'home#transport', :as => :transport
 	match '/sponsors' => 'home#sponsors', :as => :sponsors
 	match '/regitration' => 'home#registration', :as => :registration #DJM
+	match '/excursion' => 'home#excursion', :as => :registration #DJM
 
 
 end
