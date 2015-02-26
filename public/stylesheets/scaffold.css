@@ -119,7 +119,7 @@ table#headerTable {
 
 .subDicty {
   font-size: 20px;
-  font-family: 'Chelsea Market', Georgia, serif;
+  font-family: 'Chelsea Market', Arial, Georgia, serif;
   color: #008AB8;
   letter-spacing: 5px;
   text-align: left;
@@ -187,6 +187,31 @@ table#headerTable {
   padding-top: 10px;
 }
 
+.travelHeaderTitle {
+  font-size: 45px;
+  font-family: 'Chelsea Market', Georgia, serif;
+
+  text-align: right;
+  color: yellow;
+  letter-spacing: 5px;
+  /*text-shadow: 2px 2px grey;*/
+
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+
+.excursionHeaderTitle {
+  font-size: 45px;
+  font-family: 'Chelsea Market', Georgia, serif;
+
+  text-align: right;
+  color: #B40486;
+  letter-spacing: 5px;
+  /*text-shadow: 2px 2px grey;*/
+
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
 
 /*HOME*/
 
@@ -395,10 +420,21 @@ table#agendaTable {
   border-spacing: 5px;
 }
 
-
-
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 /*end of AGENDA*/
+
+/*EXCURSION*/
+
+.morph {
+  border-radius: 50%;
+  -webkit-transform: rotate(360deg);
+     -moz-transform: rotate(360deg);
+       -o-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
+/*end of EXCURSION*/
 
 
 
