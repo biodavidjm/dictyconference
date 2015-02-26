@@ -75,7 +75,9 @@ a:active {
 
 .menuBelow {
   background-color: black;
-  color:white;
+  color: white;
+  /*border: 1px #A4A4A4 solid;*/
+  border-bottom: 1px #0B4C5F solid;
 
   padding-top: 10px;
   padding-left: 10px;
@@ -83,18 +85,18 @@ a:active {
 }
 
 .menu {
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: 14px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 16px;
 }
 
 .menu a:link {
-  text-decoration: none;
-  color: white;
+  text-decoration: underline;
+  color: #E6E6E6;
 }
 .menu a:visited {
   text-decoration: none;
-  color: white;
+  color: #E6E6E6;
 }
 .menu a:hover {
   text-decoration: none;
@@ -254,11 +256,13 @@ table#headerTable {
 .registrationBox {
   padding-top: 0px;
   padding-bottom: 0px;
-  padding-left: 20px;
+  /*padding-left: 20px;*/
 
   border: 3px #088A08 solid;
   border-radius: 30px;
   background-color: #E0F8EC;
+
+  text-align: center;
 }
 
 .registrationBox h1 {
