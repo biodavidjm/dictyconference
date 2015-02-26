@@ -3,11 +3,10 @@
 /*AFFECTING ALL*/
 body {
   margin: 0;
-  font: 11px arial,helvetica,clean,sans-serif;
+  font: 11px Arial,Helvetica;
   background:none repeat scroll 0 0 #909090;
   min-height: 750px;
-  /*font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;*/
-  font-family: arial;
+  font-family: Arial;
 }
 
 h3{
@@ -119,7 +118,7 @@ table#headerTable {
 
 .subDicty {
   font-size: 20px;
-  font-family: 'Chelsea Market', Arial, Georgia, serif;
+  font-family: 'Chelsea Market', Arial;
   color: #008AB8;
   letter-spacing: 5px;
   text-align: left;
@@ -128,7 +127,7 @@ table#headerTable {
 
 .subConference {
   font-size: 10px;
-  font-family: 'Chelsea Market', Georgia, serif;
+  font-family: 'Chelsea Market', Arial;
   letter-spacing: 2px;
   color:white;
   text-align: left;
@@ -137,7 +136,7 @@ table#headerTable {
 
 .subDate {
   font-size: 10px;
-  font-family: 'Chelsea Market', Georgia, serif;
+  font-family: 'Chelsea Market', Arial;
   color:red;
   text-align: left;
   padding-bottom: 5px;
@@ -145,7 +144,7 @@ table#headerTable {
 
 .regHeaderTitle {
   font-size: 45px;
-  font-family: 'Chelsea Market', Georgia, serif;
+  font-family: 'Chelsea Market', Arial;
 
   /*font-weight: bold;*/
   text-align: right;
@@ -161,7 +160,7 @@ table#headerTable {
 
 .agendaHeaderTitle {
   font-size: 45px;
-  font-family: 'Chelsea Market', Georgia, serif;
+  font-family: 'Chelsea Market', Arial;
 
   text-align: right;
   color: #FF8000;
@@ -176,7 +175,7 @@ table#headerTable {
 
 .excursionHeaderTitle {
   font-size: 45px;
-  font-family: 'Chelsea Market', Georgia, serif;
+  font-family: 'Chelsea Market', Arial;
 
   text-align: right;
   color: yellow;
@@ -189,7 +188,7 @@ table#headerTable {
 
 .travelHeaderTitle {
   font-size: 45px;
-  font-family: 'Chelsea Market', Georgia, serif;
+  font-family: 'Chelsea Market', Arial;
 
   text-align: right;
   color: yellow;
@@ -202,7 +201,7 @@ table#headerTable {
 
 .excursionHeaderTitle {
   font-size: 45px;
-  font-family: 'Chelsea Market', Georgia, serif;
+  font-family: 'Chelsea Market', Arial;
 
   text-align: right;
   color: #B40486;
@@ -217,7 +216,7 @@ table#headerTable {
 
 .mainDicty {
   font-size: 55px;
-  font-family: 'Chelsea Market', Georgia, serif;
+  font-family: 'Chelsea Market', Arial;
   color: #008AB8;
   letter-spacing: 5px;
   background-color: black;
@@ -226,7 +225,7 @@ table#headerTable {
 
 .mainConference {
   font-size: 16px;
-  font-family: 'Chelsea Market', Georgia, serif;
+  font-family: 'Chelsea Market', Arial;
   letter-spacing: 2px;
   color:white;
   padding-bottom: 10px;
@@ -236,7 +235,7 @@ table#headerTable {
   font-size: 16px;
   color: #FF0040;
   text-align: center;
-  font-family: 'Chelsea Market', Georgia, serif;
+  font-family: 'Chelsea Market', Arial;
 }
 
 .mainLocation{

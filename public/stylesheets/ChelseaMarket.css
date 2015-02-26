@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Chelsea Market';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Chelsea Market'), local('ChelseaMarket-Regular'), url(ChelseaMarket.ttf) format('truetype');
+  /* src: local('Chelsea Market'), local('ChelseaMarket-Regular'), url(https://fonts.gstatic.com/s/chelseamarket/v4/qSdzwh2A4BbNemy78sJLfOSB4-q0KehLImxSVNaiVBQ.ttf) format('truetype');*/
+}
