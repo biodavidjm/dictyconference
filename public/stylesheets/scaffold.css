@@ -176,19 +176,6 @@ table#headerTable {
   background-color: black;
 }
 
-.excursionHeaderTitle {
-  font-size: 45px;
-  font-family: 'Chelsea Market', Arial;
-
-  text-align: right;
-  color: yellow;
-  letter-spacing: 5px;
-  /*text-shadow: 2px 2px grey;*/
-
-  padding-bottom: 20px;
-  padding-top: 10px;
-}
-
 .travelHeaderTitle {
   font-size: 45px;
   font-family: 'Chelsea Market', Arial;
@@ -298,16 +285,16 @@ table#headerTable {
 
 #left {
 
-  padding-left: 30px;
+  padding-left: 50px;
   padding-right: 10px;
-  width: 370px;
+  width: 340px;
   float: left;
 }
 
 #right {
 
   padding-left: 10px;
-  padding-right: 30px;
+  padding-right: 50px;
 
   width:370px;  
   float: right;
@@ -334,7 +321,7 @@ table#headerTable {
     color: #afafaf;
     text-align: center;
     padding-bottom: 5px;
-    padding-top: 5px;
+    padding-top: 25px;
 }
 
 #footer a{
@@ -358,14 +345,14 @@ table#regFees {
 }
 
 .regTable {
-  padding: 5px 20px 20px 20px;
+  padding: 20px 10px 20px 15px;
   font-size: 16px;
   border: 3px black solid;
   border-radius: 30px;
   margin-top: 30px;
-  margin-bottom: 30px;
-  margin-left: 100px;
-  margin-right:100px;
+  margin-bottom: 10px;
+  margin-left: 130px;
+  margin-right:130px;
 
 }
 
@@ -416,7 +403,7 @@ table#regFees {
 }
 
 .agendaDivTable {
-  padding: 0px 10px 20px 10px;
+  padding: 0px 10px 20px 40px;
 }
 
 table#agendaTable {
@@ -429,6 +416,9 @@ table#agendaTable {
 
 /*EXCURSION*/
 
+.excText {
+  padding: 0px 50px 0px 30px;
+}
 
 /*end of EXCURSION*/
 
