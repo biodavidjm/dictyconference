@@ -242,20 +242,18 @@ table#headerTable {
 /*OPEN REGISTRATION STYLES*/
 
 .registrationBox {
-  padding-top: 0px;
-  padding-bottom: 0px;
-  /*padding-left: 20px;*/
+  padding-top: 10px;
+  padding-bottom: 10px;
 
   border: 3px #088A08 solid;
   border-radius: 30px;
+
   background-color: #E0F8EC;
 
   text-align: center;
+  font-size: 20px;
 }
 
-.registrationBox h1 {
-  padding-top: 0px;
-}
 
 /*HOSTS / ORGANIZERS*/
 
