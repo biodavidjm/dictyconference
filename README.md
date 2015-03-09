@@ -56,7 +56,8 @@ The details of the configuration has changed for the [dicty15](http://dicty15.di
 
 * database. They don’t use `bcdatabase` anymore. Instead, they now use [Confluence](https://confluence.nubic.northwestern.edu/dashboard.action). 
 
-* Deployment. Nubic uses the `gem [capistrano](https://rubygems.org/gems/capistrano)`. This gem takes care of the deployment itself. For example, it creates the current version of the web and reorganize the structure of the folder to keep the old versions
+* Deployment. Nubic uses the `gem [capistrano](https://rubygems.org/gems/capistrano)`. This gem takes care of the deployment itself. For example, it creates the current version of the web and reorganize the structure of the folder to keep the old versions. `dictyconference` is not using this option yet. IN the meantime, a simple rsync is made with the servers.
+* Refresh. After sync to staging and prod, a `touch tmp/restart.txt` might be necessary.
 
 <a name="oldconfig"/>
 ## Old configuration
