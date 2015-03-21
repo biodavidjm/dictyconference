@@ -68,6 +68,7 @@ a:active {
 
 
 /*HEADER*/
+/*------------------------------*/
 
 .mainMenu {
   background-color: black;
@@ -81,13 +82,12 @@ a:active {
   border-bottom: 1px #0B4C5F solid;
 
   padding-top: 10px;
-  padding-left: 10px;
   padding-bottom: 10px;
 }
 
 .menu {
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
   font-size: 16px;
 }
 
@@ -161,6 +161,22 @@ table#headerTable {
   background-color: black;
 }
 
+.abstractsHeaderTitle{
+  font-size: 45px;
+  font-family: 'Chelsea Market', Arial;
+
+  /*font-weight: bold;*/
+  text-align: right;
+  color: #B45F04;
+  letter-spacing: 5px;
+  /*text-shadow: 2px 2px grey;*/
+
+  padding-bottom: 20px;
+  padding-top: 10px;
+
+  background-color: black;
+}
+
 .agendaHeaderTitle {
   font-size: 45px;
   font-family: 'Chelsea Market', Arial;
@@ -203,6 +219,7 @@ table#headerTable {
 }
 
 /*HOME*/
+/*------------------------------*/
 
 .mainDicty {
   font-size: 55px;
@@ -239,7 +256,7 @@ table#headerTable {
   font-weight: bold;
 }
 
-/*OPEN REGISTRATION STYLES*/
+/*Open Registration*/
 
 .registrationBox {
   padding-top: 10px;
@@ -255,7 +272,7 @@ table#headerTable {
 }
 
 
-/*HOSTS / ORGANIZERS*/
+/*Organizers*/
 
 .hostBox {
   padding-top: 20px;
@@ -329,12 +346,21 @@ table#headerTable {
 
 
 /*REGISTRATION*/
+/*------------------------------*/
 
 .regDescription {
   margin-left: 100px;
   margin-right: 100px;
   font-size: 14px;
   padding-top: 10px;
+  padding-bottom: 10px;
+}
+.regFees {
+  margin-left: 100px;
+  margin-right: 100px;
+  font-size: 14px;
+  padding-top: 10px;
+  padding-bottom: 0px;
 }
 
 table#regFees {
@@ -413,12 +439,35 @@ table#agendaTable {
 /*end of AGENDA*/
 
 /*EXCURSION*/
+/*------------------------------*/
 
 .excText {
   padding: 0px 50px 0px 30px;
 }
 
 /*end of EXCURSION*/
+
+
+/*ABSTRACTS*/
+/*------------------------------*/
+
+.abstractDeadline {
+  font-family: 'Chelsea Market', Arial;
+  font-size: 20px;
+  text-align: center;
+  padding: 30px 0px 20px 0px;
+}
+
+
+/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
+/*End of abstracts*/
+
+/*General stuff*/
+
+.redColor {
+  color: #FF0000;
+}
+
 
 
 /*COOL CSS EFFECTS */
