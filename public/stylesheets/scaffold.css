@@ -262,10 +262,10 @@ table#headerTable {
   padding-top: 10px;
   padding-bottom: 10px;
 
-  border: 3px #088A08 solid;
+  border: 3px #FA5858 solid;
   border-radius: 30px;
 
-  background-color: #E0F8EC;
+  background-color: #FBEFEF;
 
   text-align: center;
   font-size: 20px;
@@ -347,6 +347,7 @@ table#headerTable {
 
 /*REGISTRATION*/
 /*------------------------------*/
+
 
 .regDescription {
   margin-left: 100px;
@@ -466,6 +467,17 @@ table#agendaTable {
 
 .redColor {
   color: #FF0000;
+}
+
+.blueColor {
+  color: #2E9AFE;
+}
+
+.redBox {
+  padding: 30px 20px 30px 20px;
+  text-align: center;
+  color: white;
+  background-color: #FA5858;
 }
 
 
