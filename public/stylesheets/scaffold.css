@@ -247,13 +247,39 @@ table#headerTable {
 
 .mainLocation{
   font-size: 18px;
-  padding-bottom: 30px;
+  padding-bottom: 0px;
 }
 
 .highLightColor {
   /*color: #006633;*/
   color: #088A08;
   font-weight: bold;
+}
+
+.delegateBox {
+  margin: 0px 100px 30px 100px;
+  
+  padding: 20px 20px 20px 20px;
+  border: 3px #008AB8 solid;
+  background-color: #008AB8;
+  border-radius: 30px;
+  font-size: 18px;
+  font-family: 'Chelsea Market', Arial;
+  color:white;
+
+}
+
+a.captionLink:link {
+  color:inherit;
+  text-decoration:underline;
+}
+a.captionLink:visited {
+  color:inherit;
+  text-decoration:underline;
+}
+a.captionLink:hover {
+  color:inherit;
+  text-decoration:none;
 }
 
 /*Open Registration*/
@@ -280,9 +306,12 @@ table#headerTable {
 
 /*Organizers*/
 
-.hostBox {
-  padding-top: 20px;
+.fullProgram {
+  padding-bottom: 10px;
+}
 
+.hostBox {
+  padding-top: 0px;
 }
 
 .organizer {

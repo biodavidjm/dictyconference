@@ -29,6 +29,10 @@
 			United Kingdom
 			</p>
 		</div>
+
+		<div class="delegateBox">
+			<a class="captionLink" href="<%= ENV["RAILS_RELATIVE_URL_ROOT"] %>/Dicty2015DelegateInformation.pdf" target="_blank">All you need to know about getting to the meeting</a>
+		</div>
 	</div>
 
 
@@ -62,15 +66,17 @@
 					The nearest train station is Egham, approximately 1 mile from Royal Holloway. It has direct links to London Waterloo, Ascot, Reading and Weybridge.
 				</div>
 		</div>
-
+		<br>
+		<div class="registrationBox closed">
+			Registration is closed
+		</div>
 	</div>
 
 	<!--Right block with the host information-->
 	<div id="right">
-
-		<div class="registrationBox closed">
-			Registration is closed
-
+		
+		<div class="fullProgram">
+			<a href="<%= ENV["RAILS_RELATIVE_URL_ROOT"] %>/Dicty2015_Schedule.pdf" target="_blank"><h2>Download the full programme here</h2></a>
 		</div>
 
 		<div class="hostBox">
@@ -104,5 +110,4 @@
 			</p>
 		</div> <!-- class="hosts" -->
 	</div>
-
 </div>
